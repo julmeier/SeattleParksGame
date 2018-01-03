@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		124D7641BDA61A3AFE72C77D /* Pods_SeattleParksGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */; };
 		A383E7BF1FFCBA1400DACC2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */; };
 		A383E7C41FFCBA1400DACC2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C21FFCBA1400DACC2E /* Main.storyboard */; };
 		A383E7C61FFCBA1400DACC2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C51FFCBA1400DACC2E /* Assets.xcassets */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AA7398EF4C081246D2672B1 /* Pods-SeattleParksGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.release.xcconfig"; sourceTree = "<group>"; };
+		796A9965981998C42C96E857 /* Pods-SeattleParksGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.debug.xcconfig"; sourceTree = "<group>"; };
 		A383E7BB1FFCBA1400DACC2E /* SeattleParksGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeattleParksGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A383E7C31FFCBA1400DACC2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		A383E7D01FFCC18300DACC2E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoViewController.swift; sourceTree = "<group>"; };
 		A383E7D41FFCC37A00DACC2E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeattleParksGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				124D7641BDA61A3AFE72C77D /* Pods_SeattleParksGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18B0E5A743C523DE387A06FF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				796A9965981998C42C96E857 /* Pods-SeattleParksGame.debug.xcconfig */,
+				2AA7398EF4C081246D2672B1 /* Pods-SeattleParksGame.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A383E7B21FFCBA1400DACC2E = {
 			isa = PBXGroup;
 			children = (
 				A383E7BD1FFCBA1400DACC2E /* SeattleParksGame */,
 				A383E7BC1FFCBA1400DACC2E /* Products */,
+				18B0E5A743C523DE387A06FF /* Pods */,
+				E6D9D1A0B635BEE155CBCBB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +86,14 @@
 			path = SeattleParksGame;
 			sourceTree = "<group>";
 		};
+		E6D9D1A0B635BEE155CBCBB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A383E7CD1FFCBA1400DACC2E /* Build configuration list for PBXNativeTarget "SeattleParksGame" */;
 			buildPhases = (
+				53FD1D4975B202AA05884473 /* [CP] Check Pods Manifest.lock */,
 				A383E7B71FFCBA1400DACC2E /* Sources */,
 				A383E7B81FFCBA1400DACC2E /* Frameworks */,
 				A383E7B91FFCBA1400DACC2E /* Resources */,
+				E03018105429079C35E30DD4 /* [CP] Embed Pods Frameworks */,
+				CD2E766489DCC7B05D1A7A93 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,6 +163,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		53FD1D4975B202AA05884473 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SeattleParksGame-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD2E766489DCC7B05D1A7A93 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E03018105429079C35E30DD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A383E7B71FFCBA1400DACC2E /* Sources */ = {
@@ -280,6 +363,7 @@
 		};
 		A383E7CE1FFCBA1400DACC2E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 796A9965981998C42C96E857 /* Pods-SeattleParksGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -294,6 +378,7 @@
 		};
 		A383E7CF1FFCBA1400DACC2E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AA7398EF4C081246D2672B1 /* Pods-SeattleParksGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
