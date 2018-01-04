@@ -7,6 +7,10 @@
 //
 
 import UIKit
+//below line added by Julia
+import Firebase
+import Foundation
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //Below line added by Julia
+        FirebaseApp.configure()
+        //IS THIS RIGHT? OTHER TUTORIALS USE: FIRApp.configure()
         return true
     }
 

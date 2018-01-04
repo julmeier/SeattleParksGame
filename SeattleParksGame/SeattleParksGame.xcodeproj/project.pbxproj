@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		124D7641BDA61A3AFE72C77D /* Pods_SeattleParksGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */; };
+		124D7641BDA61A3AFE72C77D /* Pods_SeattleParksGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		A37799B21FFDAECB00253E26 /* SeattleParksAddresses.json in Resources */ = {isa = PBXBuildFile; fileRef = A37799B11FFDAECB00253E26 /* SeattleParksAddresses.json */; };
 		A383E7BF1FFCBA1400DACC2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */; };
 		A383E7C41FFCBA1400DACC2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C21FFCBA1400DACC2E /* Main.storyboard */; };
 		A383E7C61FFCBA1400DACC2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C51FFCBA1400DACC2E /* Assets.xcassets */; };
@@ -15,11 +16,13 @@
 		A383E7D11FFCC18300DACC2E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7D01FFCC18300DACC2E /* HomeViewController.swift */; };
 		A383E7D31FFCC21300DACC2E /* ParkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */; };
 		A383E7D51FFCC37A00DACC2E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7D41FFCC37A00DACC2E /* MapViewController.swift */; };
+		A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2AA7398EF4C081246D2672B1 /* Pods-SeattleParksGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.release.xcconfig"; sourceTree = "<group>"; };
 		796A9965981998C42C96E857 /* Pods-SeattleParksGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.debug.xcconfig"; sourceTree = "<group>"; };
+		A37799B11FFDAECB00253E26 /* SeattleParksAddresses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SeattleParksAddresses.json; path = ../../SeattleParksAddresses.json; sourceTree = "<group>"; };
 		A383E7BB1FFCBA1400DACC2E /* SeattleParksGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeattleParksGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A383E7C31FFCBA1400DACC2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -29,6 +32,7 @@
 		A383E7D01FFCC18300DACC2E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoViewController.swift; sourceTree = "<group>"; };
 		A383E7D41FFCC37A00DACC2E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeattleParksGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -76,8 +80,10 @@
 			children = (
 				A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */,
 				A383E7C21FFCBA1400DACC2E /* Main.storyboard */,
-				A383E7D41FFCC37A00DACC2E /* MapViewController.swift */,
+				A37799B11FFDAECB00253E26 /* SeattleParksAddresses.json */,
+				A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */,
 				A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */,
+				A383E7D41FFCC37A00DACC2E /* MapViewController.swift */,
 				A383E7D01FFCC18300DACC2E /* HomeViewController.swift */,
 				A383E7C51FFCBA1400DACC2E /* Assets.xcassets */,
 				A383E7C71FFCBA1400DACC2E /* LaunchScreen.storyboard */,
@@ -157,8 +163,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A383E7C91FFCBA1400DACC2E /* LaunchScreen.storyboard in Resources */,
+				A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */,
 				A383E7C61FFCBA1400DACC2E /* Assets.xcassets in Resources */,
 				A383E7C41FFCBA1400DACC2E /* Main.storyboard in Resources */,
+				A37799B21FFDAECB00253E26 /* SeattleParksAddresses.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,11 +213,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);

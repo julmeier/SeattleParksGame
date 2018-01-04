@@ -6,6 +6,7 @@ target 'SeattleParksGame' do
   use_frameworks!
 
   # Pods for SeattleParksGame
-    pod 'Firebase'
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
 end
