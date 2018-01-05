@@ -23,7 +23,7 @@ struct ParkAddress: Codable {
 }
 
 
-class  MapViewController: UIViewController {
+class  MapViewController: UIViewController, MapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -33,6 +33,9 @@ class  MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //delegate needed for custom pin
+        mapView.delegate = self
         
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
@@ -81,7 +84,11 @@ class  MapViewController: UIViewController {
                 mapView.addAnnotation(aPin)
                 
                 //ONLY ONCE AT ACCOUNT CREATION: create and populate initial Firebase database for testUser1:
-//                dbReference?.child("users").child("testUser1").child("parkVisits").child(park.pmaid).setValue(false)
+                //retrieves all pmaids and sets value to false:
+                dbReference?.child("users").child("testUser1").child("parkVisits").child(park.pmaid).setValue(false)
+                //creates userdata structure only with no data:
+                dbReference?.child("users").child("testUser1").child("badges").child(park.zip_code).setValue(false)
+                //dbReference?.child("users").child("testUser2").child("badges")
                 
                 
             }
@@ -108,6 +115,10 @@ class  MapViewController: UIViewController {
         //Retrieve the firebase data and listen for changes
         
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor: annotation: MKAnnotation) -> MKAnnotationView? (
+        let annotationView = MKAnnotationView(annotation: )
+    )
     
     private let regionRadius: CLLocationDistance = 4000 //1km = 1000
     func zoomMapOn(location: CLLocation) {
