@@ -23,9 +23,11 @@ struct ParkAddress: Codable {
 }
 
 
-class  MapViewController: UIViewController, MapViewDelegate {
+class  MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    var redTree = MKPointAnnotation()
+    var greenTree = MKPointAnnotation()
     
 //    var ref: DatabaseReference!
     var dbReference: DatabaseReference?
@@ -116,9 +118,13 @@ class  MapViewController: UIViewController, MapViewDelegate {
         
     }
     
-    func mapView(_ mapView: MKMapView, viewFor: annotation: MKAnnotation) -> MKAnnotationView? (
-        let annotationView = MKAnnotationView(annotation: )
-    )
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "greenTreePin")
+        annotationView.image = UIImage(named: "pine-tree-green")
+        let transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        annotationView.transform = transform
+        return annotationView
+    }
     
     private let regionRadius: CLLocationDistance = 4000 //1km = 1000
     func zoomMapOn(location: CLLocation) {
