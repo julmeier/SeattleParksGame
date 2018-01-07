@@ -14,6 +14,7 @@ class AnnotationPin: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var coordinate: CLLocationCoordinate2D
+    var visitStatusInPin: Bool?
     
     init(title: String, subtitle: String?, coordinate: CLLocationCoordinate2D) {
         self.title = title

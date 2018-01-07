@@ -67,7 +67,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
 //        mapView.addAnnotation(samplePin2)
         
         var parkPMAID: String?
-        let storedVisitStatus: String?
         
         let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
         let url = URL(fileURLWithPath: path!)
@@ -86,22 +85,45 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                 let lat = (park.y_coord as NSString).doubleValue
                 
                 //read in data from database to see if the park has been visited
+                
+                dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.hasChild(park.pmaid) {
+                    print("pmaid in the db:")
+                    print(park.pmaid)
+                } else {
+                    print("pmaid NOT in the db:")
+                    print(park.pmaid)
+                }
+            })
+                
                 //dbReference?.child("users/testUser1/parkVisits/\(park.pmaid)").observe(.value, with: { (snapshot) in
                 dbReference?.child("users/testUser1/parkVisits/\(park.pmaid)").observeSingleEvent(of: .value, with: { (snapshot) in
                     parkPMAID = snapshot.key
-                    print(parkPMAID!)
+                    //print(parkPMAID!)
                     let storedVisitStatus = snapshot.value as? Bool
                     let storedVisitStatusString = self.BoolToString(b: storedVisitStatus)
                     //print(storedVisitStatusString)
                     //print("next")
-                    //let storedVisitStatus = snapshot.value as? String
-                    //print(storedVisitStatus)
+                    
+                    //LiNGERING QUESTION: should I actually make unqiue model instances? i.e. make a unique identifier instead of "aPin" (ex. aPin12345) so that I can pass that object around the application and it persists after teh map has been loaded?
                 
                     let aPin = AnnotationPin(
                         title: park.name,
                         subtitle: storedVisitStatusString,
                         coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long)
                     )
+                    aPin.visitStatusInPin = storedVisitStatus
+                    if snapshot.hasChild(park.pmaid){
+                        //print(aPin.visitStatusInPin!)
+                        //print("This park is LISTED:")
+                        //print(park.pmaid)
+                    }
+                    else {
+                        //print("This park is NOT listed:")
+                        //print(park.pmaid)
+                        
+                    }
+                    
                     self.mapView.addAnnotation(aPin)
                 })
                 
