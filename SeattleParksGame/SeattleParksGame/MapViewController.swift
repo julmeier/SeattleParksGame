@@ -19,7 +19,6 @@ struct ParkAddress: Codable {
     let zip_code: String
     let x_coord: String
     let y_coord: String
-//    let visited: Bool
 }
 
 
@@ -31,6 +30,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     
 //    var ref: DatabaseReference!
     var dbReference: DatabaseReference?
+    var databaseHandle:DatabaseHandle?
     var pin: AnnotationPin!
     
     override func viewDidLoad() {
@@ -38,6 +38,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         
         //delegate needed for custom pin
         mapView.delegate = self
+        
+        //this doesn't seem to be working:
+        mapView.showsUserLocation = true
         
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
@@ -63,6 +66,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
 //        )
 //        mapView.addAnnotation(samplePin2)
         
+        var parkPMAID: String?
+        let storedVisitStatus: String?
+        
         let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
         let url = URL(fileURLWithPath: path!)
         do {
@@ -78,18 +84,33 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
 //                print(park.name)
                 let long = (park.x_coord as NSString).doubleValue
                 let lat = (park.y_coord as NSString).doubleValue
-                let aPin = AnnotationPin(
-                    title: park.name,
-                    subtitle: park.address,
-                    coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long)
-                )
-                mapView.addAnnotation(aPin)
                 
-                //ONLY ONCE AT ACCOUNT CREATION: create and populate initial Firebase database for testUser1:
+                //read in data from database to see if the park has been visited
+                //dbReference?.child("users/testUser1/parkVisits/\(park.pmaid)").observe(.value, with: { (snapshot) in
+                dbReference?.child("users/testUser1/parkVisits/\(park.pmaid)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    parkPMAID = snapshot.key
+                    print(parkPMAID!)
+                    let storedVisitStatus = snapshot.value as? Bool
+                    let storedVisitStatusString = self.BoolToString(b: storedVisitStatus)
+                    //print(storedVisitStatusString)
+                    //print("next")
+                    //let storedVisitStatus = snapshot.value as? String
+                    //print(storedVisitStatus)
+                
+                    let aPin = AnnotationPin(
+                        title: park.name,
+                        subtitle: storedVisitStatusString,
+                        coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    )
+                    self.mapView.addAnnotation(aPin)
+                })
+                
+                
+                //TO CREATE TEST DATA: create and populate initial Firebase database for testUser1:
                 //retrieves all pmaids and sets value to false:
-                dbReference?.child("users").child("testUser1").child("parkVisits").child(park.pmaid).setValue(false)
+                //dbReference?.child("users").child("testUser1").child("parkVisits").child(park.pmaid).setValue(false)
                 //creates userdata structure only with no data:
-                dbReference?.child("users").child("testUser1").child("badges").child(park.zip_code).setValue(false)
+                //dbReference?.child("users").child("testUser1").child("badges").child(park.zip_code).setValue(false)
                 //dbReference?.child("users").child("testUser2").child("badges")
                 
                 
@@ -113,17 +134,45 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             
         }
         
-        
+        print("FINISHED load")
         //Retrieve the firebase data and listen for changes
         
     }
     
+    //initial way: callout is VERY small
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "greenTreePin")
+//        annotationView.image = UIImage(named: "pine-tree-green")
+//        let transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+//        annotationView.transform = transform
+//        annotationView.canShowCallout = true
+//        return annotationView
+//    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "greenTreePin")
-        annotationView.image = UIImage(named: "pine-tree-green")
-        let transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        annotationView.transform = transform
+        if annotation is MKUserLocation
+        {
+            return nil
+        }
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
+        if annotationView == nil{
+            annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "pin")
+            annotationView?.canShowCallout = true
+        }else{
+            annotationView?.annotation = annotation
+        }
+        
+        //ADD LOGIC HERE ON WHICH TREE TO APPLY BASED ON GOOGLEFIRE DATABASE?
+        //Ex. if users.username.parkvisits.park#.value = true, then apply green tree
+        annotationView?.image = UIImage(named: "green-cloud-tree-32")
         return annotationView
+    }
+    
+    func BoolToString(b: Bool?)->String { return b?.description ?? "<None>"}
+    
+    func mapView(_ mapView: MKMapView,
+                 didSelect view: MKAnnotationView) {
+        
     }
     
     private let regionRadius: CLLocationDistance = 4000 //1km = 1000
