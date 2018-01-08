@@ -14,7 +14,7 @@ class AnnotationPin: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var coordinate: CLLocationCoordinate2D
-    var visitStatusInPin: Bool? //haven't used this yet. May want to read from db directly in the details page.
+    var visitStatus: String? //haven't used this yet. May want to read from db directly in the details page.
     var imageName: String?
     var pmaid: String?
     var address: String?
@@ -26,6 +26,7 @@ class AnnotationPin: NSObject, MKAnnotation {
         self.imageName = imageName
         self.pmaid = pmaid
         self.address = address
+        
         
         super.init()
     }

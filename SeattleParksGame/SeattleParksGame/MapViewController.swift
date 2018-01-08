@@ -263,6 +263,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         print("passedAnnotation in MapView:")
         print(passedAnnotation!)
         print(passedAnnotation?.title! as Any)
+        print(passedAnnotation?.address! as Any)
         
         //perform manual segue
         performSegue(withIdentifier: "parkDetails", sender: self)
@@ -282,9 +283,15 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "parkDetails" {
             let destinationViewController = segue.destination as! ParkInfoViewController
-            destinationViewController.name = passedAnnotation?.title!
-            //destinationViewController.viaSegue = sender as! AnnotationPin
-            //destinationViewController.name = passedAnnotation.title
+            
+            //Pass individual parameters to ParkInfoViewController:
+//            destinationViewController.name = passedAnnotation?.title!
+//            destinationViewController.address = passedAnnotation?.address!
+//            destinationViewController.pmaid = passedAnnotation?.pmaid!
+//            destinationViewController.visited = passedAnnotation?.subtitle
+            
+            //OR Pass whole object!
+            destinationViewController.parkData = passedAnnotation
         }
     }
 
