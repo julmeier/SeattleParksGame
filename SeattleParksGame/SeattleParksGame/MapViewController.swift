@@ -229,6 +229,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                 }
         let cpa = annotation as! AnnotationPin
         annotationView!.image = UIImage(named: cpa.imageName!)
+        //let buttonImage = UIImage(named: "museum-cross-signal-of-orientation-for-map-32.png")
+        //let button = UIButton(type: .custom)
+        let button = UIButton(type:.infoDark) as UIButton
+        annotationView!.rightCalloutAccessoryView = button
+        
         
         //centers the image so that the bottom of the image matches with coordinate:
         annotationView?.centerOffset = CGPoint(x:0, y:((annotationView?.frame.size.height)!/2))
@@ -237,6 +242,17 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func BoolToString(b: Bool?)->String { return b?.description ?? "<None>"}
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("button tapped")
+        
+        //get the annotation, which is a parameter
+        //ex from tutorial: b = view.annotation as! book
+        let b = view.annotation as! AnnotationPin
+        
+        //perform manual segue
+        performSegue(withIdentifier: "parkDetails", sender: self)
+    }
     
     func mapView(_ mapView: MKMapView,
                  didSelect view: MKAnnotationView) {
@@ -247,6 +263,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     func zoomMapOn(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 3.0, regionRadius * 3.0)
         mapView.setRegion(coordinateRegion, animated:true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "parkDetails" {
+            let dest = segue.destination as! ParkInfoViewController
+            //dest.b = b
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -14,16 +14,16 @@ class ParkInfoViewController: UIViewController {
     @IBOutlet weak var parkName: UILabel!
     @IBOutlet weak var parkAddress: UILabel!
     @IBOutlet weak var visitStatus: UILabel!
-    @IBOutlet weak var parkImage: UIImageView!
+    //@IBOutlet weak var parkImage: UIImageView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         parkName.text = "Magnuson Park"
-        parkImage.image = UIImage(named: "GasworksHD-landscape")
+        //parkImage.image = UIImage(named: "GasworksHD-landscape")
         //or use Image Literal to choose image from Asset catalogue
         
-        // Do any additional setup after loading the view.
+        
     }
 
     @IBAction func changeVisitStatusPressed(_ sender: Any) {
