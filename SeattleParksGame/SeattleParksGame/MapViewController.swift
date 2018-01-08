@@ -22,11 +22,6 @@ struct ParkAddress: Codable {
 }
 
 class  MapViewController: UIViewController, MKMapViewDelegate {
-    
-//    class CustomPointAnnotation: MKPointAnnotation {
-//        var imageName: String!
-//        //var visitStatus: Bool!
-//    }
 
     //Mapping variables:
     @IBOutlet weak var mapView: MKMapView!
@@ -95,8 +90,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                 
                 dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChild(park.pmaid) {
-                    print("pmaid in the db:")
-                    print(park.pmaid)
+                    //print("pmaid in the db:")
+                    //print(park.pmaid)
                     self.greenTree = AnnotationPin(
                         title: park.name,
                         subtitle: "true",
@@ -219,6 +214,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             print("Not registered as MKAnnotation")
             return nil
         }
+        if annotation is MKUserLocation {
+            return nil
+        }
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "parkIdentifier")
                 if annotationView == nil{
@@ -231,6 +229,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                 }
         let cpa = annotation as! AnnotationPin
         annotationView!.image = UIImage(named: cpa.imageName!)
+        
+        //centers the image so that the bottom of the image matches with coordinate:
+        annotationView?.centerOffset = CGPoint(x:0, y:((annotationView?.frame.size.height)!/2))
         return annotationView
         
     }
