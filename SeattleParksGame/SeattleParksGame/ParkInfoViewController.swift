@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import MapKit
 
 class ParkInfoViewController: UIViewController {
 
@@ -16,13 +17,18 @@ class ParkInfoViewController: UIViewController {
     @IBOutlet weak var visitStatus: UILabel!
     //@IBOutlet weak var parkImage: UIImageView!
     
+    var name: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        parkName.text = "Magnuson Park"
+
+        //parkName.text = "Magnuson Park"
         //parkImage.image = UIImage(named: "GasworksHD-landscape")
         //or use Image Literal to choose image from Asset catalogue
         
+        if let nameToDisplay = name {
+            parkName.text = nameToDisplay
+        }
         
     }
 

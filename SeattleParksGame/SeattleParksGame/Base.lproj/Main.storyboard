@@ -74,7 +74,7 @@
             </objects>
             <point key="canvasLocation" x="-1529" y="35"/>
         </scene>
-        <!--Title-->
+        <!--Park Info View Controller-->
         <scene sceneID="8r7-F0-iGk">
             <objects>
                 <viewController id="Bka-VQ-6qm" customClass="ParkInfoViewController" customModule="SeattleParksGame" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,21 +89,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Us-dZ-8Zd">
-                                <rect key="frame" x="199" y="331" width="165" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.089536830357142855" green="0.70131180829999995" blue="0.024135044642857144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="17"/>
-                                <state key="normal" title="changeVisitStatus">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeVisitStatusPressed:" destination="Bka-VQ-6qm" eventType="touchUpInside" id="in5-8J-OrM"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Park Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzF-LJ-Inf">
-                                <rect key="frame" x="70" y="100" width="235" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Park Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PzF-LJ-Inf">
+                                <rect key="frame" x="0.0" y="64" width="375" height="77"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="DamascusSemiBold" family="Damascus" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -116,7 +106,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Visiting Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teH-Nc-SHz">
-                                <rect key="frame" x="0.0" y="319" width="191" height="60"/>
+                                <rect key="frame" x="0.0" y="149" width="191" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DamascusSemiBold" family="Damascus" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -127,11 +117,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Us-dZ-8Zd">
+                                <rect key="frame" x="199" y="161" width="165" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.089536830357142855" green="0.70131180829999995" blue="0.024135044642857144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="17"/>
+                                <state key="normal" title="changeVisitStatus">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeVisitStatusPressed:" destination="Bka-VQ-6qm" eventType="touchUpInside" id="in5-8J-OrM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PzF-LJ-Inf" firstAttribute="centerY" secondItem="Dkc-hS-CiH" secondAttribute="centerY" id="20f-bH-EP5"/>
+                            <constraint firstItem="PzF-LJ-Inf" firstAttribute="leading" secondItem="USy-tr-Jhm" secondAttribute="leading" id="C7L-YM-Wnw"/>
+                            <constraint firstItem="PzF-LJ-Inf" firstAttribute="trailing" secondItem="USy-tr-Jhm" secondAttribute="trailing" id="Ks8-8C-uoP"/>
+                            <constraint firstItem="PzF-LJ-Inf" firstAttribute="centerX" secondItem="Dkc-hS-CiH" secondAttribute="centerX" id="bDZ-e2-HP7"/>
+                            <constraint firstItem="PzF-LJ-Inf" firstAttribute="top" secondItem="USy-tr-Jhm" secondAttribute="top" id="wQZ-Fw-Z8b"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="USy-tr-Jhm"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Bjy-K1-veL"/>
+                    <navigationItem key="navigationItem" id="Bjy-K1-veL"/>
                     <connections>
                         <outlet property="parkAddress" destination="tSR-7r-CUp" id="YEW-8a-nZM"/>
                         <outlet property="parkName" destination="PzF-LJ-Inf" id="QQT-lh-yZ7"/>
@@ -142,6 +151,22 @@
             </objects>
             <point key="canvasLocation" x="1884" y="34.632683658170919"/>
         </scene>
+        <!--Your Achievements-->
+        <scene sceneID="Edx-P3-CUH">
+            <objects>
+                <viewController id="B3s-p0-yNk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M2a-Xd-XR4" customClass="AchievementsViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="xoh-wp-1zY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Your Achievements" id="s00-SX-6nx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q1F-yF-h22" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1330" y="-693"/>
+        </scene>
         <!--Map-->
         <scene sceneID="MUc-FM-TwQ">
             <objects>
@@ -151,7 +176,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
-                                <rect key="frame" x="0.0" y="51" width="375" height="509"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="496"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -163,7 +188,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tBU-Yy-aGz"/>
                     </view>
-                    <navigationItem key="navigationItem" id="G3D-zC-vOw"/>
+                    <navigationItem key="navigationItem" id="X9y-Sc-pch">
+                        <barButtonItem key="backBarButtonItem" title="Seattle Parks Map" id="DgF-XJ-Dyv"/>
+                        <barButtonItem key="rightBarButtonItem" title="Your Achievements" id="EEq-xj-wS8">
+                            <connections>
+                                <segue destination="B3s-p0-yNk" kind="show" identifier="showAchievements" id="UdG-io-Pmr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="vUj-gA-0U3" id="YfX-mO-bQj"/>
                         <segue destination="Bka-VQ-6qm" kind="show" identifier="parkDetails" id="gGh-UH-GUr"/>

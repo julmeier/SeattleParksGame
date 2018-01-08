@@ -14,14 +14,18 @@ class AnnotationPin: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var coordinate: CLLocationCoordinate2D
-    var visitStatusInPin: Bool?
+    var visitStatusInPin: Bool? //haven't used this yet. May want to read from db directly in the details page.
     var imageName: String?
+    var pmaid: String?
+    var address: String?
     
-    init(title: String, subtitle: String?, coordinate: CLLocationCoordinate2D, imageName: String?) {
+    init(title: String, subtitle: String?, coordinate: CLLocationCoordinate2D, imageName: String?, pmaid: String?, address: String?) {
         self.title = title
         self.subtitle = subtitle
         self.coordinate = coordinate
         self.imageName = imageName
+        self.pmaid = pmaid
+        self.address = address
         
         super.init()
     }

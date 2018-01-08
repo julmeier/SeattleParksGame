@@ -33,6 +33,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     var dbReference: DatabaseReference?
     var databaseHandle:DatabaseHandle?
     
+    let locationManager = CLLocationManager()
+    
+    //variable to hold annotation when it's passed to ParkInfoViewController
+    var passedAnnotation: AnnotationPin?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +46,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = self
         
         //this doesn't seem to be working:
-        mapView.showsUserLocation = true
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.startUpdatingLocation()
+        self.mapView.showsUserLocation = true
         
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
@@ -96,7 +103,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                         title: park.name,
                         subtitle: "true",
                         coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
-                        imageName: "green-cloud-tree-32.png"
+                        imageName: "green-cloud-tree-32.png",
+                        pmaid: park.pmaid,
+                        address: park.address
                     )
                     self.mapView.addAnnotation(self.greenTree)
                 } else {
@@ -106,7 +115,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                         title: park.name,
                         subtitle: "false",
                         coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
-                        imageName: "purple-cloud-tree-32.png"
+                        imageName: "purple-cloud-tree-32.png",
+                        pmaid: park.pmaid,
+                        address: park.address
                     )
                     self.mapView.addAnnotation(self.purpleTree)
                 }
@@ -248,7 +259,10 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         
         //get the annotation, which is a parameter
         //ex from tutorial: b = view.annotation as! book
-        let b = view.annotation as! AnnotationPin
+        passedAnnotation = view.annotation as? AnnotationPin
+        print("passedAnnotation in MapView:")
+        print(passedAnnotation!)
+        print(passedAnnotation?.title! as Any)
         
         //perform manual segue
         performSegue(withIdentifier: "parkDetails", sender: self)
@@ -267,14 +281,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "parkDetails" {
-            let dest = segue.destination as! ParkInfoViewController
-            //dest.b = b
+            let destinationViewController = segue.destination as! ParkInfoViewController
+            destinationViewController.name = passedAnnotation?.title!
+            //destinationViewController.viaSegue = sender as! AnnotationPin
+            //destinationViewController.name = passedAnnotation.title
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
