@@ -75,7 +75,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
 //        )
 //        mapView.addAnnotation(samplePin2)
         
-        var parkPMAID: String?
+        //var parkPMAID: String?
         
         let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
         let url = URL(fileURLWithPath: path!)
@@ -110,8 +110,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                     )
                     self.mapView.addAnnotation(self.greenTree)
                 } else {
-                    print("pmaid NOT in the db:")
-                    print(park.pmaid)
+                    //print("pmaid NOT in the db:")
+                   // print(park.pmaid)
                     self.purpleTree = AnnotationPin(
                         title: park.name,
                         subtitle: "false",
@@ -163,20 +163,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                 //creates userdata structure only with no data:
                 //dbReference?.child("users").child("testUser1").child("badges").child(park.zip_code).setValue(false)
                 //dbReference?.child("users").child("testUser2").child("badges")
-                
-                
             }
 
 //            let thisXCoord = park["x_coord"]
 //            print("PRINTING X_COORD BELOW")
 //            print(thisXCoord)
-            
-//            pin = AnnotationPin(title: park.name, subtitle: park.address, coordinate: CLLocation(latitude: park.x_coord, longitude: park.y_coord)
-            
-//            print(parks)
-//            print("parks is above")
-//            let firstPark = parks[0]
-//            print(firstPark.name)
             
         }
         catch {
@@ -184,10 +175,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             print(error)
             
         }
-        
-        print("FINISHED load")
-        //Retrieve the firebase data and listen for changes
-        
+        print("FINISHED viewDidLoad")
     }
     
     //initial way: callout is VERY small
@@ -300,6 +288,56 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         mapView.reloadInputViews()
+        //mapView.removeAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
+        //mapView.addAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
+        
     }
+    
+    //TRIED to fiure out how to separate out this load function into it's own method so that I can call it on the page refresh, when returning from the details page:
+//    func loadAnnotations() {
+//        let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
+//        let url = URL(fileURLWithPath: path!)
+//        do {
+//            let data = try Data(contentsOf: url)
+//            let decoder = JSONDecoder()
+//            let parks = try decoder.decode([ParkAddress].self, from: data)
+//            for park in parks {
+//
+//                //print("Park name is: \(park.name)")
+//                let long = (park.x_coord as NSString).doubleValue
+//                let lat = (park.y_coord as NSString).doubleValue
+//
+//                //read in data from database to see if the park has been visited
+//
+//                dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+//                    if snapshot.hasChild(park.pmaid) {
+//                        //print("pmaid in the db:")
+//                        //print(park.pmaid)
+//                        self.greenTree = AnnotationPin(
+//                            title: park.name,
+//                            subtitle: "true",
+//                            coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
+//                            imageName: "green-cloud-tree-32.png",
+//                            pmaid: park.pmaid,
+//                            address: park.address
+//                        )
+//                        self.mapView.addAnnotation(self.greenTree)
+//                    } else {
+//                        //print("pmaid NOT in the db:")
+//                        // print(park.pmaid)
+//                        self.purpleTree = AnnotationPin(
+//                            title: park.name,
+//                            subtitle: "false",
+//                            coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
+//                            imageName: "purple-cloud-tree-32.png",
+//                            pmaid: park.pmaid,
+//                            address: park.address
+//                        )
+//                        self.mapView.addAnnotation(self.purpleTree)
+//                    }
+//                })
+//            }
+//        }
+//    } //end of loadJSONData function
 
 }
