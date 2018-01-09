@@ -30,7 +30,6 @@ class ParkInfoViewController: UIViewController {
     var name: String?
     var address: String?
     var pmaid: String?
-    
     var parkData: AnnotationPin?
     
     // this variable will be read in from the database
@@ -39,6 +38,10 @@ class ParkInfoViewController: UIViewController {
     //Firebase database references:
     var dbReference: DatabaseReference?
     var databaseHandle:DatabaseHandle?
+    
+    //variables for park feature data:
+    var allParkFeaturesArray: [String] = [ ]
+    var allParkFeaturesSet: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +59,13 @@ class ParkInfoViewController: UIViewController {
             let decoder = JSONDecoder()
             let parkFeatures = try decoder.decode([ParkFeatures].self, from: data)
             for parkFeature in parkFeatures {
+                allParkFeaturesArray.append(parkFeature.feature_desc)
                 //if parkFeature.pmaid == pmaid
-                print(parkFeature.feature_desc)
+                
             }
+            allParkFeaturesSet = removeDuplicates(array: allParkFeaturesArray).sorted()
+            
+            print(allParkFeaturesSet)
         }
         catch {
             print("error try to convert park features data to JSON")
@@ -122,6 +129,23 @@ class ParkInfoViewController: UIViewController {
     //tutorial shows this version instead. Why no explicit return?
 //    @IBAction func changeVisitStatusPressed(_ sender: AnyObject) -> Void {
 //    }
+    
+    func removeDuplicates(array: [String]) -> [String] {
+        var encountered = Set<String>()
+        var result: [String] = []
+        for value in array {
+            if encountered.contains(value) {
+                // Do not add a duplicate element.
+            }
+            else {
+                // Add value to the set.
+                encountered.insert(value)
+                // ... Append the value.
+                result.append(value)
+            }
+        }
+        return result
+    }
     
     
 }
