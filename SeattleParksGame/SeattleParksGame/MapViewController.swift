@@ -56,27 +56,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         let initialLocation = CLLocation(latitude: 47.6074717, longitude: -122.3352511)
         zoomMapOn(location: initialLocation)
         
-        //Testing mapping with addAnnotation works:
-//        let myPark = ParkAddress(pmaid: "111", name: "Pretend Park", address: "pretend address", zip_code: "98101", x_coord: "42.6075", y_coord: "-122.3353")
-//        print(myPark)
-//        print("myPark is printed above")
-
-//        let samplePin1 = AnnotationPin(
-//            title: "SAMPLE PIN 1",
-//            subtitle: "Frogs Legs",
-//            coordinate: CLLocationCoordinate2D(latitude: 47.6074717, longitude: -122.3352511)
-//        )
-//        mapView.addAnnotation(samplePin1)
-        
-//        let samplePin2 = AnnotationPin(
-//            title: "Sample PIN 2",
-//            subtitle: "Mac & Cheese",
-//            coordinate: CLLocationCoordinate2D(latitude: 47.620586, longitude: -122.302231)
-//        )
-//        mapView.addAnnotation(samplePin2)
-        
-        //var parkPMAID: String?
-        
         let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
         let url = URL(fileURLWithPath: path!)
         do {

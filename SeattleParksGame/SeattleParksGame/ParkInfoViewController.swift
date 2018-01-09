@@ -9,10 +9,12 @@
 import UIKit
 import Firebase
 import MapKit
+import Foundation
+import FirebaseDatabase
 
 struct ParkFeatures: Codable {
     let pmaid: String
-    let hours: String
+    //let hours: String
     let feature_desc: String
 }
 
@@ -40,6 +42,28 @@ class ParkInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let path = Bundle.main.path(forResource: "SeattleParksFeatures", ofType: "json")
+        print(path)
+        let url = URL(fileURLWithPath: path!)
+        print(url)
+        do {
+            let data = try Data(contentsOf: url)
+            //let dataString = String(data: data, encoding: .utf8)!
+            //print(dataString)
+            //print("dataString is above (prints all park)")
+        
+            let decoder = JSONDecoder()
+            let parkFeatures = try decoder.decode([ParkFeatures].self, from: data)
+            for parkFeature in parkFeatures {
+                //if parkFeature.pmaid == pmaid
+                print(parkFeature.feature_desc)
+            }
+        }
+        catch {
+            print("error try to convert park features data to JSON")
+            print(error)
+        }
 
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
@@ -80,7 +104,8 @@ class ParkInfoViewController: UIViewController {
                 self.visitStatus.text = "Not Yet Visited!"
             }
         })
-    }
+        
+    } //end of viewDidLoad
 
     @IBAction func changeVisitStatusPressed(_ sender: Any) {
         print("changeVisitStatus button tapped")

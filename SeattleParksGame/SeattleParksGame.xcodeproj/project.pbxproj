@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		124D7641BDA61A3AFE72C77D /* Pods_SeattleParksGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		A37799B21FFDAECB00253E26 /* SeattleParksAddresses.json in Resources */ = {isa = PBXBuildFile; fileRef = A37799B11FFDAECB00253E26 /* SeattleParksAddresses.json */; };
 		A37799B41FFF3B6900253E26 /* AnnotationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37799B31FFF3B6900253E26 /* AnnotationPin.swift */; };
 		A37799B62002E2AE00253E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37799B52002E2AE00253E26 /* MapKit.framework */; };
 		A37799B820040E7D00253E26 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37799B720040E7D00253E26 /* AchievementsViewController.swift */; };
-		A37799BA200441CD00253E26 /* SeattleParkFeatures.json in Resources */ = {isa = PBXBuildFile; fileRef = A37799B9200441CD00253E26 /* SeattleParkFeatures.json */; };
 		A383E7BF1FFCBA1400DACC2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */; };
 		A383E7C41FFCBA1400DACC2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C21FFCBA1400DACC2E /* Main.storyboard */; };
 		A383E7C61FFCBA1400DACC2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C51FFCBA1400DACC2E /* Assets.xcassets */; };
@@ -21,16 +19,16 @@
 		A383E7D31FFCC21300DACC2E /* ParkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */; };
 		A383E7D51FFCC37A00DACC2E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7D41FFCC37A00DACC2E /* MapViewController.swift */; };
 		A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */; };
+		A3BB784E20056D3A00BAF7FD /* SeattleParksAddresses.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */; };
+		A3BB785020056DB300BAF7FD /* SeattleParksFeatures.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2AA7398EF4C081246D2672B1 /* Pods-SeattleParksGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.release.xcconfig"; sourceTree = "<group>"; };
 		796A9965981998C42C96E857 /* Pods-SeattleParksGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.debug.xcconfig"; sourceTree = "<group>"; };
-		A37799B11FFDAECB00253E26 /* SeattleParksAddresses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SeattleParksAddresses.json; path = ../../SeattleParksAddresses.json; sourceTree = "<group>"; };
 		A37799B31FFF3B6900253E26 /* AnnotationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationPin.swift; sourceTree = "<group>"; };
 		A37799B52002E2AE00253E26 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A37799B720040E7D00253E26 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
-		A37799B9200441CD00253E26 /* SeattleParkFeatures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SeattleParkFeatures.json; path = ../../SeattleParkFeatures.json; sourceTree = "<group>"; };
 		A383E7BB1FFCBA1400DACC2E /* SeattleParksGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeattleParksGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A383E7C31FFCBA1400DACC2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,6 +39,8 @@
 		A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoViewController.swift; sourceTree = "<group>"; };
 		A383E7D41FFCC37A00DACC2E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SeattleParksAddresses.json; sourceTree = "<group>"; };
+		A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SeattleParksFeatures.json; path = ../../SeattleParksFeatures.json; sourceTree = "<group>"; };
 		DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeattleParksGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,11 +87,11 @@
 		A383E7BD1FFCBA1400DACC2E /* SeattleParksGame */ = {
 			isa = PBXGroup;
 			children = (
+				A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */,
+				A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */,
 				A383E7C51FFCBA1400DACC2E /* Assets.xcassets */,
 				A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */,
 				A383E7C21FFCBA1400DACC2E /* Main.storyboard */,
-				A37799B9200441CD00253E26 /* SeattleParkFeatures.json */,
-				A37799B11FFDAECB00253E26 /* SeattleParksAddresses.json */,
 				A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */,
 				A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */,
 				A383E7D41FFCC37A00DACC2E /* MapViewController.swift */,
@@ -176,11 +176,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A383E7C91FFCBA1400DACC2E /* LaunchScreen.storyboard in Resources */,
-				A37799BA200441CD00253E26 /* SeattleParkFeatures.json in Resources */,
 				A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */,
 				A383E7C61FFCBA1400DACC2E /* Assets.xcassets in Resources */,
 				A383E7C41FFCBA1400DACC2E /* Main.storyboard in Resources */,
-				A37799B21FFDAECB00253E26 /* SeattleParksAddresses.json in Resources */,
+				A3BB784E20056D3A00BAF7FD /* SeattleParksAddresses.json in Resources */,
+				A3BB785020056DB300BAF7FD /* SeattleParksFeatures.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
