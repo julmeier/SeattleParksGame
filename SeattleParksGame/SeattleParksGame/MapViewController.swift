@@ -53,8 +53,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
         
+        
         let initialLocation = CLLocation(latitude: 47.6074717, longitude: -122.3352511)
         zoomMapOn(location: initialLocation)
+        
+        self.mapView.removeAnnotations(mapView.annotations)
         
         let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
         let url = URL(fileURLWithPath: path!)
@@ -269,10 +272,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     //This **SHOULD** make map refresh when pressing back button from ParkInfoViewController....but it doesn't
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool = true) {
         super.viewWillAppear(animated)
-        mapView.reloadInputViews()
-        //mapView.removeAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
+        //mapView.reloadInputViews()
+        self.viewDidLoad()
+        
         //mapView.addAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
         
     }

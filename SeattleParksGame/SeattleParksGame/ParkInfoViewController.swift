@@ -18,7 +18,7 @@ struct ParkFeatures: Codable {
     let feature_desc: String
 }
 
-class ParkInfoViewController: UIViewController {
+class ParkInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var parkName: UILabel!
     @IBOutlet weak var parkAddress: UILabel!
@@ -42,12 +42,16 @@ class ParkInfoViewController: UIViewController {
     //variables for park feature data:
     var allParkFeaturesArray: [String] = [ ]
     var allParkFeaturesSet: [String] = []
+    var thisParkFeatures: [String] = []
+    
+    //features table:
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let path = Bundle.main.path(forResource: "SeattleParksFeatures", ofType: "json")
-        print(path)
+        print(path!)
         let url = URL(fileURLWithPath: path!)
         print(url)
         do {
@@ -60,12 +64,20 @@ class ParkInfoViewController: UIViewController {
             let parkFeatures = try decoder.decode([ParkFeatures].self, from: data)
             for parkFeature in parkFeatures {
                 allParkFeaturesArray.append(parkFeature.feature_desc)
-                //if parkFeature.pmaid == pmaid
+                //print("PRINTING OUTSIDE OF IF:")
+                //print(parkFeature)
+                //print(parkFeature.pmaid)
+                if parkFeature.pmaid == parkData?.pmaid {
+                    print("Features inside if statement:")
+                    print(parkFeature.feature_desc)
+                    thisParkFeatures.append(parkFeature.feature_desc)
+                }
                 
             }
             allParkFeaturesSet = removeDuplicates(array: allParkFeaturesArray).sorted()
-            
-            print(allParkFeaturesSet)
+            //print(allParkFeaturesSet)
+            print("THIS park's features:")
+            print(thisParkFeatures)
         }
         catch {
             print("error try to convert park features data to JSON")
@@ -113,6 +125,12 @@ class ParkInfoViewController: UIViewController {
         })
         
     } //end of viewDidLoad
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.reloadData()
+    }
 
     @IBAction func changeVisitStatusPressed(_ sender: Any) {
         print("changeVisitStatus button tapped")
@@ -145,6 +163,24 @@ class ParkInfoViewController: UIViewController {
             }
         }
         return result
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("PRINTING FROM THE numberOfRowsInSection func")
+        print(thisParkFeatures)
+        print(self.thisParkFeatures.count)
+        return self.thisParkFeatures.count
+    }
+    
+   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = self.thisParkFeatures[indexPath.row]
+        return cell
     }
     
     
