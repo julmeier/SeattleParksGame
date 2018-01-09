@@ -235,8 +235,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         annotationView!.rightCalloutAccessoryView = button
         
         
+        //THIS DIDN'T WORK. The pin location changes as you zoom because the positioning is a function of the image height.
+        //annotationView?.centerOffset = CGPoint(x:0, y:((annotationView?.frame.size.height)!/2))
+        //annotationView?.centerOffset = CGPoint(x:0, y:(-imageHeight/2))
+        
+        //THIS WORKS!
         //centers the image so that the bottom of the image matches with coordinate:
-        annotationView?.centerOffset = CGPoint(x:0, y:((annotationView?.frame.size.height)!/2))
+        annotationView?.layer.anchorPoint = CGPoint(x:0.5, y:1.0);
         return annotationView
         
     }

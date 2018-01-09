@@ -10,6 +10,12 @@ import UIKit
 import Firebase
 import MapKit
 
+struct ParkFeatures: Codable {
+    let pmaid: String
+    let hours: String
+    let feature_desc: String
+}
+
 class ParkInfoViewController: UIViewController {
 
     @IBOutlet weak var parkName: UILabel!
