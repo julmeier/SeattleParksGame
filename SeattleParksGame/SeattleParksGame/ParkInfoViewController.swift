@@ -74,14 +74,23 @@ class ParkInfoViewController: UIViewController {
                 self.visitStatus.text = "Not Yet Visited!"
             }
         })
+    }
 
-//    @IBAction func changeVisitStatusPressed(_ sender: Any) {
-//        print("changeVisitStatus button tapped")
-//    }
+    @IBAction func changeVisitStatusPressed(_ sender: Any) {
+        print("changeVisitStatus button tapped")
+        
+        //add pmaid to database
+        dbReference?.child("users").child("testUser1").child("parkVisits").child(pmaid!).setValue(true)
+        
+        //remove value from database:
+        //dbReference?.child("users").child("testUser1").child("parkVisits").child(pmaid!).setValue(nil)
+        
+        viewDidLoad()
+    }
     
     //tutorial shows this version instead. Why no explicit return?
 //    @IBAction func changeVisitStatusPressed(_ sender: AnyObject) -> Void {
 //    }
     
-    }
+    
 }

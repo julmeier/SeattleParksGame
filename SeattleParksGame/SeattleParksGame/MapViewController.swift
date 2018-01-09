@@ -89,6 +89,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             let decoder = JSONDecoder()
             let parks = try decoder.decode([ParkAddress].self, from: data)
             for park in parks {
+                
                 //print("Park name is: \(park.name)")
                 let long = (park.x_coord as NSString).doubleValue
                 let lat = (park.y_coord as NSString).doubleValue
@@ -293,6 +294,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             //OR Pass whole object!
             destinationViewController.parkData = passedAnnotation
         }
+    }
+    
+    //This **SHOULD** make map refresh when pressing back button from ParkInfoViewController....but it doesn't
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mapView.reloadInputViews()
     }
 
 }
