@@ -19,6 +19,9 @@ struct ParkAddress: Codable {
     let zip_code: String
     let x_coord: String
     let y_coord: String
+    
+    static func endpointForParkAddresses() -> String {
+        return "https://data.seattle.gov/resource/ajyh-m2d3.json"
 }
 
 class  MapViewController: UIViewController, MKMapViewDelegate {
