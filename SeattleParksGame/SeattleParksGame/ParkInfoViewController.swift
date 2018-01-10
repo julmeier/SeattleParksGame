@@ -18,7 +18,7 @@ struct ParkFeatures: Codable {
     let feature_desc: String
 }
 
-class ParkInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var parkName: UILabel!
     @IBOutlet weak var parkAddress: UILabel!
@@ -39,7 +39,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UITableView
     var dbReference: DatabaseReference?
     var databaseHandle:DatabaseHandle?
     
-    //variables for park feature data:
+    //arrays for holding park feature data:
     var allParkFeaturesArray: [String] = [ ]
     var allParkFeaturesSet: [String] = []
     var thisParkFeatures: [String] = []
@@ -180,6 +180,14 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = self.thisParkFeatures[indexPath.row]
+    
+        //scrolling table AUTOMATICALLY to see all features:
+        //let numberOfSections = tableView.numberOfSections
+        //let numberOfRows = tableView.numberOfRows(inSection: numberOfSections-1)
+        //let indexPath = IndexPath(row: numberOfRows-1 , section: numberOfSections-1)
+        //self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: false)
+    
+        //output
         return cell
     }
     
