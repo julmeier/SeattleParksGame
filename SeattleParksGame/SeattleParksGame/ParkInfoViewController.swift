@@ -23,7 +23,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
     @IBOutlet weak var parkName: UILabel!
     @IBOutlet weak var parkAddress: UILabel!
     @IBOutlet weak var visitStatus: UILabel!
-    //@IBOutlet weak var parkImage: UIImageView!
+    @IBOutlet weak var yesIVisitedButton: UIButton!
+    @IBOutlet weak var parkImage: UIImageView!
     
     
     //variables to receive AnnotationPin attribute data from MapViewController
@@ -117,10 +118,15 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             if snapshot.hasChild(self.pmaid!) {
                 print("pmaid in the db")
                 self.visitStatus.text = "Visited!"
+                //self.park_bench_sunrise.isHidden = false
+                self.yesIVisitedButton.isHidden = true
+              
             } else 
             {
                 print("pmaid NOT in the db")
                 self.visitStatus.text = "Not Yet Visited!"
+                self.yesIVisitedButton.isHidden = false
+                //self.park_bench_sunrise.isHidden = false
             }
         })
         
@@ -140,6 +146,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         
         //remove value from database:
         //dbReference?.child("users").child("testUser1").child("parkVisits").child(pmaid!).setValue(nil)
+        
         
         viewDidLoad()
     }
