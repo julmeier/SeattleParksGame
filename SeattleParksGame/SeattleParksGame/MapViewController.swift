@@ -19,9 +19,6 @@ struct ParkAddress: Codable {
     let zip_code: String
     let x_coord: String
     let y_coord: String
-    
-    static func endpointForParkAddresses() -> String {
-        return "https://data.seattle.gov/resource/ajyh-m2d3.json"
 }
 
 class  MapViewController: UIViewController, MKMapViewDelegate {
@@ -62,136 +59,81 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         
         self.mapView.removeAnnotations(mapView.annotations)
         
-        let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
-        let url = URL(fileURLWithPath: path!)
-        do {
-            let data = try Data(contentsOf: url)
-            //print(String(data: data, encoding: .utf8)!)
-//            let dataString = String(data: data, encoding: .utf8)!
-//            print(dataString)
-//            print("dataString is above (prints all park)")
+        //retrieving JSON data from local file SeattleParksAddresses.json:
+        //        let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
+        //        let url = URL(fileURLWithPath: path!)
+        //        do {
+        //            let data = try Data(contentsOf: url)
+        //print(String(data: data, encoding: .utf8)!)
+        //            let dataString = String(data: data, encoding: .utf8)!
+        //            print(dataString)
+        //            print("dataString is above (prints all park)")
+        //
+        //            let decoder = JSONDecoder()
+        //            let parks = try decoder.decode([ParkAddress].self, from: data)
+        
+        //retrieving JSON data from API directly:
+        let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
+        guard let url = URL(string: seattleParksAddressesUrl) else {return}
+        
+        URLSession.shared.dataTask(with: url) {(data, response, err) in
             
-            let decoder = JSONDecoder()
-            let parks = try decoder.decode([ParkAddress].self, from: data)
-            for park in parks {
-                
-                //print("Park name is: \(park.name)")
-                let long = (park.x_coord as NSString).doubleValue
-                let lat = (park.y_coord as NSString).doubleValue
-                
-                //read in data from database to see if the park has been visited
-                
-                dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.hasChild(park.pmaid) {
-                    //print("pmaid in the db:")
-                    //print(park.pmaid)
-                    self.greenTree = AnnotationPin(
-                        title: park.name,
-                        subtitle: "true",
-                        coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
-                        imageName: "green-cloud-tree-32.png",
-                        pmaid: park.pmaid,
-                        address: park.address
-                    )
-                    self.mapView.addAnnotation(self.greenTree)
-                } else {
-                    //print("pmaid NOT in the db:")
-                   // print(park.pmaid)
-                    self.purpleTree = AnnotationPin(
-                        title: park.name,
-                        subtitle: "false",
-                        coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
-                        imageName: "purple-cloud-tree-32.png",
-                        pmaid: park.pmaid,
-                        address: park.address
-                    )
-                    self.mapView.addAnnotation(self.purpleTree)
-                }
-            })
-                
-                //dbReference?.child("users/testUser1/parkVisits/\(park.pmaid)").observe(.value, with: { (snapshot) in
-//                dbReference?.child("users/testUser1/parkVisits/\(park.pmaid)").observeSingleEvent(of: .value, with: { (snapshot) in
-//                    parkPMAID = snapshot.key
-                    //print(parkPMAID!)
-//                    let storedVisitStatus = snapshot.value as? Bool
-//                    let storedVisitStatusString = self.BoolToString(b: storedVisitStatus)
-                    //print(storedVisitStatusString)
-                    //print("next")
-                    
-                    //LiNGERING QUESTION: should I actually make unqiue model instances? i.e. make a unique identifier instead of "aPin" (ex. aPin12345) so that I can pass that object around the application and it persists after teh map has been loaded?
-       
-                    //COMMENTED OUT THE BELOW WHILE TRYING TO CUSTOMIZE PINS
-//                    let aPin = AnnotationPin(
-//                        title: park.name,
-//                        subtitle: storedVisitStatusString,
-//                        coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long)
-//                    )
-//                    aPin.visitStatusInPin = storedVisitStatus
-//                    if snapshot.hasChild(park.pmaid){
-//                        //print(aPin.visitStatusInPin!)
-//                        //print("This park is LISTED:")
-//                        //print(park.pmaid)
-//                    }
-//                    else {
-//                        //print("This park is NOT listed:")
-//                        //print(park.pmaid)
-//
-//                    }
-                    
-                    //self.mapView.addAnnotation(aPin)
-//                })
-                
-                
-                //TO CREATE TEST DATA: create and populate initial Firebase database for testUser1:
-                //retrieves all pmaids and sets value to false:
-                //dbReference?.child("users").child("testUser1").child("parkVisits").child(park.pmaid).setValue(false)
-                //creates userdata structure only with no data:
-                //dbReference?.child("users").child("testUser1").child("badges").child(park.zip_code).setValue(false)
-                //dbReference?.child("users").child("testUser2").child("badges")
-            }
+            guard let data = data else {return}
+            print("Printing park data:")
+            print(String(data: data, encoding: .utf8)!)
+            
+            do {
+                let decoder = JSONDecoder()
+                let parks = try decoder.decode([ParkAddress].self, from: data)
+        
 
-//            let thisXCoord = park["x_coord"]
-//            print("PRINTING X_COORD BELOW")
-//            print(thisXCoord)
+                for park in parks {
+                    
+                    //print("Park name is: \(park.name)")
+                    let long = (park.x_coord as NSString).doubleValue
+                    let lat = (park.y_coord as NSString).doubleValue
+                    
+                    //read in data from database to see if the park has been visited
+                    
+                    self.dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.hasChild(park.pmaid) {
+                            //print("pmaid in the db:")
+                            //print(park.pmaid)
+                            self.greenTree = AnnotationPin(
+                                title: park.name,
+                                subtitle: "true",
+                                coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
+                                imageName: "green-cloud-tree-32.png",
+                                pmaid: park.pmaid,
+                                address: park.address
+                            )
+                            self.mapView.addAnnotation(self.greenTree)
+                        } else {
+                            //print("pmaid NOT in the db:")
+                           // print(park.pmaid)
+                            self.purpleTree = AnnotationPin(
+                                title: park.name,
+                                subtitle: "false",
+                                coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
+                                imageName: "purple-cloud-tree-32.png",
+                                pmaid: park.pmaid,
+                                address: park.address
+                            )
+                            self.mapView.addAnnotation(self.purpleTree)
+                        } //end of else
+                    }) //end of dbReference?.child
+                } //end of for park in parks
             
-        }
+        } //end of do
         catch {
             print("error try to convert park address data to JSON")
             print(error)
-            
-        }
+        } //end of catch
         print("FINISHED viewDidLoad")
+        
+    }.resume()
     }
     
-    //initial way: callout is VERY small
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "greenTreePin")
-//        annotationView.image = UIImage(named: "pine-tree-green")
-//        let transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-//        annotationView.transform = transform
-//        annotationView.canShowCallout = true
-//        return annotationView
-//    }
-
-//This was working before trying to customize the pin image:
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        if annotation is MKUserLocation
-//        {
-//            return nil
-//        }
-//        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
-//        if annotationView == nil{
-//            annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "pin")
-//            annotationView?.canShowCallout = true
-//        }else{
-//            annotationView?.annotation = annotation
-//        }
-//
-//        //ADD LOGIC HERE ON WHICH TREE TO APPLY BASED ON GOOGLEFIRE DATABASE?
-//        //Ex. if users.username.parkvisits.park#.value = true, then apply green tree
-//        annotationView?.image = UIImage(named: "green-cloud-tree-32")
-//        return annotationView
-//    }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -204,14 +146,15 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "parkIdentifier")
-                if annotationView == nil{
-                    annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "parkIdentifier")
-                    annotationView?.canShowCallout = true
-                }
-                else
-                {
-                    annotationView?.annotation = annotation
-                }
+        
+        if annotationView == nil{
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "parkIdentifier")
+            annotationView?.canShowCallout = true
+        }
+        else
+        {
+            annotationView?.annotation = annotation
+        }
         let cpa = annotation as! AnnotationPin
         annotationView!.image = UIImage(named: cpa.imageName!)
         //let buttonImage = UIImage(named: "museum-cross-signal-of-orientation-for-map-32.png")
@@ -284,51 +227,4 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    //TRIED to fiure out how to separate out this load function into it's own method so that I can call it on the page refresh, when returning from the details page:
-//    func loadAnnotations() {
-//        let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
-//        let url = URL(fileURLWithPath: path!)
-//        do {
-//            let data = try Data(contentsOf: url)
-//            let decoder = JSONDecoder()
-//            let parks = try decoder.decode([ParkAddress].self, from: data)
-//            for park in parks {
-//
-//                //print("Park name is: \(park.name)")
-//                let long = (park.x_coord as NSString).doubleValue
-//                let lat = (park.y_coord as NSString).doubleValue
-//
-//                //read in data from database to see if the park has been visited
-//
-//                dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
-//                    if snapshot.hasChild(park.pmaid) {
-//                        //print("pmaid in the db:")
-//                        //print(park.pmaid)
-//                        self.greenTree = AnnotationPin(
-//                            title: park.name,
-//                            subtitle: "true",
-//                            coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
-//                            imageName: "green-cloud-tree-32.png",
-//                            pmaid: park.pmaid,
-//                            address: park.address
-//                        )
-//                        self.mapView.addAnnotation(self.greenTree)
-//                    } else {
-//                        //print("pmaid NOT in the db:")
-//                        // print(park.pmaid)
-//                        self.purpleTree = AnnotationPin(
-//                            title: park.name,
-//                            subtitle: "false",
-//                            coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
-//                            imageName: "purple-cloud-tree-32.png",
-//                            pmaid: park.pmaid,
-//                            address: park.address
-//                        )
-//                        self.mapView.addAnnotation(self.purpleTree)
-//                    }
-//                })
-//            }
-//        }
-//    } //end of loadJSONData function
-
 }
