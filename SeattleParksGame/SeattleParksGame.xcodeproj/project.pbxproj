@@ -89,12 +89,12 @@
 		A383E7BD1FFCBA1400DACC2E /* SeattleParksGame */ = {
 			isa = PBXGroup;
 			children = (
+				A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */,
+				A383E7C21FFCBA1400DACC2E /* Main.storyboard */,
 				A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */,
 				A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */,
 				A3BB78512009473600BAF7FD /* zipcode-neighborhoods.json */,
 				A383E7C51FFCBA1400DACC2E /* Assets.xcassets */,
-				A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */,
-				A383E7C21FFCBA1400DACC2E /* Main.storyboard */,
 				A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */,
 				A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */,
 				A383E7D41FFCC37A00DACC2E /* MapViewController.swift */,

@@ -41,7 +41,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     //variable to hold collection of zip codes
     var zipCodesAll: [String] = []
     var zipCodesSet: [String] = []
-    var zipCodeDictionary: [Dictionary<String, String>] = []
+    //var zipCodeDictionary: [Dictionary<String, String>] = []
 
     
     
@@ -96,7 +96,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                 for park in parks {
                     
                     //add zip code to array:
-                    self.zipCodesAll.append(park.zip_code)
+                    //self.zipCodesAll.append(park.zip_code)
                     
                     //print("Park name is: \(park.name)")
                     let long = (park.x_coord as NSString).doubleValue
@@ -141,8 +141,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         print("FINISHED viewDidLoad")
             
             //create set of zip codes for Achievements page:
-            self.zipCodesSet = self.removeDuplicates(array: self.zipCodesAll).sorted()
-            print(self.zipCodesSet)
+            //self.zipCodesSet = self.removeDuplicates(array: self.zipCodesAll).sorted()
+            //print(self.zipCodesSet)
         
     }.resume()
     }
