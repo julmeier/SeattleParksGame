@@ -38,6 +38,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     //variable to hold annotation when it's passed to ParkInfoViewController
     var passedAnnotation: AnnotationPin?
     
+    //variable to hold collection of zip codes
+    var zipCodesAll: [String] = []
+    var zipCodesSet: [String] = []
+    var zipCodeDictionary: [Dictionary<String, String>] = []
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +85,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         URLSession.shared.dataTask(with: url) {(data, response, err) in
             
             guard let data = data else {return}
-            print("Printing park data:")
-            print(String(data: data, encoding: .utf8)!)
+            //print("Printing park data:")
+            //print(String(data: data, encoding: .utf8)!)
             
             do {
                 let decoder = JSONDecoder()
@@ -88,6 +94,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         
 
                 for park in parks {
+                    
+                    //add zip code to array:
+                    self.zipCodesAll.append(park.zip_code)
                     
                     //print("Park name is: \(park.name)")
                     let long = (park.x_coord as NSString).doubleValue
@@ -130,6 +139,10 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             print(error)
         } //end of catch
         print("FINISHED viewDidLoad")
+            
+            //create set of zip codes for Achievements page:
+            self.zipCodesSet = self.removeDuplicates(array: self.zipCodesAll).sorted()
+            print(self.zipCodesSet)
         
     }.resume()
     }
@@ -200,6 +213,23 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     func zoomMapOn(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 3.0, regionRadius * 3.0)
         mapView.setRegion(coordinateRegion, animated:true)
+    }
+    
+    func removeDuplicates(array: [String]) -> [String] {
+        var encountered = Set<String>()
+        var result: [String] = []
+        for value in array {
+            if encountered.contains(value) {
+                // Do not add a duplicate element.
+            }
+            else {
+                // Add value to the set.
+                encountered.insert(value)
+                // ... Append the value.
+                result.append(value)
+            }
+        }
+        return result
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -21,6 +21,7 @@
 		A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */; };
 		A3BB784E20056D3A00BAF7FD /* SeattleParksAddresses.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */; };
 		A3BB785020056DB300BAF7FD /* SeattleParksFeatures.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */; };
+		A3BB78522009473600BAF7FD /* zipcode-neighborhoods.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB78512009473600BAF7FD /* zipcode-neighborhoods.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SeattleParksAddresses.json; sourceTree = "<group>"; };
 		A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SeattleParksFeatures.json; path = ../../SeattleParksFeatures.json; sourceTree = "<group>"; };
+		A3BB78512009473600BAF7FD /* zipcode-neighborhoods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "zipcode-neighborhoods.json"; path = "../../zipcode-neighborhoods.json"; sourceTree = "<group>"; };
 		DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeattleParksGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 			children = (
 				A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */,
 				A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */,
+				A3BB78512009473600BAF7FD /* zipcode-neighborhoods.json */,
 				A383E7C51FFCBA1400DACC2E /* Assets.xcassets */,
 				A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */,
 				A383E7C21FFCBA1400DACC2E /* Main.storyboard */,
@@ -175,6 +178,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3BB78522009473600BAF7FD /* zipcode-neighborhoods.json in Resources */,
 				A383E7C91FFCBA1400DACC2E /* LaunchScreen.storyboard in Resources */,
 				A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */,
 				A383E7C61FFCBA1400DACC2E /* Assets.xcassets in Resources */,
