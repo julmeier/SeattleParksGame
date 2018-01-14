@@ -43,7 +43,8 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate {
         "98178": "Bryn Mawr-Skyway",
         "98199": "Magnolia"]
     var parksByZip = [String: [String]]()
-    var parksInZip = [String]()
+    var totalParks = 0
+    var totalDuplicateParks = 0
     
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
@@ -64,16 +65,29 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate {
         for pin in allAnnotationPins {
             print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
             
+            //var thisArray = parksByZip[pin.zip_code!]
+            
             if (parksByZip[pin.zip_code!] != nil) {
                 //parksByZip[pin.zip_code!].append(pin.title!)
                 parksByZip[pin.zip_code!]?.append(pin.title!)
-            } else {
+            }
+            else {
                 parksByZip[pin.zip_code!] = [pin.title!]
             }
+//            } else if (thisArray?.contains(pin.title!))! {
+//                //do nothing
+//                totalDuplicateParks += 1
+//            }
+            
+            
+            totalParks += 1
             
         }
         //print("parksByZip:")
         //print(parksByZip)
+        
+        print("totalParks:")
+        print(totalParks)
         
         for (zip, parks) in parksByZip {
             let count = parks.count

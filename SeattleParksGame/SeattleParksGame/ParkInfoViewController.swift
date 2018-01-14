@@ -25,7 +25,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
     @IBOutlet weak var visitStatus: UILabel!
     @IBOutlet weak var yesIVisitedButton: UIButton!
     @IBOutlet weak var parkImage: UIImageView!
-    
+    @IBOutlet weak var parkFeaturesHeader: UILabel!
+    @IBOutlet weak var visitStatusImage: UIImageView!
     
     //variables to receive AnnotationPin attribute data from MapViewController
     var name: String?
@@ -118,7 +119,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             if snapshot.hasChild(self.pmaid!) {
                 print("pmaid in the db")
                 self.visitStatus.text = "Visited!"
-                //self.park_bench_sunrise.isHidden = false
+                self.visitStatusImage.image = UIImage(named: "park_visited-512")
                 self.yesIVisitedButton.isHidden = true
               
             } else 
@@ -126,9 +127,11 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
                 print("pmaid NOT in the db")
                 self.visitStatus.text = "Not Yet Visited!"
                 self.yesIVisitedButton.isHidden = false
-                //self.park_bench_sunrise.isHidden = false
+                self.visitStatusImage.image = UIImage(named: "park_not_visited-512")
             }
         })
+        
+        self.tableView.tableFooterView = UIView()
         
     } //end of viewDidLoad
     
@@ -180,6 +183,10 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         print("PRINTING FROM THE numberOfRowsInSection func")
         print(thisParkFeatures)
         print(self.thisParkFeatures.count)
+        if self.thisParkFeatures.count == 0 {
+            parkFeaturesHeader.isHidden = true
+        }
+        
         return self.thisParkFeatures.count
     }
     

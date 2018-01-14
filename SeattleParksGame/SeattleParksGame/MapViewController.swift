@@ -55,9 +55,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = self
         
         //this doesn't seem to be working:
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.startUpdatingLocation()
-        self.mapView.showsUserLocation = true
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        self.locationManager.startUpdatingLocation()
+//        self.mapView.showsUserLocation = true
         
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
@@ -151,7 +151,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             } //end of catch
             //print("ALL ANNOTATION PINS:")
             //print(self.allAnnotationPins)
-            print("FINISHED viewDidLoad")
+            
         
             
             //create set of zip codes for Achievements page:
@@ -159,6 +159,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             //print(self.zipCodesSet)
         
         }.resume()
+        print("FINISHED viewDidLoad")
     }
     
 
@@ -267,14 +268,15 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    //This **SHOULD** make map refresh when pressing back button from ParkInfoViewController....but it doesn't
-    override func viewWillAppear(_ animated: Bool = true) {
-        super.viewWillAppear(animated)
-        //mapView.reloadInputViews()
-        self.viewDidLoad()
-        
-        //mapView.addAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
-        
-    }
+    //BAD SIDE EFFECT OF THIS METHOD: viewDidLoad loads 2x on initial load, so if user goes straight to badges page, there are twice as many parks objects passed.
+    //INTENTION OF THIS METHOD: This makes the map refresh when pressing back button from ParkInfoViewController.
+//    override func viewWillAppear(_ animated: Bool = true) {
+//        super.viewWillAppear(animated)
+//        //mapView.reloadInputViews()
+//        self.viewDidLoad()
+//
+//        //mapView.addAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
+//
+//    }
     
 }
