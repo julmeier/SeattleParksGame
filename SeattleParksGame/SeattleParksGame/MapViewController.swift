@@ -115,12 +115,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                             //print(park.pmaid)
                             self.greenTree = AnnotationPin(
                                 title: park.name,
-                                subtitle: "true",
+                                //subtitle: "true",
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "green-cloud-tree-32.png",
                                 pmaid: park.pmaid,
                                 address: park.address,
-                                zip_code: park.zip_code
+                                zip_code: park.zip_code,
+                                visitStatus: "true"
                             )
                             self.mapView.addAnnotation(self.greenTree)
                             self.allAnnotationPins.append(self.greenTree)
@@ -129,12 +130,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                            // print(park.pmaid)
                             self.purpleTree = AnnotationPin(
                                 title: park.name,
-                                subtitle: "false",
+                                //subtitle: "false",
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "purple-cloud-tree-32.png",
                                 pmaid: park.pmaid,
                                 address: park.address,
-                                zip_code: park.zip_code
+                                zip_code: park.zip_code,
+                                visitStatus: "false"
                             )
                             self.mapView.addAnnotation(self.purpleTree)
                             self.allAnnotationPins.append(self.purpleTree)

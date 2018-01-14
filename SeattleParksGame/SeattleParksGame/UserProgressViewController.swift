@@ -61,7 +61,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate {
             print("Did it pass parkData correctly?")
             print(allAnnotationPins)
         for pin in allAnnotationPins {
-            print("\(pin.title!) - \(pin.zip_code!))")
+            print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
         }
             //print(parkDataToDisplay.title!)
             //pmaid = parkDataToDisplay.pmaid
