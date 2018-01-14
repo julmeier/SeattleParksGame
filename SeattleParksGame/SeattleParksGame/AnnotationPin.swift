@@ -18,15 +18,16 @@ class AnnotationPin: NSObject, MKAnnotation {
     var imageName: String?
     var pmaid: String?
     var address: String?
+    var zip_code: String?
     
-    init(title: String, subtitle: String?, coordinate: CLLocationCoordinate2D, imageName: String?, pmaid: String?, address: String?) {
+    init(title: String, subtitle: String?, coordinate: CLLocationCoordinate2D, imageName: String?, pmaid: String?, address: String?, zip_code: String?) {
         self.title = title
         self.subtitle = subtitle
         self.coordinate = coordinate
         self.imageName = imageName
         self.pmaid = pmaid
         self.address = address
-        
+        self.zip_code = zip_code
         
         super.init()
     }

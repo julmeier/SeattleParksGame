@@ -42,6 +42,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
     var zipCodesAll: [String] = []
     var zipCodesSet: [String] = []
     //var zipCodeDictionary: [Dictionary<String, String>] = []
+    
+    //holds array of AnnotationPins
+    var allAnnotationPins: [AnnotationPin?] = []
 
     
     
@@ -91,6 +94,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             do {
                 let decoder = JSONDecoder()
                 let parks = try decoder.decode([ParkAddress].self, from: data)
+                
+                //print(parks)
         
 
                 for park in parks {
@@ -114,9 +119,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "green-cloud-tree-32.png",
                                 pmaid: park.pmaid,
-                                address: park.address
+                                address: park.address,
+                                zip_code: park.zip_code
                             )
                             self.mapView.addAnnotation(self.greenTree)
+                            self.allAnnotationPins.append(self.greenTree)
                         } else {
                             //print("pmaid NOT in the db:")
                            // print(park.pmaid)
@@ -126,25 +133,30 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "purple-cloud-tree-32.png",
                                 pmaid: park.pmaid,
-                                address: park.address
+                                address: park.address,
+                                zip_code: park.zip_code
                             )
                             self.mapView.addAnnotation(self.purpleTree)
+                            self.allAnnotationPins.append(self.purpleTree)
                         } //end of else
                     }) //end of dbReference?.child
                 } //end of for park in parks
             
-        } //end of do
-        catch {
-            print("error try to convert park address data to JSON")
-            print(error)
-        } //end of catch
-        print("FINISHED viewDidLoad")
+            } //end of do
+            catch {
+                print("error try to convert park address data to JSON")
+                print(error)
+            } //end of catch
+            print("ALL ANNOTATION PINS:")
+            print(self.allAnnotationPins)
+            print("FINISHED viewDidLoad")
+        
             
             //create set of zip codes for Achievements page:
             //self.zipCodesSet = self.removeDuplicates(array: self.zipCodesAll).sorted()
             //print(self.zipCodesSet)
         
-    }.resume()
+        }.resume()
     }
     
 
@@ -184,21 +196,21 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         //centers the image so that the bottom of the image matches with coordinate:
         annotationView?.layer.anchorPoint = CGPoint(x:0.5, y:1.0);
         return annotationView
-        
     }
     
-    func BoolToString(b: Bool?)->String { return b?.description ?? "<None>"}
+    func BoolToString(b: Bool?)->String {
+        return b?.description ?? "<None>"
+    }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("button tapped")
         
         //get the annotation, which is a parameter
-        //ex from tutorial: b = view.annotation as! book
         passedAnnotation = view.annotation as? AnnotationPin
-        print("passedAnnotation in MapView:")
-        print(passedAnnotation!)
-        print(passedAnnotation?.title! as Any)
-        print(passedAnnotation?.address! as Any)
+        //print("passedAnnotation in MapView:")
+        //print(passedAnnotation!)
+        //print(passedAnnotation?.title! as Any)
+        //print(passedAnnotation?.address! as Any)
         
         //perform manual segue
         performSegue(withIdentifier: "parkDetails", sender: self)
@@ -244,6 +256,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             
             //OR Pass whole object!
             destinationViewController.parkData = passedAnnotation
+        }
+        
+        //segue to UserProgressVC
+        if segue.identifier == "ProgressVCSegue" {
+            let destination = segue.destination as! UserProgressViewController
+            destination.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
         }
     }
     

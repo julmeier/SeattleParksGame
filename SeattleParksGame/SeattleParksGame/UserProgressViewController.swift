@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import Foundation
+import MapKit
 
 
-class UserProgressViewController: UIViewController {
+class UserProgressViewController: UIViewController, MKMapViewDelegate {
     
     //badges dictionary
     let badges = ["98101": "Downtown",
@@ -42,6 +44,9 @@ class UserProgressViewController: UIViewController {
         "98199": "Magnolia"]
     let parksByZip = [String: [String]]()
     
+    //variables to receive data passed from MapView
+    var allAnnotationPins: [AnnotationPin] = []
+    
     //storyboard variables
     @IBOutlet weak var numberVisited: UILabel!
     
@@ -51,6 +56,15 @@ class UserProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //receives data from MapViewController
+            print("Did it pass parkData correctly?")
+            print(allAnnotationPins)
+        for pin in allAnnotationPins {
+            print("\(pin.title!) - \(pin.zip_code!))")
+        }
+            //print(parkDataToDisplay.title!)
+            //pmaid = parkDataToDisplay.pmaid
 
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
