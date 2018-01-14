@@ -149,8 +149,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
                 print("error try to convert park address data to JSON")
                 print(error)
             } //end of catch
-            print("ALL ANNOTATION PINS:")
-            print(self.allAnnotationPins)
+            //print("ALL ANNOTATION PINS:")
+            //print(self.allAnnotationPins)
             print("FINISHED viewDidLoad")
         
             
