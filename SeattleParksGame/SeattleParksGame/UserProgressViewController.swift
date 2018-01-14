@@ -42,7 +42,8 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate {
         "98177": "Richmond Beach",
         "98178": "Bryn Mawr-Skyway",
         "98199": "Magnolia"]
-    let parksByZip = [String: [String]]()
+    var parksByZip = [String: [String]]()
+    var parksInZip = [String]()
     
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
@@ -57,14 +58,28 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //receives data from MapViewController
-            print("Did it pass parkData correctly?")
-            print(allAnnotationPins)
+        //print("Did it pass parkData correctly?")
+        //print(allAnnotationPins)
+        
         for pin in allAnnotationPins {
             print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
+            
+            if (parksByZip[pin.zip_code!] != nil) {
+                //parksByZip[pin.zip_code!].append(pin.title!)
+                parksByZip[pin.zip_code!]?.append(pin.title!)
+            } else {
+                parksByZip[pin.zip_code!] = [pin.title!]
+            }
+            
         }
-            //print(parkDataToDisplay.title!)
-            //pmaid = parkDataToDisplay.pmaid
+        //print("parksByZip:")
+        //print(parksByZip)
+        
+        for (zip, parks) in parksByZip {
+            let count = parks.count
+            print("zip: \(zip), count: \(count)")
+        }
+
 
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
