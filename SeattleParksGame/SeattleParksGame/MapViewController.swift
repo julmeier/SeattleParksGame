@@ -277,13 +277,10 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     //BAD SIDE EFFECT OF THIS METHOD: viewDidLoad loads 2x on initial load, so if user goes straight to badges page, there are twice as many parks objects passed.
     //INTENTION OF THIS METHOD: This makes the map refresh when pressing back button from ParkInfoViewController.
-//    override func viewWillAppear(_ animated: Bool = true) {
-//        super.viewWillAppear(animated)
-//        //mapView.reloadInputViews()
-//        self.viewDidLoad()
-//
-//        //mapView.addAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
-//
-//    }
+    override func viewWillAppear(_ animated: Bool = true) {
+        super.viewWillAppear(animated)
+        self.mapView.reloadInputViews()
+
+    }
     
 }

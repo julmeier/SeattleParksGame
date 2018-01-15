@@ -25,12 +25,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Gilman_Playground_Sign_Portait" translatesAutoresizingMaskIntoConstraints="NO" id="6w8-IM-cJX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kerrypark-highdef" translatesAutoresizingMaskIntoConstraints="NO" id="6w8-IM-cJX">
+                                <rect key="frame" x="142" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seattle Parks Game" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzz-oP-ToO">
-                                <rect key="frame" x="63" y="111" width="249" height="194"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Emerald City Ranger" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzz-oP-ToO">
+                                <rect key="frame" x="26" y="453" width="323" height="194"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DamascusBold" family="Damascus" pointSize="45"/>
                                 <color key="textColor" red="1" green="0.9334268142330352" blue="0.89793879082865624" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -410,6 +410,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Gilman_Playground_Sign_Portait" width="534" height="800"/>
+        <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
 </document>
