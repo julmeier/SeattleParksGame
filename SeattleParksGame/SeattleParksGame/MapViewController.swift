@@ -11,6 +11,7 @@ import Firebase
 import MapKit
 import Foundation
 import FirebaseDatabase
+import CoreLocation
 
 struct ParkAddress: Codable {
     let pmaid: String
@@ -21,7 +22,7 @@ struct ParkAddress: Codable {
     let y_coord: String
 }
 
-class  MapViewController: UIViewController, MKMapViewDelegate {
+class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     //Mapping variables:
     @IBOutlet weak var mapView: MKMapView!
@@ -55,9 +56,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = self
         
         //this doesn't seem to be working:
-//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        self.locationManager.startUpdatingLocation()
-//        self.mapView.showsUserLocation = true
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        
         
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
@@ -266,6 +269,10 @@ class  MapViewController: UIViewController, MKMapViewDelegate {
             let destination = segue.destination as! UserProgressViewController
             destination.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        mapView.showsUserLocation = true
     }
     
     //BAD SIDE EFFECT OF THIS METHOD: viewDidLoad loads 2x on initial load, so if user goes straight to badges page, there are twice as many parks objects passed.
