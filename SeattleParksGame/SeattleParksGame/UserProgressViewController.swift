@@ -50,6 +50,8 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     var totalParks = 0
     var totalDuplicateParks = 0
     var parkZipcodes = [String]()
+    var numberOfParksByZipDict = [String: Int]()
+    var numberOfVisitsByZipDict = [String: Int]()
     
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
@@ -70,9 +72,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         //print(allAnnotationPins)
         
         for pin in allAnnotationPins {
-            print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
-            
-            //var thisArray = parksByZip[pin.zip_code!]
+            //print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
             
             if (parksByZip[pin.zip_code!] != nil) {
                 //parksByZip[pin.zip_code!].append(pin.title!)
@@ -81,12 +81,16 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
             else {
                 parksByZip[pin.zip_code!] = [pin.title!]
             }
-//            } else if (thisArray?.contains(pin.title!))! {
-//                //do nothing
-//                totalDuplicateParks += 1
-//            }
             
-            
+            if pin.visitStatus == "true" {
+                if (numberOfVisitsByZipDict[pin.zip_code!] != nil) {
+                    numberOfVisitsByZipDict[pin.zip_code!]! += 1
+                }
+                else {
+                    numberOfVisitsByZipDict[pin.zip_code!] = 1
+                }
+            }
+
             totalParks += 1
             
         }
@@ -96,10 +100,14 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         print("totalParks:")
         print(totalParks)
         
+        print("numberOfVisitsByZipDict:")
+        print(numberOfVisitsByZipDict)
+        
         for (zip, parks) in parksByZip {
             let count = parks.count
-            print("zip: \(zip), count: \(count)")
+            //print("zip: \(zip), count: \(count)")
             parkZipcodes.append(zip)
+            numberOfParksByZipDict[zip] = count
         }
 
 
@@ -127,19 +135,21 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "badgeCell", for: indexPath) as! BadgeCollectionViewCell
-        //cell.badgeNameLabel.text = badges[indexPath.row]
-        //print("indexPath:")
-        //print(indexPath)
-        print("indexPath.row:")
-        print(indexPath.row)
         
-        var zip = parkZipcodes[indexPath.row]
-        var hood = badges[parkZipcodes[indexPath.row]]
-        print("hood:")
-        print(hood!)
-        
+        let zip = parkZipcodes[indexPath.row]
+        let hood = badges[parkZipcodes[indexPath.row]]
         cell.badgeNameLabel.text = hood
-        cell.badgeStatsLabel.text = "5 of 100"
+        
+        let zipCount = numberOfParksByZipDict[zip]
+        let visitCount = numberOfVisitsByZipDict[zip]
+        
+        if visitCount == nil {
+            cell.badgeStatsLabel.text = "0 of \(zipCount!)"
+        }
+        else {
+            cell.badgeStatsLabel.text = "\(visitCount!) of \(zipCount!)"
+        }
+        
         cell.badgeImageView.image = UIImage(named: "medal-256")
         return cell
     }
