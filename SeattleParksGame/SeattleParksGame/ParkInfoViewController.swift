@@ -52,6 +52,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //CALLS FOR ALL DATA AND THEN SORTS ON THE PMAID:
         let path = Bundle.main.path(forResource: "SeattleParksFeatures", ofType: "json")
         print(path!)
         let url = URL(fileURLWithPath: path!)
@@ -70,8 +71,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
                 //print(parkFeature)
                 //print(parkFeature.pmaid)
                 if parkFeature.pmaid == parkData?.pmaid {
-                    print("Features inside if statement:")
-                    print(parkFeature.feature_desc)
+                    //print("Features inside if statement:")
+                    //print(parkFeature.feature_desc)
                     thisParkFeatures.append(parkFeature.feature_desc)
                 }
                 
@@ -80,6 +81,11 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             //print(allParkFeaturesSet)
             print("THIS park's features:")
             print(thisParkFeatures)
+        
+            //USES SELECTION OF PMAID TO DIRECTLY CALL JUST THAT PARK'S FEATURES:
+            let url_root = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid="
+            
+            
         }
         catch {
             print("error try to convert park features data to JSON")

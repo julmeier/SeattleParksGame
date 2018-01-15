@@ -218,22 +218,66 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GR7-Kq-UU1">
                                 <rect key="frame" x="16" y="300" width="343" height="367"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="404-Td-Gm4">
-                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="itemSize" width="100" height="130"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GyL-5a-bzh">
-                                        <rect key="frame" x="10" y="10" width="100" height="100"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="badgeCell" id="GyL-5a-bzh" customClass="BadgeCollectionViewCell" customModule="SeattleParksGame" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="100" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sjn-fP-hWc">
+                                                    <rect key="frame" x="10.5" y="1" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="JZy-Lj-wIA"/>
+                                                        <constraint firstAttribute="height" constant="80" id="xuP-Qk-q7W"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-qs-hnE">
+                                                    <rect key="frame" x="0.0" y="86" width="100" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="3PP-zt-Yzi"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X of X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpk-hS-Vdv">
+                                                    <rect key="frame" x="0.0" y="113" width="100" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="kMP-GZ-UVt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
-                                        <size key="customSize" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Aq7-qs-hnE" secondAttribute="trailing" id="2zV-Tb-2Y7"/>
+                                            <constraint firstItem="Sjn-fP-hWc" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="4cv-1W-Z7h"/>
+                                            <constraint firstItem="Jpk-hS-Vdv" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="Ejt-uq-nDv"/>
+                                            <constraint firstItem="Sjn-fP-hWc" firstAttribute="top" secondItem="GyL-5a-bzh" secondAttribute="top" constant="1" id="NLp-a3-LfW"/>
+                                            <constraint firstItem="Aq7-qs-hnE" firstAttribute="top" secondItem="Sjn-fP-hWc" secondAttribute="bottom" constant="5" id="VZ2-Z7-UY3"/>
+                                            <constraint firstAttribute="trailing" secondItem="Jpk-hS-Vdv" secondAttribute="trailing" id="ghU-Hj-aYP"/>
+                                            <constraint firstItem="Jpk-hS-Vdv" firstAttribute="top" secondItem="Aq7-qs-hnE" secondAttribute="bottom" constant="5" id="pJ1-IO-bRN"/>
+                                            <constraint firstItem="Jpk-hS-Vdv" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" id="pgc-gD-RUK"/>
+                                            <constraint firstItem="Aq7-qs-hnE" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="tIL-uR-hvZ"/>
+                                            <constraint firstItem="Aq7-qs-hnE" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" id="xjb-oY-jKN"/>
+                                        </constraints>
+                                        <size key="customSize" width="100" height="130"/>
+                                        <connections>
+                                            <outlet property="badgeImageView" destination="Sjn-fP-hWc" id="2x8-by-xJj"/>
+                                            <outlet property="badgeNameLabel" destination="Aq7-qs-hnE" id="lnN-Gm-bIv"/>
+                                            <outlet property="badgeStatsLabel" destination="Jpk-hS-Vdv" id="o4Q-5w-3qF"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -254,6 +298,7 @@
                         <viewLayoutGuide key="safeArea" id="6bl-XQ-XZt"/>
                     </view>
                     <connections>
+                        <outlet property="badgeCollectionView" destination="GR7-Kq-UU1" id="4Fi-np-K9m"/>
                         <outlet property="numberVisited" destination="ejU-KP-MLp" id="3oi-gd-DXh"/>
                     </connections>
                 </viewController>

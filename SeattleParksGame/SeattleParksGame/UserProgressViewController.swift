@@ -13,7 +13,11 @@ import Foundation
 import MapKit
 
 
-class UserProgressViewController: UIViewController, MKMapViewDelegate {
+class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollectionViewDataSource {
+    
+    //collection view:
+    @IBOutlet weak var badgeCollectionView: UICollectionView!
+    
     
     //badges dictionary
     let badges = ["98101": "Downtown",
@@ -58,6 +62,8 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        badgeCollectionView.dataSource = self
         
         //print("Did it pass parkData correctly?")
         //print(allAnnotationPins)
@@ -111,6 +117,19 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate {
         //icons distinguish whether user has earned them yet or not
         //may show the number of parks needed to earn each badge (ex. achieved 6/7 parks - only 1 to go!)
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return badges.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "badgeCell", for: indexPath) as! BadgeCollectionViewCell
+        //cell.badgeNameLabel.text = badges[indexPath.row]
+        cell.badgeNameLabel.text = "Magnolia"
+        cell.badgeStatsLabel.text = "5 of 100"
+        cell.badgeImageView.image = UIImage(named: "medal-256")
+        return cell
     }
 
     override func didReceiveMemoryWarning() {
