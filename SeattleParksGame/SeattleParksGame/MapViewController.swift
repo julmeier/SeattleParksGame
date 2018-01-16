@@ -48,7 +48,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     var allAnnotationPins: [AnnotationPin?] = []
 
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,6 +98,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 let parks = try decoder.decode([ParkAddress].self, from: data)
                 
                 //print(parks)
+                
+                //clears pins
+                self.allAnnotationPins = []
+                print("allAnnotationPins:")
+                print(self.allAnnotationPins)
         
 
                 for park in parks {
@@ -118,7 +122,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                             //print(park.pmaid)
                             self.greenTree = AnnotationPin(
                                 title: park.name,
-                                //subtitle: "true",
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "green-cloud-tree-32.png",
                                 pmaid: park.pmaid,
@@ -133,7 +136,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                            // print(park.pmaid)
                             self.purpleTree = AnnotationPin(
                                 title: park.name,
-                                //subtitle: "false",
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "purple-cloud-tree-32.png",
                                 pmaid: park.pmaid,
@@ -152,16 +154,16 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 print("error try to convert park address data to JSON")
                 print(error)
             } //end of catch
-            //print("ALL ANNOTATION PINS:")
-            //print(self.allAnnotationPins)
-            
-        
             
             //create set of zip codes for Achievements page:
             //self.zipCodesSet = self.removeDuplicates(array: self.zipCodesAll).sorted()
             //print(self.zipCodesSet)
         
         }.resume()
+        print("ALL ANNOTATION PINS:")
+        print(self.allAnnotationPins)
+        print("ALL ANNOTATION PINS COUNT:")
+        print(self.allAnnotationPins.count)
         print("FINISHED viewDidLoad")
     }
     
@@ -280,6 +282,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewWillAppear(_ animated: Bool = true) {
         super.viewWillAppear(animated)
         self.mapView.reloadInputViews()
+        viewDidLoad()
 
     }
     

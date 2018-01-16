@@ -55,9 +55,11 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
+    //var allAnnotationPinsSet: [AnnotationPin] = []
     
     //storyboard variables
     @IBOutlet weak var numberVisited: UILabel!
+    @IBOutlet weak var allParksDisplay: UILabel!
     
     //Firebase database references:
     var dbReference: DatabaseReference?
@@ -70,8 +72,13 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         
         //print("Did it pass parkData correctly?")
         //print(allAnnotationPins)
+        print("allAnnotationPins.count")
+        print(allAnnotationPins.count)
+        let allAnnotationPinsSet = self.removeDuplicates(array: self.allAnnotationPins)
+        print("allAnnotationPinsSet")
+        print(allAnnotationPinsSet.count)
         
-        for pin in allAnnotationPins {
+        for pin in allAnnotationPinsSet {
             //print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
             
             if (parksByZip[pin.zip_code!] != nil) {
@@ -99,13 +106,14 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         
         print("totalParks:")
         print(totalParks)
+        self.allParksDisplay.text = String(totalParks)
         
         print("numberOfVisitsByZipDict:")
         print(numberOfVisitsByZipDict)
         
         for (zip, parks) in parksByZip {
             let count = parks.count
-            //print("zip: \(zip), count: \(count)")
+            print("zip: \(zip), count: \(count)")
             parkZipcodes.append(zip)
             numberOfParksByZipDict[zip] = count
         }
@@ -151,14 +159,37 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         }
         
         //If I want to layer the X image over another, create another ImageView in the storyboard to assign that image to.
-        cell.badgeImageView.image = UIImage(named: hood!)
-        cell.badgeImageOverlay.image = UIImage(named: "circle_X_black_512")
+        if visitCount == zipCount {
+            cell.badgeImageView.image = UIImage(named: hood!)
+        } else {
+            cell.badgeImageView.image = UIImage(named: "circle_X_black_512")
+        }
+        
         return cell
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func removeDuplicates(array: [AnnotationPin]) -> [AnnotationPin] {
+        var encountered = Set<AnnotationPin>()
+        var result: [AnnotationPin] = []
+        for value in array {
+            if encountered.contains(value) {
+                // Do not add a duplicate element.
+            }
+            else {
+                // Add value to the set.
+                encountered.insert(value)
+                // ... Append the value.
+                result.append(value)
+            }
+        }
+        print("removeDuplicates result:")
+        print(result.count)
+        return result
     }
 
 }
