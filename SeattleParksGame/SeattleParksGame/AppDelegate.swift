@@ -9,21 +9,57 @@
 import UIKit
 import Firebase
 import Foundation
+import GoogleSignIn
 //import FirebaseUIAuth
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        //Below line added by Julia
+
         FirebaseApp.configure()
-        //IS THIS RIGHT? OTHER TUTORIALS USE: FIRApp.configure()
+        
+        //Google Sign-In:
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
+        
         return true
+    }
+    
+    //Added by Julia for Google Sign-in (Firebase Guide Step 4)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+        -> Bool {
+            return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                     annotation: [:])
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let err = error {
+            print("Failed to sign into Google: ", err)
+        }
+        print("Successfully logged into Google: ", user)
+        
+        guard let idToken = user.authentication.idToken else {return}
+        guard let accessToken = user.authentication.accessToken else {return}
+        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        //FIRAuth.auth()?.signIn(with: )
+        Auth.auth().signIn(with: credentials) { (user, error) in
+            if let error = error {
+                print("Failed to create a Firebase User with Google account: ", error)
+                return
+            }
+            guard let uid = user?.uid else { return }
+            print("Successfully logged into Firebase with Google. User.uid: ", uid)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

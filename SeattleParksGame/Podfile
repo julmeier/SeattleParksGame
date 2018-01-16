@@ -11,4 +11,6 @@ target 'SeattleParksGame' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
   pod 'FontAwesomeKit', '~> 2.2.0'
+  pod 'GoogleSignIn'
+  
 end

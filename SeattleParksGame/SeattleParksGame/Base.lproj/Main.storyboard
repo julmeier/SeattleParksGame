@@ -46,7 +46,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdJ-9o-Xmv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-727.20000000000005" y="34.632683658170919"/>
+            <point key="canvasLocation" x="-1377" y="35"/>
+        </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="pZE-jm-ubu">
+            <objects>
+                <viewController id="m1v-l0-O1t" customClass="SignInViewController" customModule="SeattleParksGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zHf-jq-ZAy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="FyJ-v8-MM7"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dt4-vc-7T3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-590" y="35"/>
         </scene>
         <!--Park Info View Controller-->
         <scene sceneID="8r7-F0-iGk">
@@ -496,7 +511,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bep-oX-yES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="35"/>
+            <point key="canvasLocation" x="170" y="35"/>
         </scene>
     </scenes>
     <resources>
