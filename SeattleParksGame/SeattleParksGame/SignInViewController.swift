@@ -9,9 +9,12 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FirebaseAuth
+import FirebaseDatabase
 
 class SignInViewController: UIViewController, GIDSignInUIDelegate {
-
+    @IBOutlet weak var googleBtn: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,11 +24,16 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
 
     //for refactoring later (call this function from viewDidLoad)
     fileprivate func setupGoogleButtons() {
-        let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x:16, y:116, width: view.frame.width-32, height:50)
-        //for the next button, just add 66 to the y value to put it perfectly underneath this one.
-        view.addSubview(googleButton)
+        
+        let googleBtn = GIDSignInButton()
         GIDSignIn.sharedInstance().uiDelegate = self
+        
+        //programmatic:
+//        let googleButton = GIDSignInButton()
+//        googleButton.frame = CGRect(x:16, y:116, width: view.frame.width-32, height:50)
+//        //for the next button, just add 66 to the y value to put it perfectly underneath this one.
+//        view.addSubview(googleButton)
+//        GIDSignIn.sharedInstance().uiDelegate = self
         
         //example if you want to create a custom google button
 //        let customButton = UIButton(type: .system)

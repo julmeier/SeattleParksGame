@@ -46,7 +46,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdJ-9o-Xmv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1377" y="35"/>
+            <point key="canvasLocation" x="-1585" y="-691"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="pZE-jm-ubu">
@@ -55,13 +55,22 @@
                     <view key="view" contentMode="scaleToFill" id="zHf-jq-ZAy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="btn_google_signin_dark_normal_web" translatesAutoresizingMaskIntoConstraints="NO" id="w7h-AB-wJM">
+                                <rect key="frame" x="67" y="122" width="240" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="FyJ-v8-MM7"/>
                     </view>
+                    <connections>
+                        <outlet property="googleBtn" destination="w7h-AB-wJM" id="aTN-NM-hcb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dt4-vc-7T3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-590" y="35"/>
+            <point key="canvasLocation" x="-676" y="13.943028485757123"/>
         </scene>
         <!--Park Info View Controller-->
         <scene sceneID="8r7-F0-iGk">
@@ -511,10 +520,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bep-oX-yES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="170" y="35"/>
+            <point key="canvasLocation" x="217" y="35"/>
         </scene>
     </scenes>
     <resources>
+        <image name="btn_google_signin_dark_normal_web" width="191" height="46"/>
         <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
 </document>
