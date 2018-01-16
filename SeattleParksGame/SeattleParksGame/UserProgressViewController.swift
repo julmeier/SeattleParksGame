@@ -151,7 +151,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         }
         
         //If I want to layer the X image over another, create another ImageView in the storyboard to assign that image to.
-        cell.badgeImageView.image = UIImage(named: "medal-256")
+        cell.badgeImageView.image = UIImage(named: hood!)
         //cell.badgeImageView.image = UIImage(named: "circle_X_black_512")
         return cell
     }
