@@ -257,6 +257,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2G-5G-enK">
+                                                    <rect key="frame" x="9" y="0.0" width="82" height="81"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -273,6 +277,7 @@
                                         </constraints>
                                         <size key="customSize" width="100" height="130"/>
                                         <connections>
+                                            <outlet property="badgeImageOverlay" destination="I2G-5G-enK" id="sdP-Tj-o1Z"/>
                                             <outlet property="badgeImageView" destination="Sjn-fP-hWc" id="2x8-by-xJj"/>
                                             <outlet property="badgeNameLabel" destination="Aq7-qs-hnE" id="lnN-Gm-bIv"/>
                                             <outlet property="badgeStatsLabel" destination="Jpk-hS-Vdv" id="o4Q-5w-3qF"/>

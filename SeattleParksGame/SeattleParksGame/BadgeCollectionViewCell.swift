@@ -10,6 +10,7 @@ import UIKit
 
 class BadgeCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var badgeImageOverlay: UIImageView!
     @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var badgeNameLabel: UILabel!
     @IBOutlet weak var badgeStatsLabel: UILabel!
