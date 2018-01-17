@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QkQ-Qi-z8B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m1v-l0-O1t">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -46,7 +46,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdJ-9o-Xmv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1585" y="-691"/>
+            <point key="canvasLocation" x="-1774" y="-528"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="pZE-jm-ubu">
@@ -55,22 +55,16 @@
                     <view key="view" contentMode="scaleToFill" id="zHf-jq-ZAy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="btn_google_signin_dark_normal_web" translatesAutoresizingMaskIntoConstraints="NO" id="w7h-AB-wJM">
-                                <rect key="frame" x="67" y="122" width="240" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="FyJ-v8-MM7"/>
                     </view>
                     <connections>
-                        <outlet property="googleBtn" destination="w7h-AB-wJM" id="aTN-NM-hcb"/>
+                        <segue destination="QkQ-Qi-z8B" kind="show" id="Wdq-S1-1s3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dt4-vc-7T3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-676" y="13.943028485757123"/>
+            <point key="canvasLocation" x="-638" y="35"/>
         </scene>
         <!--Park Info View Controller-->
         <scene sceneID="8r7-F0-iGk">
@@ -212,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbq-7V-CKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1882.4000000000001" y="33.733133433283363"/>
+            <point key="canvasLocation" x="1881" y="330"/>
         </scene>
         <!--User Progress View Controller-->
         <scene sceneID="8nE-uX-3ge">
@@ -268,7 +262,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="of " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ei-dF-VgM">
-                                <rect key="frame" x="165" y="192" width="32" height="50"/>
+                                <rect key="frame" x="162" y="192" width="32" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="OMr-eC-qrn"/>
                                     <constraint firstAttribute="height" constant="50" id="nEC-fK-OMc"/>
@@ -351,7 +345,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rY3-6d-MQz">
-                                <rect key="frame" x="202" y="192" width="74" height="50"/>
+                                <rect key="frame" x="220.5" y="192" width="74" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="1v0-8l-InV"/>
                                     <constraint firstAttribute="width" constant="74" id="Rc8-rw-EYr"/>
@@ -417,7 +411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utt-8N-r6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="279.19999999999999" y="-691.304347826087"/>
+            <point key="canvasLocation" x="1854" y="-414"/>
         </scene>
         <!--Your Achievements-->
         <scene sceneID="Edx-P3-CUH">
@@ -464,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1F-yF-h22" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1328.8" y="-693.10344827586209"/>
+            <point key="canvasLocation" x="4967" y="-277"/>
         </scene>
         <!--Map-->
         <scene sceneID="MUc-FM-TwQ">
@@ -474,14 +468,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="534"/>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AYu-4l-t2x">
+                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="NN8-k8-PyB"/>
+                                    <constraint firstAttribute="width" constant="375" id="fBD-uk-6aO"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="041-medal" translatesAutoresizingMaskIntoConstraints="NO" id="uzp-Gd-6ki">
+                                <rect key="frame" x="316" y="610" width="45" height="41"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="041-medal" translatesAutoresizingMaskIntoConstraints="NO" id="eek-cr-iCi">
+                                <rect key="frame" x="261" y="610" width="45" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="AYu-4l-t2x" firstAttribute="leading" secondItem="tBU-Yy-aGz" secondAttribute="leading" id="4cj-XG-e5i"/>
+                            <constraint firstItem="vUj-gA-0U3" firstAttribute="centerX" secondItem="xqi-or-T2M" secondAttribute="centerX" id="62p-WQ-mhb"/>
+                            <constraint firstItem="uzp-Gd-6ki" firstAttribute="top" secondItem="vUj-gA-0U3" secondAttribute="bottom" id="7kA-TD-B0B"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="trailing" secondItem="tBU-Yy-aGz" secondAttribute="trailing" id="Faq-63-cj1"/>
+                            <constraint firstItem="AYu-4l-t2x" firstAttribute="bottom" secondItem="tBU-Yy-aGz" secondAttribute="bottom" id="IQg-aY-X5c"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="bottom" secondItem="tBU-Yy-aGz" secondAttribute="bottom" id="JAs-65-Kvq"/>
+                            <constraint firstItem="AYu-4l-t2x" firstAttribute="trailing" secondItem="tBU-Yy-aGz" secondAttribute="trailing" id="mcf-4n-GpG"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="top" secondItem="tBU-Yy-aGz" secondAttribute="top" id="mrD-jf-3yw"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="leading" secondItem="tBU-Yy-aGz" secondAttribute="leading" id="y4k-94-k1K"/>
                         </constraints>
@@ -524,7 +538,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btn_google_signin_dark_normal_web" width="191" height="46"/>
+        <image name="041-medal" width="512" height="512"/>
         <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
 </document>

@@ -13,7 +13,6 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SignInViewController: UIViewController, GIDSignInUIDelegate {
-    @IBOutlet weak var googleBtn: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +24,8 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     //for refactoring later (call this function from viewDidLoad)
     fileprivate func setupGoogleButtons() {
         
-        let googleBtn = GIDSignInButton()
-        GIDSignIn.sharedInstance().uiDelegate = self
+//        let googleBtn = GIDSignInButton()
+//        GIDSignIn.sharedInstance().uiDelegate = self
         
         //programmatic:
         let googleButton = GIDSignInButton()
@@ -36,26 +35,24 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         
         //example if you want to create a custom google button
-        let customButton = UIButton(type: .system)
-        customButton.frame = CGRect(x:16, y:116+66, width: view.frame.width-32, height:50)
-        customButton.backgroundColor = .orange
-        view.addSubview(customButton)
+//        let customButton = UIButton(type: .system)
+//        customButton.frame = CGRect(x:16, y:116+66, width: view.frame.width-32, height:50)
+//        customButton.backgroundColor = .orange
+//        view.addSubview(customButton)
 
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func checkLoggedIn() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user != nil {
+                let mapViewController = MapViewController()
+                self.present(mapViewController, animated: true, completion: nil)
+            } else {
+                // no user is signed in
+                self.login()
+            }
+        }
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

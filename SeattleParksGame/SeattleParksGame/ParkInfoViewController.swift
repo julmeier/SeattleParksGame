@@ -28,6 +28,9 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
     @IBOutlet weak var parkFeaturesHeader: UILabel!
     @IBOutlet weak var visitStatusImage: UIImageView!
     
+    //get user data
+    let userKey = Auth.auth().currentUser?.uid
+    
     //variables to receive AnnotationPin attribute data from MapViewController
     var name: String?
     var address: String?
@@ -83,7 +86,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             print(thisParkFeatures)
         
             //USES SELECTION OF PMAID TO DIRECTLY CALL JUST THAT PARK'S FEATURES:
-            let url_root = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid="
+            //let url_root = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid="
             
             
         }
@@ -121,7 +124,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         
         //finds value of visit status in the database and displays:
         //read in data from database to see if the park has been visited
-        dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+        dbReference?.child("users/\(userKey)/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.pmaid!) {
                 print("pmaid in the db")
                 self.visitStatus.text = "Visited!"
