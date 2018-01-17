@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m1v-l0-O1t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QkQ-Qi-z8B">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -468,34 +468,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="534"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AYu-4l-t2x">
-                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
-                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="NN8-k8-PyB"/>
-                                    <constraint firstAttribute="width" constant="375" id="fBD-uk-6aO"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="041-medal" translatesAutoresizingMaskIntoConstraints="NO" id="uzp-Gd-6ki">
-                                <rect key="frame" x="316" y="610" width="45" height="41"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="041-medal" translatesAutoresizingMaskIntoConstraints="NO" id="eek-cr-iCi">
-                                <rect key="frame" x="261" y="610" width="45" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AYu-4l-t2x" firstAttribute="leading" secondItem="tBU-Yy-aGz" secondAttribute="leading" id="4cj-XG-e5i"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="centerX" secondItem="xqi-or-T2M" secondAttribute="centerX" id="62p-WQ-mhb"/>
-                            <constraint firstItem="uzp-Gd-6ki" firstAttribute="top" secondItem="vUj-gA-0U3" secondAttribute="bottom" id="7kA-TD-B0B"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="trailing" secondItem="tBU-Yy-aGz" secondAttribute="trailing" id="Faq-63-cj1"/>
-                            <constraint firstItem="AYu-4l-t2x" firstAttribute="bottom" secondItem="tBU-Yy-aGz" secondAttribute="bottom" id="IQg-aY-X5c"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="bottom" secondItem="tBU-Yy-aGz" secondAttribute="bottom" id="JAs-65-Kvq"/>
-                            <constraint firstItem="AYu-4l-t2x" firstAttribute="trailing" secondItem="tBU-Yy-aGz" secondAttribute="trailing" id="mcf-4n-GpG"/>
+                            <constraint firstItem="vUj-gA-0U3" firstAttribute="bottom" secondItem="tBU-Yy-aGz" secondAttribute="bottom" id="Ujj-2j-AE1"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="top" secondItem="tBU-Yy-aGz" secondAttribute="top" id="mrD-jf-3yw"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="leading" secondItem="tBU-Yy-aGz" secondAttribute="leading" id="y4k-94-k1K"/>
                         </constraints>
@@ -538,7 +520,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="041-medal" width="512" height="512"/>
         <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
 </document>

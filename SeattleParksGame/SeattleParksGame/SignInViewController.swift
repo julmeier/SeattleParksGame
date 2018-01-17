@@ -49,7 +49,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
                 self.present(mapViewController, animated: true, completion: nil)
             } else {
                 // no user is signed in
-                self.login()
+                //self.login()
             }
         }
     }

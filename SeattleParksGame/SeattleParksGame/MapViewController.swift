@@ -97,10 +97,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 let decoder = JSONDecoder()
                 let parks = try decoder.decode([ParkAddress].self, from: data)
                 
-                //print(parks)
+                print("Parks. Parks.Class:")
+                print(parks)
+                print(parks.description)
                 
                 //clears pins
-                self.allAnnotationPins = []
+                //self.allAnnotationPins = []
+                self.allAnnotationPins.removeAll()
                 print("allAnnotationPins:")
                 print(self.allAnnotationPins)
         
@@ -160,8 +163,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             //print(self.zipCodesSet)
         
         }.resume()
-        print("ALL ANNOTATION PINS:")
-        print(self.allAnnotationPins)
+        //print("ALL ANNOTATION PINS:")
+        //print(self.allAnnotationPins)
         print("ALL ANNOTATION PINS COUNT:")
         print(self.allAnnotationPins.count)
         print("FINISHED viewDidLoad")
@@ -281,7 +284,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     //INTENTION OF THIS METHOD: This makes the map refresh when pressing back button from ParkInfoViewController.
     override func viewWillAppear(_ animated: Bool = true) {
         super.viewWillAppear(animated)
-        self.mapView.reloadInputViews()
+        //self.mapView.reloadInputViews()
         viewDidLoad()
 
     }

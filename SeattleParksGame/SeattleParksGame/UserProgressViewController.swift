@@ -52,6 +52,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     var parkZipcodes = [String]()
     var numberOfParksByZipDict = [String: Int]()
     var numberOfVisitsByZipDict = [String: Int]()
+    var allPmaids = [String]()
     
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
@@ -72,13 +73,27 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         
         //print("Did it pass parkData correctly?")
         //print(allAnnotationPins)
-        print("allAnnotationPins.count")
+        print("allAnnotationPins.count BEFORE DELETE")
         print(allAnnotationPins.count)
-        let allAnnotationPinsSet = self.removeDuplicates(array: self.allAnnotationPins)
-        print("allAnnotationPinsSet")
-        print(allAnnotationPinsSet.count)
+        //let allAnnotationPinsSet = self.removeDuplicates(array: self.allAnnotationPins)
+        //print("allAnnotationPinsSet")
+        //print(allAnnotationPinsSet.count)
         
-        for pin in allAnnotationPinsSet {
+        var index = 0
+        for pin in allAnnotationPins {
+            
+            if allPmaids.contains(pin.pmaid!) {
+                allAnnotationPins.remove(at: index)
+            } else {
+                allPmaids.append(pin.pmaid!)
+            }
+            index += 1
+        }
+        
+        print("allAnnotationPins.count AFTER DELETE")
+        print(allAnnotationPins.count)
+        
+        for pin in allAnnotationPins {
             //print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
             
             if (parksByZip[pin.zip_code!] != nil) {
@@ -191,5 +206,5 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         print(result.count)
         return result
     }
-
+    
 }
