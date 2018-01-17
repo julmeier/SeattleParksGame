@@ -40,6 +40,8 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
 //        customButton.backgroundColor = .orange
 //        view.addSubview(customButton)
 
+        checkLoggedIn()
+        
     }
     
     func checkLoggedIn() {
