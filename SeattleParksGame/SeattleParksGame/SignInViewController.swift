@@ -40,7 +40,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
 //        customButton.backgroundColor = .orange
 //        view.addSubview(customButton)
 
-        checkLoggedIn()
+        //checkLoggedIn()
         
     }
     
@@ -55,6 +55,11 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
             }
         }
     }
+    
+//    func pushTomainView() {
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "Navigation") as! NavVC
+//        self.show(vc, sender: nil)
+//    }
 
 
 }

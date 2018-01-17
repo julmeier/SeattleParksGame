@@ -52,7 +52,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         super.viewDidLoad()
         
         //delegate needed for custom pin
-        self.mapView.delegate = self
+        self.mapView?.delegate = self
         
         //this doesn't seem to be working:
         locationManager.delegate = self
@@ -68,7 +68,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let initialLocation = CLLocation(latitude: 47.6074717, longitude: -122.3352511)
         zoomMapOn(location: initialLocation)
         
-        self.mapView.removeAnnotations(mapView.annotations)
+        self.mapView?.removeAnnotations(mapView.annotations)
         
         //retrieving JSON data from local file SeattleParksAddresses.json:
         //        let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
@@ -132,7 +132,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "true"
                             )
-                            self.mapView.addAnnotation(self.greenTree)
+                            self.mapView?.addAnnotation(self.greenTree)
                             self.allAnnotationPins.append(self.greenTree)
                         } else {
                             //print("pmaid NOT in the db:")
@@ -146,7 +146,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "false"
                             )
-                            self.mapView.addAnnotation(self.purpleTree)
+                            self.mapView?.addAnnotation(self.purpleTree)
                             self.allAnnotationPins.append(self.purpleTree)
                         } //end of else
                     }) //end of dbReference?.child
@@ -235,7 +235,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
     func zoomMapOn(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 3.0, regionRadius * 3.0)
-        mapView.setRegion(coordinateRegion, animated:true)
+        mapView?.setRegion(coordinateRegion, animated:true)
     }
     
     func removeDuplicates(array: [String]) -> [String] {
@@ -277,7 +277,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        mapView.showsUserLocation = true
+        mapView?.showsUserLocation = true
     }
     
     //BAD SIDE EFFECT OF THIS METHOD: viewDidLoad loads 2x on initial load, so if user goes straight to badges page, there are twice as many parks objects passed.

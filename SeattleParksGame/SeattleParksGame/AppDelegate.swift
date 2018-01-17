@@ -18,6 +18,7 @@ import FirebaseDatabase
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    var databaseRef: DatabaseReference!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
@@ -27,16 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
-        
         return true
     }
     
     //Added by Julia for Google Sign-in (Firebase Guide Step 4)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
-        -> Bool {
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
             print("passing through application(_ appication: UIApplication, open url: URL.... in AppDelegate")
-            return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                     annotation: [:])
+            //return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+            return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+            
+            
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
@@ -45,14 +46,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let err = error {
-            print("Failed to sign into Google: ", err)
+            print("Failed to sign into Google: ", err.localizedDescription)
         }
         print("Successfully logged into Google: ", user)
         
         guard let idToken = user.authentication.idToken else {return}
         guard let accessToken = user.authentication.accessToken else {return}
         let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        //FIRAuth.auth()?.signIn(with: )
+ 
         Auth.auth().signIn(with: credentials) { (user, error) in
             if let error = error {
                 print("Failed to create a Firebase User with Google account: ", error)
@@ -61,6 +62,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             guard let uid = user?.uid else { return }
             
             print("Successfully logged into Firebase with Google. User.uid: ", uid)
+            
+            self.databaseRef = Database.database().reference()
+            
+            self.databaseRef.child("user_profiles").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let snapshot = snapshot.value as? NSDictionary
+                
+                if(snapshot == nil)
+                {
+                    //self.databaseRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
+                    //BELOW GETS THIS ERROR:
+                    //" Listener at /user_profiles/izsiSrwd5mSj83Ijs40n12m4CsX2 failed: permission_denied"
+                    self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
+                }
+                
+                let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                
+                self.window?.rootViewController?.performSegue(withIdentifier: "signInToNavController", sender: nil)
+                
+            })
         }
     }
     
