@@ -55,6 +55,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //ADD A METHOD HERE TO SEE IF USERKEY ACTUALLY EXISTS? DIRECT THEM TO ANOTHER METHOD THAT LEADS THEM TO SIGN IN PAGE, IF NOT LOGGED IN
+        
         //CALLS FOR ALL DATA AND THEN SORTS ON THE PMAID:
         let path = Bundle.main.path(forResource: "SeattleParksFeatures", ofType: "json")
         print(path!)
@@ -94,11 +96,6 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
         
-        //TEST DATA:
-        //parkName.text = "Magnuson Park"
-        //parkImage.image = UIImage(named: "GasworksHD-landscape")
-        //or use Image Literal to choose image from Asset catalogue
-        
         //receives data from MapViewController and sets text to labels
         if let parkDataToDisplay = parkData {
             print("Did it pass parkData correctly?")
@@ -114,8 +111,9 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         
         //finds value of visit status in the database and displays:
         //read in data from database to see if the park has been visited
-        //dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
-        dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        //READ AUTHENTICATED USER DATA:
+        dbReference?.child("users").child(userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
             print("snapshot data")
             print(snapshot)
             print(snapshot.childrenCount)
@@ -124,8 +122,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
                 self.visitStatus.text = "Visited!"
                 self.visitStatusImage.image = UIImage(named: "park_visited-512")
                 self.yesIVisitedButton.isHidden = true
-              
-            } else 
+                
+            } else
             {
                 print("pmaid NOT in the db")
                 self.visitStatus.text = "Not Yet Visited!"
@@ -133,6 +131,26 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
                 self.visitStatusImage.image = UIImage(named: "park_not_visited-512")
             }
         })
+        
+        //TESTUSER1 DATA:
+//        dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+//            print("snapshot data")
+//            print(snapshot)
+//            print(snapshot.childrenCount)
+//            if snapshot.hasChild(self.pmaid!) {
+//                print("pmaid in the db")
+//                self.visitStatus.text = "Visited!"
+//                self.visitStatusImage.image = UIImage(named: "park_visited-512")
+//                self.yesIVisitedButton.isHidden = true
+//
+//            } else
+//            {
+//                print("pmaid NOT in the db")
+//                self.visitStatus.text = "Not Yet Visited!"
+//                self.yesIVisitedButton.isHidden = false
+//                self.visitStatusImage.image = UIImage(named: "park_not_visited-512")
+//            }
+//        })
         
         self.tableView.tableFooterView = UIView()
         

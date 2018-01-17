@@ -122,7 +122,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                     
                     //read in data from database to see if the park has been visited
                     
-                    self.dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+                    //self.dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+                    self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild(park.pmaid) {
                             //print("pmaid in the db:")
                             //print(park.pmaid)
