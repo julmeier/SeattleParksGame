@@ -102,8 +102,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 //print(parks.description)
                 
                 //clears pins
-                //self.allAnnotationPins = []
-                //self.allAnnotationPins.removeAll()
+                self.allAnnotationPins = []
+                self.allAnnotationPins.removeAll()
                 //print("allAnnotationPins:")
                 //print(self.allAnnotationPins)
         
@@ -284,8 +284,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     //INTENTION OF THIS METHOD: This makes the map refresh when pressing back button from ParkInfoViewController.
     override func viewWillAppear(_ animated: Bool = true) {
         super.viewWillAppear(animated)
-        //self.mapView.reloadInputViews()
-        viewDidLoad()
+        mapView?.reloadInputViews()
+        //viewDidLoad()
 
     }
     
