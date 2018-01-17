@@ -83,10 +83,13 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         for pin in allAnnotationPins {
             
             if allPmaids.contains(pin.pmaid!) {
-                allAnnotationPins.remove(at: index)
+                print(index)
+                allAnnotationPins.remove(at: index) //ERROR: Array index out of range
             } else {
                 allPmaids.append(pin.pmaid!)
             }
+            print("allPmaids:")
+            print(allPmaids)
             index += 1
         }
         

@@ -97,15 +97,15 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 let decoder = JSONDecoder()
                 let parks = try decoder.decode([ParkAddress].self, from: data)
                 
-                print("Parks. Parks.Class:")
-                print(parks)
-                print(parks.description)
+                //print("Parks. Parks.Class:")
+                //print(parks)
+                //print(parks.description)
                 
                 //clears pins
                 //self.allAnnotationPins = []
-                self.allAnnotationPins.removeAll()
-                print("allAnnotationPins:")
-                print(self.allAnnotationPins)
+                //self.allAnnotationPins.removeAll()
+                //print("allAnnotationPins:")
+                //print(self.allAnnotationPins)
         
 
                 for park in parks {
