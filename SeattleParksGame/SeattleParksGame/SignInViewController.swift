@@ -44,17 +44,17 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         
     }
     
-    func checkLoggedIn() {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-                let mapViewController = MapViewController()
-                self.present(mapViewController, animated: true, completion: nil)
-            } else {
-                // no user is signed in
-                //self.login()
-            }
-        }
-    }
+//    func checkLoggedIn() {
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            if user != nil {
+//                let mapViewController = MapViewController()
+//                self.present(mapViewController, animated: true, completion: nil)
+//            } else {
+//                // no user is signed in
+//                //self.login()
+//            }
+//        }
+//    }
     
 //    func pushTomainView() {
 //        let vc = storyboard?.instantiateViewController(withIdentifier: "Navigation") as! NavVC
