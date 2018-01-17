@@ -80,18 +80,18 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         //print(allAnnotationPinsSet.count)
         
         var index = 0
-        for pin in allAnnotationPins {
-            
-            if allPmaids.contains(pin.pmaid!) {
-                print(index)
-                allAnnotationPins.remove(at: index) //ERROR: Array index out of range
-            } else {
-                allPmaids.append(pin.pmaid!)
-            }
-            print("allPmaids:")
-            print(allPmaids)
-            index += 1
-        }
+//        for pin in allAnnotationPins {
+//
+//            if allPmaids.contains(pin.pmaid!) {
+//                print(index)
+//                allAnnotationPins.remove(at: index) //ERROR: Array index out of range
+//            } else {
+//                allPmaids.append(pin.pmaid!)
+//            }
+//            print("allPmaids:")
+//            print(allPmaids)
+//            index += 1
+//        }
         
         print("allAnnotationPins.count AFTER DELETE")
         print(allAnnotationPins.count)
