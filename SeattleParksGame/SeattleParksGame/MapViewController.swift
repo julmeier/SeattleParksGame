@@ -23,6 +23,9 @@ struct ParkAddress: Codable {
 }
 
 class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    //get user data
+    let userKey = Auth.auth().currentUser?.uid
 
     //Mapping variables:
     @IBOutlet weak var mapView: MKMapView!
@@ -119,7 +122,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                     
                     //read in data from database to see if the park has been visited
                     
-                    self.dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+                    self.dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild(park.pmaid) {
                             //print("pmaid in the db:")
                             //print(park.pmaid)

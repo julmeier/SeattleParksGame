@@ -29,7 +29,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
     @IBOutlet weak var visitStatusImage: UIImageView!
     
     //get user data
-    //let userKey = Auth.auth().currentUser?.uid
+    let userKey = Auth.auth().currentUser?.uid
     
     //variables to receive AnnotationPin attribute data from MapViewController
     var name: String?
@@ -70,12 +70,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             let parkFeatures = try decoder.decode([ParkFeatures].self, from: data)
             for parkFeature in parkFeatures {
                 allParkFeaturesArray.append(parkFeature.feature_desc)
-                //print("PRINTING OUTSIDE OF IF:")
-                //print(parkFeature)
-                //print(parkFeature.pmaid)
+
                 if parkFeature.pmaid == parkData?.pmaid {
-                    //print("Features inside if statement:")
-                    //print(parkFeature.feature_desc)
                     thisParkFeatures.append(parkFeature.feature_desc)
                 }
                 
@@ -115,17 +111,14 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             print(pmaid!)
         }
         
-//        if let nameToDisplay = name {
-//            parkName.text = nameToDisplay
-//        }
-//        if let addressToDisplay = address {
-//            parkAddress.text = addressToDisplay
-//        }
         
         //finds value of visit status in the database and displays:
         //read in data from database to see if the park has been visited
-        //dbReference?.child("users/\(userKey)/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
-        dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+        //dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+        dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+            print("snapshot data")
+            print(snapshot)
+            print(snapshot.childrenCount)
             if snapshot.hasChild(self.pmaid!) {
                 print("pmaid in the db")
                 self.visitStatus.text = "Visited!"
@@ -155,7 +148,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         print("changeVisitStatus button tapped")
         
         //add pmaid to database
-        dbReference?.child("users").child("testUser1").child("parkVisits").child(pmaid!).setValue(true)
+        //dbReference?.child("users").child("testUser1").child("parkVisits").child(pmaid!).setValue(true)
+        dbReference?.child("users").child(userKey!).child("parkVisits").child(pmaid!).setValue(true)
         
         //remove value from database:
         //dbReference?.child("users").child("testUser1").child("parkVisits").child(pmaid!).setValue(nil)
