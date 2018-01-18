@@ -13,6 +13,15 @@ import Foundation
 import FirebaseDatabase
 import CoreLocation
 
+
+
+//=======IMPORTS SECRETS FILE=======
+let path = Bundle.main.path(forResource: "secrets", ofType: "plist" )
+let dict = NSDictionary(contentsOfFile: path!)
+
+//======= loads the dictionary of the secrets file=========
+let apiKey = dict!.object(forKey: "app_token") as! String
+
 struct ParkAddress: Codable {
     let pmaid: String
     let name: String
@@ -88,6 +97,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         //retrieving JSON data from API directly:
         let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
+
         guard let url = URL(string: seattleParksAddressesUrl) else {return}
         
         URLSession.shared.dataTask(with: url) {(data, response, err) in

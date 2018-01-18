@@ -22,6 +22,7 @@
 		A397527C2009E99800F80BAD /* UserProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A397527B2009E99800F80BAD /* UserProgressViewController.swift */; };
 		A397527E200C45F200F80BAD /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A397527D200C45F200F80BAD /* BadgeCollectionViewCell.swift */; };
 		A3975280200E818C00F80BAD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A397527F200E818C00F80BAD /* SignInViewController.swift */; };
+		A397528620114B9500F80BAD /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = A397528520114B9500F80BAD /* secrets.plist */; };
 		A3BB784E20056D3A00BAF7FD /* SeattleParksAddresses.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */; };
 		A3BB785020056DB300BAF7FD /* SeattleParksFeatures.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */; };
 		A3BB78522009473600BAF7FD /* zipcode-neighborhoods.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB78512009473600BAF7FD /* zipcode-neighborhoods.json */; };
@@ -46,6 +47,7 @@
 		A397527B2009E99800F80BAD /* UserProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgressViewController.swift; sourceTree = "<group>"; };
 		A397527D200C45F200F80BAD /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
 		A397527F200E818C00F80BAD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		A397528520114B9500F80BAD /* secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = secrets.plist; sourceTree = "<group>"; };
 		A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SeattleParksAddresses.json; sourceTree = "<group>"; };
 		A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SeattleParksFeatures.json; path = ../../SeattleParksFeatures.json; sourceTree = "<group>"; };
 		A3BB78512009473600BAF7FD /* zipcode-neighborhoods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "zipcode-neighborhoods.json"; path = "../../zipcode-neighborhoods.json"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				A397527B2009E99800F80BAD /* UserProgressViewController.swift */,
 				A397527D200C45F200F80BAD /* BadgeCollectionViewCell.swift */,
 				A397527F200E818C00F80BAD /* SignInViewController.swift */,
+				A397528520114B9500F80BAD /* secrets.plist */,
 			);
 			path = SeattleParksGame;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A397528620114B9500F80BAD /* secrets.plist in Resources */,
 				A3BB78522009473600BAF7FD /* zipcode-neighborhoods.json in Resources */,
 				A383E7C91FFCBA1400DACC2E /* LaunchScreen.storyboard in Resources */,
 				A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */,
