@@ -60,15 +60,6 @@
                                 <rect key="frame" x="145" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Emerald City Ranger" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfl-RX-4Gr">
-                                <rect key="frame" x="36" y="453" width="323" height="194"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="DamascusBold" family="Damascus" pointSize="45"/>
-                                <color key="textColor" red="1" green="0.93342681419999995" blue="0.89793879080000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                <size key="shadowOffset" width="1" height="-1"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWa-uq-BnP">
                                 <rect key="frame" x="26" y="29" width="323" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -76,10 +67,28 @@
                                 <color key="textColor" red="1" green="0.93342681419999995" blue="0.89793879080000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                <size key="shadowOffset" width="1" height="-1"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emerald City Ranger" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfl-RX-4Gr">
+                                <rect key="frame" x="26" y="453" width="323" height="194"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="323" id="M43-Lh-li1"/>
+                                    <constraint firstAttribute="height" constant="194" id="Qve-5J-bgG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DamascusBold" family="Damascus" pointSize="45"/>
+                                <color key="textColor" red="1" green="0.93342681419999995" blue="0.89793879080000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <size key="shadowOffset" width="2" height="2"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pfl-RX-4Gr" firstAttribute="centerX" secondItem="zHf-jq-ZAy" secondAttribute="centerX" id="FR0-ci-BeM"/>
+                            <constraint firstItem="FyJ-v8-MM7" firstAttribute="bottom" secondItem="pfl-RX-4Gr" secondAttribute="bottom" constant="20" id="OLy-bJ-NNC"/>
+                            <constraint firstItem="FyJ-v8-MM7" firstAttribute="trailing" secondItem="pfl-RX-4Gr" secondAttribute="trailing" constant="26" id="aTq-ZO-UAn"/>
+                            <constraint firstItem="pfl-RX-4Gr" firstAttribute="leading" secondItem="FyJ-v8-MM7" secondAttribute="leading" constant="26" id="b3L-Oc-bAf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="FyJ-v8-MM7"/>
                     </view>
                     <navigationItem key="navigationItem" id="GLK-5x-Exm"/>

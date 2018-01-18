@@ -23,14 +23,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Emerald City Ranger" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOT-v5-ieS">
-                                <rect key="frame" x="26" y="450" width="323" height="194"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emerald City Ranger" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOT-v5-ieS">
+                                <rect key="frame" x="26" y="453" width="323" height="194"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="323" id="i5R-f4-ebq"/>
+                                    <constraint firstAttribute="height" constant="194" id="tlo-aj-h7A"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="DamascusBold" family="Damascus" pointSize="45"/>
                                 <color key="textColor" red="1" green="0.93342681419999995" blue="0.89793879080000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                <size key="shadowOffset" width="1" height="-1"/>
+                                <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kerrypark-highdef" translatesAutoresizingMaskIntoConstraints="NO" id="hoP-EK-dly">
                                 <rect key="frame" x="145" y="0.0" width="375" height="667"/>
@@ -38,6 +41,11 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wOT-v5-ieS" secondAttribute="bottom" constant="20" id="G6p-AM-r2x"/>
+                            <constraint firstItem="wOT-v5-ieS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="OoM-cz-qzN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wOT-v5-ieS" secondAttribute="trailing" constant="26" id="fhB-W3-qtC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
