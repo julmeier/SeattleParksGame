@@ -55,13 +55,14 @@ public class SODAClient {
         }
     }
 
+    //JM removed "limit: Int = SODADefaultLimit" from the parentheses due to error "Let 'SODADefaultLimit' is internal and cannot be referenced from a default argument value"
     /// Asynchronously gets a dataset using a simple filter query. See http://dev.socrata.com/docs/filtering.html
-//    public func get(dataset: String, withFilters: [String: String], limit: Int = SODADefaultLimit, offset: Int = 0, _ completionHandler: @escaping SODADatasetCompletionHandler) {
-//        var ps = withFilters
-//        ps["$limit"] = "\(limit)"
-//        ps["$offset"] = "\(offset)"
-//        get(dataset: dataset, withParameters: ps, completionHandler)
-//    }
+    public func get(dataset: String, withFilters: [String: String], offset: Int = 0, _ completionHandler: @escaping SODADatasetCompletionHandler) {
+        var ps = withFilters
+        //ps["$limit"] = "\(limit)"
+        ps["$offset"] = "\(offset)"
+        get(dataset: dataset, withParameters: ps, completionHandler)
+    }
 
     /// Low-level access for asynchronously getting a dataset. You should use SODAQueries instead of this. See http://dev.socrata.com/docs/queries.html
     public func get(dataset: String, withParameters: [String: String], _ completionHandler: @escaping SODADatasetCompletionHandler) {
@@ -91,7 +92,7 @@ public class SODAClient {
             }
 
             // Try to parse the JSON
-//            println(NSString (data: data, encoding: NSUTF8StringEncoding))
+            //            println(NSString (data: data, encoding: NSUTF8StringEncoding))
 
             var jsonError: Error?
             var jsonResult: Any!
