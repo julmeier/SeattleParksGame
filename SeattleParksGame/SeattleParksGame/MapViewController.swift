@@ -95,6 +95,37 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         //            let decoder = JSONDecoder()
         //            let parks = try decoder.decode([ParkAddress].self, from: data)
         
+        //Retrieving data from SODAClient:
+        let client = SODAClient(domain: "data.seattle.gov", token: apiKey)
+        
+        //changed from: let fuelLocations = client.queryDataset("alternative-fuel-locations")
+        let parksFromAPI = client.query(dataset: "ajyh-m2d3")
+        
+       
+        parksFromAPI.orderAscending("pmaid").get { res in
+            switch res {
+            case .dataset (let apiData):
+                //print(apiData)
+                // Update our data
+                //self.datum = datum
+                for datum in apiData {
+                    //print(datum)
+                    print("DATUM:")
+                    print(datum["name"]!)
+                    print(datum["pmaid"]!)
+                }
+                
+            case .error (let err):
+                let errorMessage = (err as NSError).userInfo.debugDescription
+                let alertController = UIAlertController(title: "Error Refreshing", message: errorMessage, preferredStyle:.alert)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+        
+      
+        
+        
+        
         //retrieving JSON data from API directly:
         let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
 
@@ -299,7 +330,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewWillAppear(_ animated: Bool = true) {
         super.viewWillAppear(animated)
         mapView?.reloadInputViews()
-        //viewDidLoad()
+        viewDidLoad()
 
     }
     
