@@ -79,17 +79,28 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         //let allAnnotationPinsSet = self.removeDuplicates(array: self.allAnnotationPins)
         //print("allAnnotationPinsSet")
         //print(allAnnotationPinsSet.count)
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> updated UserProgressVC to read in from Firebase db
         for pin in allAnnotationPins {
 
             if !nonDuplicatedPmaids.contains(pin.pmaid!) {
                 nonDuplicatedPmaids.append(pin.pmaid!)
+<<<<<<< HEAD
                 nonDuplicatedPins.append(pin)
             }
         }
         print("nonDuplicatedPins.count: \(nonDuplicatedPins.count)")
         print(nonDuplicatedPins)
 
+=======
+            }
+        }
+        print("nonDuplicatedPmaids.count: \(nonDuplicatedPmaids.count)")
+
+>>>>>>> updated UserProgressVC to read in from Firebase db
 //        var nonDuplicates = [Int]()
 //        var randomArray = [1,2,3,1]
 //        for num in randomArray {
@@ -104,6 +115,26 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
 //
 //            index += 1
 //        }
+<<<<<<< HEAD
+=======
+//        print("nonDuplicates: \(nonDuplicates)")
+//        print("randomArray: \(randomArray)")
+
+//        var nonDuplicates = [Int]()
+//        var randomArray = [1,2,3,1]
+//                for num in randomArray {
+//                    print(num)
+//                    if randomArray.contains(1) {
+//                        print("index: \(index)")
+//                        print("num: \(num)")
+//                        //randomArray.remove(at: index) //ERROR: Array index out of range
+//                    } else {
+//                        nonDuplicates.append(num)
+//                    }
+//
+//                    index += 1
+//                }
+>>>>>>> updated UserProgressVC to read in from Firebase db
 //        print("nonDuplicates: \(nonDuplicates)")
 //        print("randomArray: \(randomArray)")
 
