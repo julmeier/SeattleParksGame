@@ -299,7 +299,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewWillAppear(_ animated: Bool = true) {
         super.viewWillAppear(animated)
         mapView?.reloadInputViews()
-        //viewDidLoad()
+        viewDidLoad()
 
     }
     

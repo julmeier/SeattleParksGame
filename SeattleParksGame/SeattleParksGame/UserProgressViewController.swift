@@ -52,7 +52,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     var parkZipcodes = [String]()
     var numberOfParksByZipDict = [String: Int]()
     var numberOfVisitsByZipDict = [String: Int]()
-    var allPmaids = [String]()
+    var nonDuplicatedPmaids = [String]()
     
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
@@ -79,19 +79,30 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         //print("allAnnotationPinsSet")
         //print(allAnnotationPinsSet.count)
         
-        var index = 0
-//        for pin in allAnnotationPins {
-//
-//            if allPmaids.contains(pin.pmaid!) {
-//                print(index)
-//                allAnnotationPins.remove(at: index) //ERROR: Array index out of range
+        for pin in allAnnotationPins {
+
+            if !nonDuplicatedPmaids.contains(pin.pmaid!) {
+                nonDuplicatedPmaids.append(pin.pmaid!)
+            }
+        }
+        print("nonDuplicatedPmaids.count: \(nonDuplicatedPmaids.count)")
+        
+//        var nonDuplicates = [Int]()
+//        var randomArray = [1,2,3,1]
+//        for num in randomArray {
+//            print(num)
+//            if randomArray.contains(1) {
+//                print("index: \(index)")
+//                print("num: \(num)")
+//                //randomArray.remove(at: index) //ERROR: Array index out of range
 //            } else {
-//                allPmaids.append(pin.pmaid!)
+//                nonDuplicates.append(num)
 //            }
-//            print("allPmaids:")
-//            print(allPmaids)
+//
 //            index += 1
 //        }
+//        print("nonDuplicates: \(nonDuplicates)")
+//        print("randomArray: \(randomArray)")
         
         print("allAnnotationPins.count AFTER DELETE")
         print(allAnnotationPins.count)
