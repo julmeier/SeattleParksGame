@@ -40,7 +40,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
 //        customButton.backgroundColor = .orange
 //        view.addSubview(customButton)
 
-        //checkLoggedIn()
+//        checkLoggedIn()
         
     }
     
@@ -49,10 +49,11 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
 //            if user != nil {
 //                let mapViewController = MapViewController()
 //                self.present(mapViewController, animated: true, completion: nil)
-//            } else {
-//                // no user is signed in
-//                //self.login()
 //            }
+////            else {
+////                 //no user is signed in
+////                self.login()
+////            }
 //        }
 //    }
     

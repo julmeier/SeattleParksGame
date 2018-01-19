@@ -12,6 +12,8 @@ import MapKit
 import Foundation
 import FirebaseDatabase
 import CoreLocation
+import FirebaseAuth
+import GoogleSignIn
 
 
 
@@ -31,7 +33,7 @@ struct ParkAddress: Codable {
     let y_coord: String
 }
 
-class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GIDSignInUIDelegate {
     
     //get user data
     let userKey = Auth.auth().currentUser?.uid
@@ -62,6 +64,14 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Checkout button
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        
+        //Logout user that is not logged in
+        if userKey == nil {
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        }
         
         //delegate needed for custom pin
         self.mapView?.delegate = self
@@ -332,6 +342,19 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         mapView?.reloadInputViews()
         viewDidLoad()
 
+    }
+    
+    @objc func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+            
+            GIDSignIn.sharedInstance().disconnect()
+            print("Disconnecting...handleLogout")
+        } catch let logoutError {
+            print(logoutError)
+        }
+        let loginController = SignInViewController()
+        present(loginController, animated: true, completion: nil)
     }
     
 }

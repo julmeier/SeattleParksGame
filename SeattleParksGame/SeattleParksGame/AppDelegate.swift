@@ -72,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 if(snapshot == nil)
                 {
                     //self.databaseRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
+                    
                     //BELOW GETS THIS ERROR:
                     //" Listener at /user_profiles/izsiSrwd5mSj83Ijs40n12m4CsX2 failed: permission_denied"
                     self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
@@ -79,7 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                 let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
                 
+                
                 self.window?.rootViewController?.performSegue(withIdentifier: "signInToNavController", sender: nil)
+                
+                print("Finished didSignInFor in AppDelegate")
                 
             })
         }
