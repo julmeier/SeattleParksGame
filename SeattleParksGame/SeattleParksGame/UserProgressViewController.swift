@@ -14,11 +14,11 @@ import MapKit
 
 
 class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollectionViewDataSource {
-    
+
     //collection view:
     @IBOutlet weak var badgeCollectionView: UICollectionView!
-    
-    
+
+
     //badges dictionary
     let badges = ["98101": "Downtown",
         "98102": "Capitol Hill",
@@ -54,24 +54,24 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     var numberOfVisitsByZipDict = [String: Int]()
     var nonDuplicatedPmaids = [String]()
     var nonDuplicatedPins = [AnnotationPin]()
-    
+
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
     //var allAnnotationPinsSet: [AnnotationPin] = []
-    
+
     //storyboard variables
     @IBOutlet weak var numberVisited: UILabel!
     @IBOutlet weak var allParksDisplay: UILabel!
-    
+
     //Firebase database references:
     var dbReference: DatabaseReference?
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         badgeCollectionView.dataSource = self
-        
+
         //print("Did it pass parkData correctly?")
         //print(allAnnotationPins)
         //print("allAnnotationPins.count BEFORE DELETE")
@@ -79,7 +79,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         //let allAnnotationPinsSet = self.removeDuplicates(array: self.allAnnotationPins)
         //print("allAnnotationPinsSet")
         //print(allAnnotationPinsSet.count)
-        
+
         for pin in allAnnotationPins {
 
             if !nonDuplicatedPmaids.contains(pin.pmaid!) {
@@ -89,7 +89,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         }
         print("nonDuplicatedPins.count: \(nonDuplicatedPins.count)")
         print(nonDuplicatedPins)
-        
+
 //        var nonDuplicates = [Int]()
 //        var randomArray = [1,2,3,1]
 //        for num in randomArray {
@@ -106,13 +106,13 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
 //        }
 //        print("nonDuplicates: \(nonDuplicates)")
 //        print("randomArray: \(randomArray)")
-        
+
         //print("allAnnotationPins.count AFTER DELETE")
         //print(allAnnotationPins.count)
-        
+
         for pin in nonDuplicatedPins {
             //print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
-            
+
             if (parksByZip[pin.zip_code!] != nil) {
                 //parksByZip[pin.zip_code!].append(pin.title!)
                 parksByZip[pin.zip_code!]?.append(pin.title!)
@@ -120,7 +120,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
             else {
                 parksByZip[pin.zip_code!] = [pin.title!]
             }
-            
+
             if pin.visitStatus == "true" {
                 if (numberOfVisitsByZipDict[pin.zip_code!] != nil) {
                     numberOfVisitsByZipDict[pin.zip_code!]! += 1
@@ -131,18 +131,18 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
             }
 
             totalParks += 1
-            
+
         }
         //print("parksByZip:")
         //print(parksByZip)
-        
+
         print("totalParks:")
         print(totalParks)
         self.allParksDisplay.text = String(totalParks)
-        
+
         print("numberOfVisitsByZipDict:")
         print(numberOfVisitsByZipDict)
-        
+
         for (zip, parks) in parksByZip {
             let count = parks.count
             print("zip: \(zip), count: \(count)")
@@ -153,50 +153,50 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
 
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
-        
+
         //display the number of parks visited:
         dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
             //print("snapshot.childrenCount:")
             //print(snapshot.childrenCount)
             let numberVisitedFromDB = snapshot.childrenCount
             self.numberVisited.text = String(numberVisitedFromDB)
-            
+
         })
-        
+
         //diplay the entire collction of possible badges user can earn
         //icons distinguish whether user has earned them yet or not
         //may show the number of parks needed to earn each badge (ex. achieved 6/7 parks - only 1 to go!)
-        
+
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return badges.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "badgeCell", for: indexPath) as! BadgeCollectionViewCell
-        
+
         let zip = parkZipcodes[indexPath.row]
         let hood = badges[parkZipcodes[indexPath.row]]
         cell.badgeNameLabel.text = hood
-        
+
         let zipCount = numberOfParksByZipDict[zip]
         let visitCount = numberOfVisitsByZipDict[zip]
-        
+
         if visitCount == nil {
             cell.badgeStatsLabel.text = "0 of \(zipCount!)"
         }
         else {
             cell.badgeStatsLabel.text = "\(visitCount!) of \(zipCount!)"
         }
-        
+
         //If I want to layer the X image over another, create another ImageView in the storyboard to assign that image to.
         if visitCount == zipCount {
             cell.badgeImageView.image = UIImage(named: hood!)
         } else {
             cell.badgeImageView.image = UIImage(named: "circle_X_black_512")
         }
-        
+
         return cell
     }
 
@@ -204,7 +204,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func removeDuplicates(array: [AnnotationPin]) -> [AnnotationPin] {
         var encountered = Set<AnnotationPin>()
         var result: [AnnotationPin] = []
@@ -223,5 +223,5 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         print(result.count)
         return result
     }
-    
+
 }
