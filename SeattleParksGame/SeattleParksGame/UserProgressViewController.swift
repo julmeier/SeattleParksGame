@@ -53,6 +53,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     var numberOfParksByZipDict = [String: Int]()
     var numberOfVisitsByZipDict = [String: Int]()
     var nonDuplicatedPmaids = [String]()
+    var nonDuplicatedPins = [AnnotationPin]()
     
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
@@ -73,8 +74,8 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         
         //print("Did it pass parkData correctly?")
         //print(allAnnotationPins)
-        print("allAnnotationPins.count BEFORE DELETE")
-        print(allAnnotationPins.count)
+        //print("allAnnotationPins.count BEFORE DELETE")
+        //print(allAnnotationPins.count)
         //let allAnnotationPinsSet = self.removeDuplicates(array: self.allAnnotationPins)
         //print("allAnnotationPinsSet")
         //print(allAnnotationPinsSet.count)
@@ -83,9 +84,11 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
 
             if !nonDuplicatedPmaids.contains(pin.pmaid!) {
                 nonDuplicatedPmaids.append(pin.pmaid!)
+                nonDuplicatedPins.append(pin)
             }
         }
-        print("nonDuplicatedPmaids.count: \(nonDuplicatedPmaids.count)")
+        print("nonDuplicatedPins.count: \(nonDuplicatedPins.count)")
+        print(nonDuplicatedPins)
         
 //        var nonDuplicates = [Int]()
 //        var randomArray = [1,2,3,1]
@@ -104,10 +107,10 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
 //        print("nonDuplicates: \(nonDuplicates)")
 //        print("randomArray: \(randomArray)")
         
-        print("allAnnotationPins.count AFTER DELETE")
-        print(allAnnotationPins.count)
+        //print("allAnnotationPins.count AFTER DELETE")
+        //print(allAnnotationPins.count)
         
-        for pin in allAnnotationPins {
+        for pin in nonDuplicatedPins {
             //print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
             
             if (parksByZip[pin.zip_code!] != nil) {
