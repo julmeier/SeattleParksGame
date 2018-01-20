@@ -48,10 +48,10 @@
             </objects>
             <point key="canvasLocation" x="-1774" y="-528"/>
         </scene>
-        <!--Sign In View Controller-->
+        <!--SignInVC-->
         <scene sceneID="pZE-jm-ubu">
             <objects>
-                <viewController id="m1v-l0-O1t" customClass="SignInViewController" customModule="SeattleParksGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInVC" title="SignInVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m1v-l0-O1t" customClass="SignInViewController" customModule="SeattleParksGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zHf-jq-ZAy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
