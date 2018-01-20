@@ -80,13 +80,11 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             }
             allParkFeaturesSet = removeDuplicates(array: allParkFeaturesArray).sorted()
             //print(allParkFeaturesSet)
-            print("THIS park's features:")
-            print(thisParkFeatures)
+            //print("THIS park's features:")
+            //print(thisParkFeatures)
         
             //USES SELECTION OF PMAID TO DIRECTLY CALL JUST THAT PARK'S FEATURES:
             //let url_root = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid="
-            
-            
         }
         catch {
             print("error try to convert park features data to JSON")
@@ -98,8 +96,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         
         //receives data from MapViewController and sets text to labels
         if let parkDataToDisplay = parkData {
-            print("Did it pass parkData correctly?")
-            print(parkDataToDisplay)
+            //print("Did it pass parkData correctly?")
+            //print(parkDataToDisplay)
             print(parkDataToDisplay.title!)
             
             parkName.text = parkDataToDisplay.title
@@ -114,9 +112,9 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         
         //READ AUTHENTICATED USER DATA:
         dbReference?.child("users").child(userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
-            print("snapshot data")
-            print(snapshot)
-            print(snapshot.childrenCount)
+            //print("snapshot data")
+            //print(snapshot)
+            //print(snapshot.childrenCount)
             if snapshot.hasChild(self.pmaid!) {
                 print("pmaid in the db")
                 self.visitStatus.text = "Visited!"

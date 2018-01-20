@@ -18,6 +18,8 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     //collection view:
     @IBOutlet weak var badgeCollectionView: UICollectionView!
 
+    //get user data
+    let userKey = Auth.auth().currentUser?.uid
 
     //badges dictionary
     let badges = ["98101": "Downtown",
@@ -155,7 +157,8 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         dbReference = Database.database().reference()
 
         //display the number of parks visited:
-        dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+        //dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
             //print("snapshot.childrenCount:")
             //print(snapshot.childrenCount)
             let numberVisitedFromDB = snapshot.childrenCount
