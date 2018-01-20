@@ -347,14 +347,19 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     @objc func handleLogout() {
         do {
             try Auth.auth().signOut()
-            
+            GIDSignIn.sharedInstance().signOut()
             GIDSignIn.sharedInstance().disconnect()
             print("Disconnecting...handleLogout")
-        } catch let logoutError {
-            print(logoutError)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as! SignInViewController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = loginVC
+            
+        } catch let logoutError as NSError {
+            print ("Error signing out: \(logoutError)")
         }
-        let loginController = SignInViewController()
-        present(loginController, animated: true, completion: nil)
+        //let loginController = SignInViewController()
+        //present(loginController, animated: true, completion: nil)
     }
     
 }

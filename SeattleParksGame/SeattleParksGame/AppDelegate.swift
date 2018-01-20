@@ -15,7 +15,7 @@ import FirebaseDatabase
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, GIDSignInUIDelegate {
 
     var window: UIWindow?
     var databaseRef: DatabaseReference!
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
                 }
                 
-                let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
                 
                 
                 self.window?.rootViewController?.performSegue(withIdentifier: "signInToNavController", sender: nil)
