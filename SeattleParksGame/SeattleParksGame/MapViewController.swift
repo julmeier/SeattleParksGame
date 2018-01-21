@@ -65,6 +65,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("In MapViewVC viewDidLoad")
+        
         //Logout button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
@@ -313,11 +315,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     
     
-    
-    
-    
-
-    
 //PREPARE FOR SEGUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -345,7 +342,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             print("button pressed --> hoodFilterVC")
             let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
             hoodFilterVC.delegate = self
-            //at this time, not sending any data to HoodFilterVC
+            //at this time, not sending any data to HoodFilterVC, just the delegate
         }
     }
     
@@ -357,7 +354,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     //INTENTION OF THIS METHOD: This makes the map refresh when pressing back button from ParkInfoViewController.
     override func viewWillAppear(_ animated: Bool = true) {
         super.viewWillAppear(animated)
-        mapView?.reloadInputViews()
+        print("In MapViewVC viewWillAppear")
+        //mapView?.reloadInputViews()
         viewDidLoad()
 
     }

@@ -88,10 +88,21 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 let chosenZip = chosenZips[0]
                 print("choseZip: \(chosenZip)")
                 delegate?.userDidChooseHood(data: chosenZip)
-                dismiss(animated: true, completion: nil)
+                performSegue(withIdentifier: "hoodFilterToMapSegue", sender: self)
+                //I think this is what was sending me back to the login view?
+                //dismiss(animated: true, completion: nil)
             }
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        segue.destination as! MapViewController
+//
+//    }
+    
+//    override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+//        print("in unwind")
+//    }
     
     
     

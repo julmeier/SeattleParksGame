@@ -17,8 +17,15 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("In SignInVC viewDidLoad")
+        
         setupGoogleButtons()
  
+    }
+    
+    override func viewWillAppear(_ animated: Bool = true) {
+        super.viewWillAppear(animated)
+        print("In SignInVC viewWillAppear")
     }
 
     //for refactoring later (call this function from viewDidLoad)
