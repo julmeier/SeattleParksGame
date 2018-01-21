@@ -86,7 +86,7 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 //ERRORS OUT HERE NOW SINCE DEFAULT TEXT "HELLO" IS NOT IN DICTIONARY
                 let chosenZips = (badges as NSDictionary).allKeys(for: chosenHood!) as! [String]
                 let chosenZip = chosenZips[0]
-                print("choseZip: \(chosenZip)")
+                print("chosenZip: \(chosenZip)")
                 delegate?.userDidChooseHood(data: chosenZip)
                 performSegue(withIdentifier: "hoodFilterToMapSegue", sender: self)
                 //I think this is what was sending me back to the login view?

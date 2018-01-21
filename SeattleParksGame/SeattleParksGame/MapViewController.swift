@@ -42,6 +42,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     @IBOutlet weak var mapView: MKMapView!
     var purpleTree: AnnotationPin!
     var greenTree: AnnotationPin!
+    var tree: AnnotationPin!
     var pin: AnnotationPin!
     
     //Firebase database references:
@@ -79,16 +80,14 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         //delegate needed for custom pin
         self.mapView?.delegate = self
         
-        //this doesn't seem to be working:
+        //See blue dot of user location (not visible in the simulator, but works on the phone)
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
-        
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
-        
         
         let initialLocation = CLLocation(latitude: 47.6074717, longitude: -122.3352511)
         zoomMapOn(location: initialLocation)
@@ -113,8 +112,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         //changed from: let fuelLocations = client.queryDataset("alternative-fuel-locations")
         //let parksFromAPI = client.query(dataset: "ajyh-m2d3")
-        
-       
+    
 //        parksFromAPI.orderAscending("pmaid").get { res in
 //            switch res {
 //            case .dataset (let apiData):
@@ -136,29 +134,16 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 //        }
         
       
-        
-        
-        
-        //retrieving JSON data from API directly:
+        //retrieving JSON data from API directly (without a key)
         let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
-
         guard let url = URL(string: seattleParksAddressesUrl) else {return}
-        
         URLSession.shared.dataTask(with: url) {(data, response, err) in
-            
             guard let data = data else {return}
-            //print("Printing park data:")
-            //print(String(data: data, encoding: .utf8)!)
-            
             do {
                 let decoder = JSONDecoder()
                 let parks = try decoder.decode([ParkAddress].self, from: data)
                 
-                //print("Parks. Parks.Class:")
-                //print(parks)
-                //print(parks.description)
-                
-                //clears pins
+                //clears pins?
                 self.allAnnotationPins = []
                 self.allAnnotationPins.removeAll()
                 //print("allAnnotationPins:")
@@ -306,6 +291,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func userDidChooseHood(data: String) {
         chosenZip = data
+        print("chosenZip in MapView: \(chosenZip)")
     }
     
     @IBAction func hoodFilterBtn(_ sender: Any) {
