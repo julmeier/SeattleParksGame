@@ -333,6 +333,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         //segue to FiltersViewController
         if segue.identifier == "FiltersVCSegue" {
             let destination = segue.destination as! FiltersViewController
+            destination.AllAnnotationPins = allAnnotationPins as! [AnnotationPin]
         }
     }
     
