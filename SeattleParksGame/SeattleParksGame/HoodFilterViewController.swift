@@ -83,7 +83,6 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 print("in hoodSelectBtnPressed")
                 let chosenHood = chosenHoodLbl.text
                 
-                //ERRORS OUT HERE NOW SINCE DEFAULT TEXT "HELLO" IS NOT IN DICTIONARY
                 let chosenZips = (badges as NSDictionary).allKeys(for: chosenHood!) as! [String]
                 let chosenZip = chosenZips[0]
                 print("chosenZip: \(chosenZip)")
@@ -95,10 +94,18 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
         }
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        segue.destination as! MapViewController
-//
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "hoodFilterToMapSegue" {
+            print("in segue to map")
+            let destination = segue.destination as! MapViewController
+            let chosenHood = chosenHoodLbl.text
+            let chosenZips = (badges as NSDictionary).allKeys(for: chosenHood!) as! [String]
+            let chosenZip = chosenZips[0]
+            print("chosenZip: \(chosenZip)")
+            destination.chosenZip = chosenZip
+        }
+
+    }
     
 //    override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
 //        print("in unwind")

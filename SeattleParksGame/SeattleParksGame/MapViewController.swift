@@ -61,12 +61,23 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     //holds array of AnnotationPins
     var allAnnotationPins: [AnnotationPin?] = []
+    
+    //Filter variables
+    var chosenZip = String()
+    @IBOutlet weak var hoodFilterLbl: UILabel!
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("In MapViewVC viewDidLoad")
+        //print("chosenZip in viewDiDLoad: \(chosenZip)")
+        print("self.hoodFilter.Lbl.text: \(String(describing: self.hoodFilterLbl.text))")
+        
+        let filterZip = chosenZip
+        print("filterZip: \(filterZip)")
+        hoodFilterLbl.text = filterZip
         
         //Logout button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
@@ -148,7 +159,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 self.allAnnotationPins.removeAll()
                 //print("allAnnotationPins:")
                 //print(self.allAnnotationPins)
-        
+                //print("chosenZip: \(self.chosenZip)")
+                
 
                 for park in parks {
                     
@@ -161,12 +173,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                     
                     //read in data from database to see if the park has been visited
                     
+                    
                     //self.dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                     self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild(park.pmaid) {
                             //print("pmaid in the db:")
                             //print(park.pmaid)
-                            self.greenTree = AnnotationPin(
+                            self.tree = AnnotationPin(
                                 title: park.name,
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "green-cloud-tree-32.png",
@@ -175,12 +188,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "true"
                             )
-                            self.mapView?.addAnnotation(self.greenTree)
-                            self.allAnnotationPins.append(self.greenTree)
+                            //self.mapView?.addAnnotation(self.greenTree)
+                            self.allAnnotationPins.append(self.tree)
                         } else {
                             //print("pmaid NOT in the db:")
                            // print(park.pmaid)
-                            self.purpleTree = AnnotationPin(
+                            self.tree = AnnotationPin(
                                 title: park.name,
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "purple-cloud-tree-32.png",
@@ -189,20 +202,22 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "false"
                             )
-                            self.mapView?.addAnnotation(self.purpleTree)
-                            self.allAnnotationPins.append(self.purpleTree)
-                            
-                            //WITH FILTER, keep the "allAnnotationPins.append" above but remove the "mapView?.addAnnotation" lines
-                            //and put an if statement here.
-                            //i.e. IF the filter array has a zip code, only add those pins with that zip code.
-                            //To make things a bit clearer, you can remove the "purpleTree" and "greenTree" and just change both those variables to "tree".
-                            
-                            
-                            
-                            
-                            
-                            
+                            //self.mapView?.addAnnotation(self.purpleTree)
+                            self.allAnnotationPins.append(self.tree)
                         } //end of else
+                    
+                        //WITH FILTER, keep the "allAnnotationPins.append" above but remove the "mapView?.addAnnotation" lines
+                        //and put an if statement here.
+                        //i.e. IF the filter array has a zip code, only add those pins with that zip code.
+                        //To make things a bit clearer, you can remove the "purpleTree" and "greenTree" and just change both those variables to "tree".
+                        if self.hoodFilterLbl.text == "" {
+                            self.mapView?.addAnnotation(self.tree)
+                            //print("self.hoodFilterLbl.text == empty string")
+                        } else {
+                            if self.tree.zip_code == self.hoodFilterLbl.text {
+                                self.mapView?.addAnnotation(self.tree)
+                            }
+                        }
                     }) //end of dbReference?.child
                 } //end of for park in parks
             
@@ -219,8 +234,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }.resume()
         //print("ALL ANNOTATION PINS:")
         //print(self.allAnnotationPins)
-        print("ALL ANNOTATION PINS COUNT:")
-        print(self.allAnnotationPins.count)
+//        print("ALL ANNOTATION PINS COUNT:")
+//        print(self.allAnnotationPins.count)
         print("FINISHED viewDidLoad")
     }
     
@@ -287,11 +302,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
 
 //NEIGHBORHOOD FILTER DELEGATE FUNCTIONS:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    var chosenZip = ""
+    
     
     func userDidChooseHood(data: String) {
-        chosenZip = data
-        print("chosenZip in MapView: \(chosenZip)")
+        //chosenZip = data
+        hoodFilterLbl.text = data
+        //print("chosenZip in MapView: \(chosenZip)")
     }
     
     @IBAction func hoodFilterBtn(_ sender: Any) {
