@@ -240,7 +240,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbq-7V-CKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2220" y="329.68515742128938"/>
+            <point key="canvasLocation" x="2193" y="448"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ZL3-C5-rdI">
+            <objects>
+                <viewController id="AU4-PF-Ex9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mId-Zp-ODN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter By Neighborhood" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3l-1S-DYT">
+                                <rect key="frame" x="55" y="312" width="265" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="vnN-gm-DAF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Chosen Feature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fn-Qw-y4F">
+                                <rect key="frame" x="94.5" y="558" width="186" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="q3H-7o-DmE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Chosen Neighborhood" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svE-yY-os1">
+                                <rect key="frame" x="57.5" y="603" width="260" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="H4J-cm-JV9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MX9-2D-Kz7">
+                                <rect key="frame" x="27.5" y="363" width="320" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="IhY-P6-aMC"/>
+                                </constraints>
+                            </pickerView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEe-Lg-XU0">
+                                <rect key="frame" x="27.5" y="61" width="320" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="jdp-g7-aas"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter By Park Feature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hV-F3-0yl">
+                                <rect key="frame" x="40" y="30" width="295" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="xqH-TI-NX6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4Fn-Qw-y4F" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="0oR-kx-SsS"/>
+                            <constraint firstItem="svE-yY-os1" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="2KP-BO-9gn"/>
+                            <constraint firstItem="yEe-Lg-XU0" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="95l-Ld-Yhv"/>
+                            <constraint firstItem="1hV-F3-0yl" firstAttribute="leading" secondItem="Vlp-qK-gVg" secondAttribute="leading" constant="40" id="A1N-Ma-Uwn"/>
+                            <constraint firstItem="Vlp-qK-gVg" firstAttribute="trailing" secondItem="yEe-Lg-XU0" secondAttribute="trailing" constant="27.5" id="DwC-vx-Nvf"/>
+                            <constraint firstItem="v3l-1S-DYT" firstAttribute="top" secondItem="1hV-F3-0yl" secondAttribute="bottom" constant="247" id="TX1-rH-azr"/>
+                            <constraint firstItem="1hV-F3-0yl" firstAttribute="top" secondItem="Vlp-qK-gVg" secondAttribute="top" constant="10" id="Ub2-uU-SBA"/>
+                            <constraint firstItem="MX9-2D-Kz7" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="YGh-23-1PF"/>
+                            <constraint firstItem="svE-yY-os1" firstAttribute="top" secondItem="4Fn-Qw-y4F" secondAttribute="bottom" constant="1" id="fdh-rq-FHG"/>
+                            <constraint firstItem="v3l-1S-DYT" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="jCs-X0-02b"/>
+                            <constraint firstItem="svE-yY-os1" firstAttribute="top" secondItem="4Fn-Qw-y4F" secondAttribute="bottom" constant="1" id="oFP-0s-fzO"/>
+                            <constraint firstItem="Vlp-qK-gVg" firstAttribute="trailing" secondItem="1hV-F3-0yl" secondAttribute="trailing" constant="40" id="tV1-D2-fDW"/>
+                            <constraint firstItem="yEe-Lg-XU0" firstAttribute="leading" secondItem="Vlp-qK-gVg" secondAttribute="leading" constant="27.5" id="xHg-xF-2qk"/>
+                            <constraint firstItem="1hV-F3-0yl" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="xp3-9B-Sbn"/>
+                            <constraint firstItem="yEe-Lg-XU0" firstAttribute="top" secondItem="Vlp-qK-gVg" secondAttribute="top" constant="41" id="zVm-we-fzM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vlp-qK-gVg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="efj-S1-oy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2933.5999999999999" y="34.632683658170919"/>
         </scene>
         <!--User Progress View Controller-->
         <scene sceneID="8nE-uX-3ge">
@@ -501,6 +583,10 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="filter4" translatesAutoresizingMaskIntoConstraints="NO" id="JgW-VC-Pcr">
+                                <rect key="frame" x="16" y="573" width="76" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -524,6 +610,7 @@
                     <connections>
                         <outlet property="mapView" destination="vUj-gA-0U3" id="YfX-mO-bQj"/>
                         <segue destination="Bka-VQ-6qm" kind="show" identifier="parkDetails" id="gGh-UH-GUr"/>
+                        <segue destination="AU4-PF-Ex9" kind="presentation" id="Hrk-y5-nzH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSB-kH-8n8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -550,6 +637,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="filter4" width="512" height="512"/>
         <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
 </document>

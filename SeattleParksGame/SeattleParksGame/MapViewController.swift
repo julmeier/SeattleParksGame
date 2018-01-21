@@ -329,6 +329,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             let destination = segue.destination as! UserProgressViewController
             destination.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
         }
+        
+        //segue to FiltersViewController
+        if segue.identifier == "FiltersVCSegue" {
+            let destination = segue.destination as! FiltersViewController
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
