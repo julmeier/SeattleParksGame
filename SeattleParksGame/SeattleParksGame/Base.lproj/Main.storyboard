@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-DemiBold</string>
+        </array>
         <array key="Damascus.ttc">
             <string>Damascus</string>
             <string>DamascusBold</string>
@@ -46,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdJ-9o-Xmv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1774" y="-528"/>
+            <point key="canvasLocation" x="-1342" y="-703"/>
         </scene>
         <!--SignInVC-->
         <scene sceneID="pZE-jm-ubu">
@@ -241,83 +244,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbq-7V-CKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2193" y="448"/>
-        </scene>
-        <!--Filters View Controller-->
-        <scene sceneID="ZL3-C5-rdI">
-            <objects>
-                <viewController id="AU4-PF-Ex9" customClass="FiltersViewController" customModule="SeattleParksGame" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mId-Zp-ODN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Filter By Neighborhood" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3l-1S-DYT">
-                                <rect key="frame" x="55" y="287" width="265" height="35"/>
-                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chosen Feature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fn-Qw-y4F">
-                                <rect key="frame" x="94.5" y="558" width="186" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chosen Neighborhood" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svE-yY-os1">
-                                <rect key="frame" x="57.5" y="603" width="260" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEe-Lg-XU0">
-                                <rect key="frame" x="28" y="105" width="320" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="jdp-g7-aas"/>
-                                </constraints>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter By Park Feature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hV-F3-0yl">
-                                <rect key="frame" x="40" y="74" width="295" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="xqH-TI-NX6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MX9-2D-Kz7">
-                                <rect key="frame" x="28" y="330" width="320" height="216"/>
-                            </pickerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="yEe-Lg-XU0" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="95l-Ld-Yhv"/>
-                            <constraint firstItem="MX9-2D-Kz7" firstAttribute="leading" secondItem="Vlp-qK-gVg" secondAttribute="leading" constant="27.5" id="9lh-Mr-Arb"/>
-                            <constraint firstItem="1hV-F3-0yl" firstAttribute="leading" secondItem="Vlp-qK-gVg" secondAttribute="leading" constant="40" id="A1N-Ma-Uwn"/>
-                            <constraint firstItem="Vlp-qK-gVg" firstAttribute="trailing" secondItem="yEe-Lg-XU0" secondAttribute="trailing" constant="27.5" id="DwC-vx-Nvf"/>
-                            <constraint firstItem="MX9-2D-Kz7" firstAttribute="top" secondItem="v3l-1S-DYT" secondAttribute="bottom" constant="8" id="HbL-NW-6RS"/>
-                            <constraint firstItem="Vlp-qK-gVg" firstAttribute="trailing" secondItem="MX9-2D-Kz7" secondAttribute="trailing" constant="27.5" id="OzW-qk-bb2"/>
-                            <constraint firstItem="1hV-F3-0yl" firstAttribute="top" secondItem="Vlp-qK-gVg" secondAttribute="top" constant="10" id="Ub2-uU-SBA"/>
-                            <constraint firstItem="MX9-2D-Kz7" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="YGh-23-1PF"/>
-                            <constraint firstItem="v3l-1S-DYT" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="jCs-X0-02b"/>
-                            <constraint firstItem="MX9-2D-Kz7" firstAttribute="top" secondItem="v3l-1S-DYT" secondAttribute="bottom" constant="8" id="jMk-Sc-4Qv"/>
-                            <constraint firstItem="Vlp-qK-gVg" firstAttribute="trailing" secondItem="1hV-F3-0yl" secondAttribute="trailing" constant="40" id="tV1-D2-fDW"/>
-                            <constraint firstItem="yEe-Lg-XU0" firstAttribute="leading" secondItem="Vlp-qK-gVg" secondAttribute="leading" constant="27.5" id="xHg-xF-2qk"/>
-                            <constraint firstItem="1hV-F3-0yl" firstAttribute="centerX" secondItem="mId-Zp-ODN" secondAttribute="centerX" id="xp3-9B-Sbn"/>
-                            <constraint firstItem="yEe-Lg-XU0" firstAttribute="top" secondItem="Vlp-qK-gVg" secondAttribute="top" constant="41" id="zVm-we-fzM"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Vlp-qK-gVg"/>
-                    </view>
-                    <connections>
-                        <outlet property="chosenFeatureLbl" destination="4Fn-Qw-y4F" id="ffY-SR-wE0"/>
-                        <outlet property="chosenHoodLbl" destination="svE-yY-os1" id="y3a-mb-arD"/>
-                        <outlet property="featuresPickerView" destination="yEe-Lg-XU0" id="bbC-8U-D2V"/>
-                        <outlet property="hoodPickerView" destination="MX9-2D-Kz7" id="ue7-As-gNO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="efj-S1-oy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3468" y="-194"/>
         </scene>
         <!--User Progress View Controller-->
         <scene sceneID="8nE-uX-3ge">
@@ -565,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1F-yF-h22" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5304.8000000000002" y="-277.51124437781112"/>
+            <point key="canvasLocation" x="4591" y="-550"/>
         </scene>
         <!--Map-->
         <scene sceneID="MUc-FM-TwQ">
@@ -578,10 +504,14 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="filter4" translatesAutoresizingMaskIntoConstraints="NO" id="JgW-VC-Pcr">
-                                <rect key="frame" x="16" y="573" width="76" height="74"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5c-M6-3hX">
+                                <rect key="frame" x="284" y="573" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <state key="normal" title="Button" image="filter4"/>
+                                <connections>
+                                    <action selector="hoodFilterBtn:" destination="HxR-SO-QjI" eventType="touchUpInside" id="PdO-Uu-9Of"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -605,7 +535,7 @@
                     <connections>
                         <outlet property="mapView" destination="vUj-gA-0U3" id="YfX-mO-bQj"/>
                         <segue destination="Bka-VQ-6qm" kind="show" identifier="parkDetails" id="gGh-UH-GUr"/>
-                        <segue destination="AU4-PF-Ex9" kind="show" identifier="filtersVCSegue" id="out-eC-Nig"/>
+                        <segue destination="gPu-8J-Dxv" kind="show" identifier="hoodFilterVC" id="BGr-55-RC7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSB-kH-8n8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -629,6 +559,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bep-oX-yES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="556" y="34.632683658170919"/>
+        </scene>
+        <!--Hood Filter View Controller-->
+        <scene sceneID="dBA-xt-AZq">
+            <objects>
+                <viewController id="gPu-8J-Dxv" customClass="HoodFilterViewController" customModule="SeattleParksGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Odo-fp-K0k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter By Neighborhood" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaH-fu-RmX">
+                                <rect key="frame" x="40" y="74" width="295" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="BD1-0J-EB8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chosen Neighborhood" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-yz-QhF">
+                                <rect key="frame" x="57" y="291" width="260" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0y-Na-0t9">
+                                <rect key="frame" x="57" y="343" width="260" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="Select">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="hoodSelectBtnPressed:" destination="gPu-8J-Dxv" eventType="touchUpInside" id="Veg-LU-HlC"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NoN-F6-6QK">
+                                <rect key="frame" x="0.0" y="110" width="375" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lj5-ZQ-T80" firstAttribute="trailing" secondItem="QaH-fu-RmX" secondAttribute="trailing" constant="40" id="6pl-wN-OlG"/>
+                            <constraint firstItem="QaH-fu-RmX" firstAttribute="centerX" secondItem="Odo-fp-K0k" secondAttribute="centerX" id="C0O-jX-vQw"/>
+                            <constraint firstItem="QaH-fu-RmX" firstAttribute="leading" secondItem="lj5-ZQ-T80" secondAttribute="leading" constant="40" id="a7h-IV-rGp"/>
+                            <constraint firstItem="QaH-fu-RmX" firstAttribute="top" secondItem="lj5-ZQ-T80" secondAttribute="top" constant="10" id="nc1-Xc-hdb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lj5-ZQ-T80"/>
+                    </view>
+                    <connections>
+                        <outlet property="chosenHoodLbl" destination="iYP-yz-QhF" id="K4g-Zv-nJH"/>
+                        <outlet property="hoodPickerView" destination="NoN-F6-6QK" id="s0e-XL-8eK"/>
+                        <outlet property="selectHoodBtn" destination="A0y-Na-0t9" id="9rT-yZ-cON"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yao-6L-vQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3094" y="35"/>
         </scene>
     </scenes>
     <resources>

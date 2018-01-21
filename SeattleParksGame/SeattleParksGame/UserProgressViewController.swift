@@ -56,6 +56,9 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     var numberOfVisitsByZipDict = [String: Int]()
     var nonDuplicatedPmaids = [String]()
     var nonDuplicatedPins = [AnnotationPin]()
+    
+    var allHoodNames = [String]()
+    var allZipcodes = [String]()
 
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
@@ -73,6 +76,13 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         super.viewDidLoad()
 
         badgeCollectionView.dataSource = self
+        
+        for (zip,neighborhood) in badges {
+            allHoodNames.append(neighborhood)
+            allZipcodes.append(zip)
+        }
+        print(allHoodNames)
+        print(allZipcodes)
 
         //print("Did it pass parkData correctly?")
         //print(allAnnotationPins)

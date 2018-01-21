@@ -33,8 +33,8 @@ struct ParkAddress: Codable {
     let y_coord: String
 }
 
-class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GIDSignInUIDelegate {
-    
+class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GIDSignInUIDelegate, HoodFilterDelegate {
+
     //get user data
     let userKey = Auth.auth().currentUser?.uid
 
@@ -65,13 +65,14 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Checkout button
+        //Logout button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
         //Logout user that is not logged in
-        if userKey == nil {
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-        }
+        //COMMENTED THIS OUT DURING FILTERING BECAUSE IT SIGNS USER OUT WHEN THEY RETURN FROM HOOD FILTER PAGE:
+//        if userKey == nil {
+//            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+//        }
         
         //delegate needed for custom pin
         self.mapView?.delegate = self
@@ -203,6 +204,17 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                             )
                             self.mapView?.addAnnotation(self.purpleTree)
                             self.allAnnotationPins.append(self.purpleTree)
+                            
+                            //WITH FILTER, keep the "allAnnotationPins.append" above but remove the "mapView?.addAnnotation" lines
+                            //and put an if statement here.
+                            //i.e. IF the filter array has a zip code, only add those pins with that zip code.
+                            //To make things a bit clearer, you can remove the "purpleTree" and "greenTree" and just change both those variables to "tree".
+                            
+                            
+                            
+                            
+                            
+                            
                         } //end of else
                     }) //end of dbReference?.child
                 } //end of for park in parks
@@ -263,20 +275,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         annotationView?.layer.anchorPoint = CGPoint(x:0.5, y:1.0);
         return annotationView
     }
-    
-    func BoolToString(b: Bool?)->String {
-        return b?.description ?? "<None>"
-    }
+
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("button tapped")
+        print("calloutAccessoryControlTapped")
         
         //get the annotation, which is a parameter
         passedAnnotation = view.annotation as? AnnotationPin
-        //print("passedAnnotation in MapView:")
-        //print(passedAnnotation!)
-        //print(passedAnnotation?.title! as Any)
-        //print(passedAnnotation?.address! as Any)
         
         //perform manual segue
         performSegue(withIdentifier: "parkDetails", sender: self)
@@ -293,22 +298,27 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         mapView?.setRegion(coordinateRegion, animated:true)
     }
     
-    func removeDuplicates(array: [String]) -> [String] {
-        var encountered = Set<String>()
-        var result: [String] = []
-        for value in array {
-            if encountered.contains(value) {
-                // Do not add a duplicate element.
-            }
-            else {
-                // Add value to the set.
-                encountered.insert(value)
-                // ... Append the value.
-                result.append(value)
-            }
-        }
-        return result
+
+//NEIGHBORHOOD FILTER DELEGATE FUNCTIONS:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    var chosenZip = ""
+    
+    func userDidChooseHood(data: String) {
+        chosenZip = data
     }
+    
+    @IBAction func hoodFilterBtn(_ sender: Any) {
+        print("Did it get pressed?")
+        performSegue(withIdentifier: "hoodFilterVC", sender: self)
+    }
+    
+    
+    
+    
+    
+    
+
+    
+//PREPARE FOR SEGUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "parkDetails" {
@@ -331,9 +341,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
         
         //segue to FiltersViewController
-        if segue.identifier == "FiltersVCSegue" {
-            let destination = segue.destination as! FiltersViewController
-            destination.AllAnnotationPins = allAnnotationPins as! [AnnotationPin]
+        if segue.identifier == "hoodFilterVC" {
+            print("button pressed --> hoodFilterVC")
+            let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
+            hoodFilterVC.delegate = self
+            //at this time, not sending any data to HoodFilterVC
         }
     }
     
@@ -349,6 +361,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         viewDidLoad()
 
     }
+    
+    //LOGOUT>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     @objc func handleLogout() {
         do {
@@ -366,6 +380,29 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
         //let loginController = SignInViewController()
         //present(loginController, animated: true, completion: nil)
+    }
+    
+    //HELPER FUNCTIONS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    
+    func removeDuplicates(array: [String]) -> [String] {
+        var encountered = Set<String>()
+        var result: [String] = []
+        for value in array {
+            if encountered.contains(value) {
+                // Do not add a duplicate element.
+            }
+            else {
+                // Add value to the set.
+                encountered.insert(value)
+                // ... Append the value.
+                result.append(value)
+            }
+        }
+        return result
+    }
+    
+    func BoolToString(b: Bool?)->String {
+        return b?.description ?? "<None>"
     }
     
 }
