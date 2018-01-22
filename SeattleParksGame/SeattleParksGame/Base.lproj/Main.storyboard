@@ -16,6 +16,7 @@
         </array>
         <array key="AvenirNext.ttc">
             <string>AvenirNext-Bold</string>
+            <string>AvenirNext-BoldItalic</string>
             <string>AvenirNext-DemiBold</string>
             <string>AvenirNext-Heavy</string>
             <string>AvenirNext-Regular</string>
@@ -107,10 +108,42 @@
                                     <constraint firstAttribute="width" constant="166" id="F1D-Nb-1Tz"/>
                                     <constraint firstAttribute="height" constant="60" id="low-ln-I5G"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-BoldItalic" family="Avenir Next" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFI-bO-wO7">
+                                <rect key="frame" x="184" y="225" width="166" height="48"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="166" id="1iQ-vO-AOQ"/>
+                                    <constraint firstAttribute="height" constant="48" id="5Y6-43-WZw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.shadowOffset" value="2"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.clipsToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                        <color key="value" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changeVisitStatusPressed:" destination="Bka-VQ-6qm" eventType="touchUpInside" id="703-Pb-usV"/>
+                                    <action selector="pressedShareBtn:" destination="Bka-VQ-6qm" eventType="touchUpInside" id="4eb-b1-0go"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="always" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mVZ-4g-k8Q">
                                 <rect key="frame" x="16" y="346" width="343" height="321"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -168,6 +201,12 @@
                                     <action selector="changeVisitStatusPressed:" destination="Bka-VQ-6qm" eventType="touchUpInside" id="in5-8J-OrM"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hzf-eh-asq">
+                                <rect key="frame" x="27" y="176" width="126" height="97"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="126" id="R5M-Tk-nB2"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Park Features:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSZ-eQ-hJ8">
                                 <rect key="frame" x="29" y="294" width="124" height="60"/>
                                 <constraints>
@@ -177,16 +216,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hzf-eh-asq">
-                                <rect key="frame" x="27" y="176" width="126" height="97"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="126" id="R5M-Tk-nB2"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="USy-tr-Jhm" firstAttribute="trailing" secondItem="mVZ-4g-k8Q" secondAttribute="trailing" constant="16" id="3Sb-oZ-m35"/>
+                            <constraint firstItem="YFI-bO-wO7" firstAttribute="baseline" secondItem="6Us-dZ-8Zd" secondAttribute="baseline" id="5AV-bp-kYS"/>
                             <constraint firstItem="6Us-dZ-8Zd" firstAttribute="top" secondItem="teH-Nc-SHz" secondAttribute="bottom" constant="1" id="5Wt-DD-a0k"/>
                             <constraint firstItem="Hzf-eh-asq" firstAttribute="top" secondItem="tSR-7r-CUp" secondAttribute="bottom" constant="20" id="5nO-5A-JQJ"/>
                             <constraint firstItem="USy-tr-Jhm" firstAttribute="trailing" secondItem="PzF-LJ-Inf" secondAttribute="trailing" constant="16" id="ASz-Gt-LEe"/>
@@ -205,6 +239,7 @@
                             <constraint firstItem="PzF-LJ-Inf" firstAttribute="centerX" secondItem="Dkc-hS-CiH" secondAttribute="centerX" id="cxv-Ry-Eaz"/>
                             <constraint firstItem="PzF-LJ-Inf" firstAttribute="leading" secondItem="USy-tr-Jhm" secondAttribute="leading" constant="16" id="hBk-Eb-uz7"/>
                             <constraint firstItem="USy-tr-Jhm" firstAttribute="bottom" secondItem="gSZ-eQ-hJ8" secondAttribute="bottom" constant="313" id="jGK-wV-Uxo"/>
+                            <constraint firstItem="YFI-bO-wO7" firstAttribute="leading" secondItem="6Us-dZ-8Zd" secondAttribute="leading" id="kgI-MR-TtV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="USy-tr-Jhm"/>
                     </view>
@@ -213,6 +248,7 @@
                         <outlet property="parkAddress" destination="tSR-7r-CUp" id="YEW-8a-nZM"/>
                         <outlet property="parkFeaturesHeader" destination="gSZ-eQ-hJ8" id="OnP-Rk-0m5"/>
                         <outlet property="parkName" destination="PzF-LJ-Inf" id="QQT-lh-yZ7"/>
+                        <outlet property="shareBtn" destination="YFI-bO-wO7" id="BgC-pb-OEM"/>
                         <outlet property="tableView" destination="mVZ-4g-k8Q" id="cWE-We-YVE"/>
                         <outlet property="visitStatus" destination="teH-Nc-SHz" id="dHa-l2-t7P"/>
                         <outlet property="visitStatusImage" destination="Hzf-eh-asq" id="HsY-8M-vgI"/>

@@ -27,6 +27,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
     @IBOutlet weak var parkImage: UIImageView!
     @IBOutlet weak var parkFeaturesHeader: UILabel!
     @IBOutlet weak var visitStatusImage: UIImageView!
+    @IBOutlet weak var shareBtn: UIButton!
     
     //get user data
     let userKey = Auth.auth().currentUser?.uid
@@ -175,9 +176,16 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         viewDidLoad()
     }
     
-    //tutorial shows this version instead. Why no explicit return?
-//    @IBAction func changeVisitStatusPressed(_ sender: AnyObject) -> Void {
-//    }
+    
+    @IBAction func pressedShareBtn(_ sender: Any) {
+        shareEvent()
+    }
+    
+    func shareEvent() {
+        let activityController = UIActivityViewController(activityItems: ["I just visited \(String(describing: parkName.text!))!  | To track how many Seattle Parks you've visited, download the app: Emerald City Ranger"], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+    }
+    
     
     func removeDuplicates(array: [String]) -> [String] {
         var encountered = Set<String>()
