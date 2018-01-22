@@ -103,6 +103,7 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
             let chosenZip = chosenZips[0]
             print("chosenZip: \(chosenZip)")
             destination.chosenZip = chosenZip
+            destination.chosenHood = chosenHood!
         }
 
     }

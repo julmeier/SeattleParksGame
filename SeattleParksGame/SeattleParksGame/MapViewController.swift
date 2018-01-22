@@ -64,9 +64,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     //Filter variables
     var chosenZip = String()
+    var chosenHood = String()
     @IBOutlet weak var hoodFilterLbl: UILabel!
-    
-
+    @IBOutlet weak var clearFilterBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +77,17 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         let filterZip = chosenZip
         print("filterZip: \(filterZip)")
-        hoodFilterLbl.text = filterZip
+        let filterHood = chosenHood
+        hoodFilterLbl.text = filterHood
+        
+        if filterZip != "" {
+            clearFilterBtn.isHidden = false
+            hoodFilterLbl.isHidden = false
+        } else {
+            clearFilterBtn.isHidden = true
+            hoodFilterLbl.isHidden = true
+
+        }
         
         //Logout button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
@@ -210,11 +220,10 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                         //and put an if statement here.
                         //i.e. IF the filter array has a zip code, only add those pins with that zip code.
                         //To make things a bit clearer, you can remove the "purpleTree" and "greenTree" and just change both those variables to "tree".
-                        if self.hoodFilterLbl.text == "" {
+                        if filterZip == "" {
                             self.mapView?.addAnnotation(self.tree)
-                            //print("self.hoodFilterLbl.text == empty string")
                         } else {
-                            if self.tree.zip_code == self.hoodFilterLbl.text {
+                            if self.tree.zip_code == filterZip {
                                 self.mapView?.addAnnotation(self.tree)
                             }
                         }
@@ -311,9 +320,17 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     @IBAction func hoodFilterBtn(_ sender: Any) {
-        print("Did it get pressed?")
+        print("hood filter button pressed!")
         performSegue(withIdentifier: "hoodFilterVC", sender: self)
     }
+    
+    @IBAction func clearFilterBtnPressed(_ sender: Any) {
+        print("clear filter button pressed!")
+        chosenZip = ""
+        chosenHood = ""
+        viewDidLoad()
+    }
+    
     
     
     
