@@ -10,12 +10,10 @@
 		124D7641BDA61A3AFE72C77D /* Pods_SeattleParksGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		A37799B41FFF3B6900253E26 /* AnnotationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37799B31FFF3B6900253E26 /* AnnotationPin.swift */; };
 		A37799B62002E2AE00253E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37799B52002E2AE00253E26 /* MapKit.framework */; };
-		A37799B820040E7D00253E26 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37799B720040E7D00253E26 /* AchievementsViewController.swift */; };
 		A383E7BF1FFCBA1400DACC2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */; };
 		A383E7C41FFCBA1400DACC2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C21FFCBA1400DACC2E /* Main.storyboard */; };
 		A383E7C61FFCBA1400DACC2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C51FFCBA1400DACC2E /* Assets.xcassets */; };
 		A383E7C91FFCBA1400DACC2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A383E7C71FFCBA1400DACC2E /* LaunchScreen.storyboard */; };
-		A383E7D11FFCC18300DACC2E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7D01FFCC18300DACC2E /* HomeViewController.swift */; };
 		A383E7D31FFCC21300DACC2E /* ParkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */; };
 		A383E7D51FFCC37A00DACC2E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7D41FFCC37A00DACC2E /* MapViewController.swift */; };
 		A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */; };
@@ -34,14 +32,12 @@
 		796A9965981998C42C96E857 /* Pods-SeattleParksGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.debug.xcconfig"; sourceTree = "<group>"; };
 		A37799B31FFF3B6900253E26 /* AnnotationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationPin.swift; sourceTree = "<group>"; };
 		A37799B52002E2AE00253E26 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		A37799B720040E7D00253E26 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
 		A383E7BB1FFCBA1400DACC2E /* SeattleParksGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeattleParksGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A383E7C31FFCBA1400DACC2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A383E7C51FFCBA1400DACC2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A383E7C81FFCBA1400DACC2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A383E7CA1FFCBA1400DACC2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A383E7D01FFCC18300DACC2E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoViewController.swift; sourceTree = "<group>"; };
 		A383E7D41FFCC37A00DACC2E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A383E7D61FFD8ED200DACC2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -110,8 +106,6 @@
 				A383E7D21FFCC21200DACC2E /* ParkInfoViewController.swift */,
 				A383E7D41FFCC37A00DACC2E /* MapViewController.swift */,
 				A3DF04FC20147F450084AC80 /* HoodFilterViewController.swift */,
-				A383E7D01FFCC18300DACC2E /* HomeViewController.swift */,
-				A37799B720040E7D00253E26 /* AchievementsViewController.swift */,
 				A383E7CA1FFCBA1400DACC2E /* Info.plist */,
 				A37799B31FFF3B6900253E26 /* AnnotationPin.swift */,
 				A397527B2009E99800F80BAD /* UserProgressViewController.swift */,
@@ -278,7 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A37799B820040E7D00253E26 /* AchievementsViewController.swift in Sources */,
 				A383E7D31FFCC21300DACC2E /* ParkInfoViewController.swift in Sources */,
 				A397527E200C45F200F80BAD /* BadgeCollectionViewCell.swift in Sources */,
 				A37799B41FFF3B6900253E26 /* AnnotationPin.swift in Sources */,
@@ -286,7 +279,6 @@
 				A3DF04FD20147F450084AC80 /* HoodFilterViewController.swift in Sources */,
 				A3975280200E818C00F80BAD /* SignInViewController.swift in Sources */,
 				A383E7BF1FFCBA1400DACC2E /* AppDelegate.swift in Sources */,
-				A383E7D11FFCC18300DACC2E /* HomeViewController.swift in Sources */,
 				A383E7D51FFCC37A00DACC2E /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
