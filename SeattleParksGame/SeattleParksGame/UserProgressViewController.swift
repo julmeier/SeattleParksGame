@@ -56,6 +56,9 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     var numberOfVisitsByZipDict = [String: Int]()
     var nonDuplicatedPmaids = [String]()
     var nonDuplicatedPins = [AnnotationPin]()
+    
+    var allHoodNames = [String]()
+    var allZipcodes = [String]()
 
     //variables to receive data passed from MapView
     var allAnnotationPins: [AnnotationPin] = []
@@ -73,6 +76,13 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         super.viewDidLoad()
 
         badgeCollectionView.dataSource = self
+        
+        for (zip,neighborhood) in badges {
+            allHoodNames.append(neighborhood)
+            allZipcodes.append(zip)
+        }
+        print(allHoodNames)
+        print(allZipcodes)
 
         //print("Did it pass parkData correctly?")
         //print(allAnnotationPins)
@@ -197,7 +207,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         if visitCount == zipCount {
             cell.badgeImageView.image = UIImage(named: hood!)
         } else {
-            cell.badgeImageView.image = UIImage(named: "circle_X_black_512")
+            cell.badgeImageView.image = UIImage(named: "x-button_red")
         }
 
         return cell

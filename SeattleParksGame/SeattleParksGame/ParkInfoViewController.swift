@@ -79,7 +79,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
                 
             }
             allParkFeaturesSet = removeDuplicates(array: allParkFeaturesArray).sorted()
-            //print(allParkFeaturesSet)
+            print("allParkFeaturesSet:")
+            print(allParkFeaturesSet)
             //print("THIS park's features:")
             //print(thisParkFeatures)
         

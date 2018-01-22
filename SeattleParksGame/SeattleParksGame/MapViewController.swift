@@ -33,8 +33,8 @@ struct ParkAddress: Codable {
     let y_coord: String
 }
 
-class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GIDSignInUIDelegate {
-    
+class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GIDSignInUIDelegate, HoodFilterDelegate {
+
     //get user data
     let userKey = Auth.auth().currentUser?.uid
 
@@ -42,6 +42,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     @IBOutlet weak var mapView: MKMapView!
     var purpleTree: AnnotationPin!
     var greenTree: AnnotationPin!
+    var tree: AnnotationPin!
     var pin: AnnotationPin!
     
     //Firebase database references:
@@ -60,32 +61,54 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     //holds array of AnnotationPins
     var allAnnotationPins: [AnnotationPin?] = []
-
+    
+    //Filter variables
+    var chosenZip = String()
+    var chosenHood = String()
+    @IBOutlet weak var hoodFilterLbl: UILabel!
+    @IBOutlet weak var clearFilterBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Checkout button
+        print("In MapViewVC viewDidLoad")
+        //print("chosenZip in viewDiDLoad: \(chosenZip)")
+        print("self.hoodFilter.Lbl.text: \(String(describing: self.hoodFilterLbl.text))")
+        
+        let filterZip = chosenZip
+        print("filterZip: \(filterZip)")
+        let filterHood = chosenHood
+        hoodFilterLbl.text = filterHood
+        
+        if filterZip != "" {
+            clearFilterBtn.isHidden = false
+            hoodFilterLbl.isHidden = false
+        } else {
+            clearFilterBtn.isHidden = true
+            hoodFilterLbl.isHidden = true
+
+        }
+        
+        //Logout button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
         //Logout user that is not logged in
-        if userKey == nil {
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-        }
+        //COMMENTED THIS OUT DURING FILTERING BECAUSE IT SIGNS USER OUT WHEN THEY RETURN FROM HOOD FILTER PAGE:
+//        if userKey == nil {
+//            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+//        }
         
         //delegate needed for custom pin
         self.mapView?.delegate = self
         
-        //this doesn't seem to be working:
+        //See blue dot of user location (not visible in the simulator, but works on the phone)
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
-        
         //set up Firebase database reference variable
         dbReference = Database.database().reference()
-        
         
         let initialLocation = CLLocation(latitude: 47.6074717, longitude: -122.3352511)
         zoomMapOn(location: initialLocation)
@@ -110,8 +133,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         //changed from: let fuelLocations = client.queryDataset("alternative-fuel-locations")
         //let parksFromAPI = client.query(dataset: "ajyh-m2d3")
-        
-       
+    
 //        parksFromAPI.orderAscending("pmaid").get { res in
 //            switch res {
 //            case .dataset (let apiData):
@@ -133,34 +155,22 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 //        }
         
       
-        
-        
-        
-        //retrieving JSON data from API directly:
+        //retrieving JSON data from API directly (without a key)
         let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
-
         guard let url = URL(string: seattleParksAddressesUrl) else {return}
-        
         URLSession.shared.dataTask(with: url) {(data, response, err) in
-            
             guard let data = data else {return}
-            //print("Printing park data:")
-            //print(String(data: data, encoding: .utf8)!)
-            
             do {
                 let decoder = JSONDecoder()
                 let parks = try decoder.decode([ParkAddress].self, from: data)
                 
-                //print("Parks. Parks.Class:")
-                //print(parks)
-                //print(parks.description)
-                
-                //clears pins
+                //clears pins?
                 self.allAnnotationPins = []
                 self.allAnnotationPins.removeAll()
                 //print("allAnnotationPins:")
                 //print(self.allAnnotationPins)
-        
+                //print("chosenZip: \(self.chosenZip)")
+                
 
                 for park in parks {
                     
@@ -173,12 +183,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                     
                     //read in data from database to see if the park has been visited
                     
+                    
                     //self.dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                     self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild(park.pmaid) {
                             //print("pmaid in the db:")
                             //print(park.pmaid)
-                            self.greenTree = AnnotationPin(
+                            self.tree = AnnotationPin(
                                 title: park.name,
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "green-cloud-tree-32.png",
@@ -187,12 +198,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "true"
                             )
-                            self.mapView?.addAnnotation(self.greenTree)
-                            self.allAnnotationPins.append(self.greenTree)
+                            //self.mapView?.addAnnotation(self.greenTree)
+                            self.allAnnotationPins.append(self.tree)
                         } else {
                             //print("pmaid NOT in the db:")
                            // print(park.pmaid)
-                            self.purpleTree = AnnotationPin(
+                            self.tree = AnnotationPin(
                                 title: park.name,
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
                                 imageName: "purple-cloud-tree-32.png",
@@ -201,9 +212,21 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "false"
                             )
-                            self.mapView?.addAnnotation(self.purpleTree)
-                            self.allAnnotationPins.append(self.purpleTree)
+                            //self.mapView?.addAnnotation(self.purpleTree)
+                            self.allAnnotationPins.append(self.tree)
                         } //end of else
+                    
+                        //WITH FILTER, keep the "allAnnotationPins.append" above but remove the "mapView?.addAnnotation" lines
+                        //and put an if statement here.
+                        //i.e. IF the filter array has a zip code, only add those pins with that zip code.
+                        //To make things a bit clearer, you can remove the "purpleTree" and "greenTree" and just change both those variables to "tree".
+                        if filterZip == "" {
+                            self.mapView?.addAnnotation(self.tree)
+                        } else {
+                            if self.tree.zip_code == filterZip {
+                                self.mapView?.addAnnotation(self.tree)
+                            }
+                        }
                     }) //end of dbReference?.child
                 } //end of for park in parks
             
@@ -220,8 +243,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }.resume()
         //print("ALL ANNOTATION PINS:")
         //print(self.allAnnotationPins)
-        print("ALL ANNOTATION PINS COUNT:")
-        print(self.allAnnotationPins.count)
+//        print("ALL ANNOTATION PINS COUNT:")
+//        print(self.allAnnotationPins.count)
         print("FINISHED viewDidLoad")
     }
     
@@ -263,20 +286,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         annotationView?.layer.anchorPoint = CGPoint(x:0.5, y:1.0);
         return annotationView
     }
-    
-    func BoolToString(b: Bool?)->String {
-        return b?.description ?? "<None>"
-    }
+
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("button tapped")
+        print("calloutAccessoryControlTapped")
         
         //get the annotation, which is a parameter
         passedAnnotation = view.annotation as? AnnotationPin
-        //print("passedAnnotation in MapView:")
-        //print(passedAnnotation!)
-        //print(passedAnnotation?.title! as Any)
-        //print(passedAnnotation?.address! as Any)
         
         //perform manual segue
         performSegue(withIdentifier: "parkDetails", sender: self)
@@ -293,22 +309,32 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         mapView?.setRegion(coordinateRegion, animated:true)
     }
     
-    func removeDuplicates(array: [String]) -> [String] {
-        var encountered = Set<String>()
-        var result: [String] = []
-        for value in array {
-            if encountered.contains(value) {
-                // Do not add a duplicate element.
-            }
-            else {
-                // Add value to the set.
-                encountered.insert(value)
-                // ... Append the value.
-                result.append(value)
-            }
-        }
-        return result
+
+//NEIGHBORHOOD FILTER DELEGATE FUNCTIONS:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    
+    
+    func userDidChooseHood(data: String) {
+        //chosenZip = data
+        hoodFilterLbl.text = data
+        //print("chosenZip in MapView: \(chosenZip)")
     }
+    
+    @IBAction func hoodFilterBtn(_ sender: Any) {
+        print("hood filter button pressed!")
+        performSegue(withIdentifier: "hoodFilterVC", sender: self)
+    }
+    
+    @IBAction func clearFilterBtnPressed(_ sender: Any) {
+        print("clear filter button pressed!")
+        chosenZip = ""
+        chosenHood = ""
+        viewDidLoad()
+    }
+    
+    
+    
+    
+//PREPARE FOR SEGUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "parkDetails" {
@@ -329,6 +355,14 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             let destination = segue.destination as! UserProgressViewController
             destination.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
         }
+        
+        //segue to FiltersViewController
+        if segue.identifier == "hoodFilterVC" {
+            print("button pressed --> hoodFilterVC")
+            let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
+            hoodFilterVC.delegate = self
+            //at this time, not sending any data to HoodFilterVC, just the delegate
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -339,10 +373,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     //INTENTION OF THIS METHOD: This makes the map refresh when pressing back button from ParkInfoViewController.
     override func viewWillAppear(_ animated: Bool = true) {
         super.viewWillAppear(animated)
-        mapView?.reloadInputViews()
+        print("In MapViewVC viewWillAppear")
+        //mapView?.reloadInputViews()
         viewDidLoad()
 
     }
+    
+    //LOGOUT>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     @objc func handleLogout() {
         do {
@@ -360,6 +397,29 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
         //let loginController = SignInViewController()
         //present(loginController, animated: true, completion: nil)
+    }
+    
+    //HELPER FUNCTIONS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    
+    func removeDuplicates(array: [String]) -> [String] {
+        var encountered = Set<String>()
+        var result: [String] = []
+        for value in array {
+            if encountered.contains(value) {
+                // Do not add a duplicate element.
+            }
+            else {
+                // Add value to the set.
+                encountered.insert(value)
+                // ... Append the value.
+                result.append(value)
+            }
+        }
+        return result
+    }
+    
+    func BoolToString(b: Bool?)->String {
+        return b?.description ?? "<None>"
     }
     
 }
