@@ -207,7 +207,7 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
         if visitCount == zipCount {
             cell.badgeImageView.image = UIImage(named: hood!)
         } else {
-            cell.badgeImageView.image = UIImage(named: "circle_X_black_512")
+            cell.badgeImageView.image = UIImage(named: "x-button_red")
         }
 
         return cell
