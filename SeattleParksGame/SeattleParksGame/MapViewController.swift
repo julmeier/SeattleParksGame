@@ -62,31 +62,49 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     //holds array of AnnotationPins
     var allAnnotationPins: [AnnotationPin?] = []
     
-    //Filter variables
+    //Filter variables & outlets
     var chosenZip = String()
     var chosenHood = String()
-    @IBOutlet weak var hoodFilterLbl: UILabel!
-    @IBOutlet weak var clearFilterBtn: UIButton!
+    @IBOutlet weak var filterLbl: UILabel!
+    @IBOutlet weak var topFilterBtn: UIButton!
+    @IBOutlet weak var bottomFilterBtn: UIButton!
+    
+    let filterHoodImage = UIImage(named: "filter4-neighborhood") as UIImage?
+    let filterFeatureImage = UIImage(named: "filter4-parkfeature") as UIImage?
+    let clearFilterImage = UIImage(named: "clear_filter") as UIImage?
+    
+    var chosenFeature = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("In MapViewVC viewDidLoad")
         //print("chosenZip in viewDiDLoad: \(chosenZip)")
-        print("self.hoodFilter.Lbl.text: \(String(describing: self.hoodFilterLbl.text))")
+        //print("self.filterLbl.text: \(String(describing: self.filterLbl.text))")
         
+        
+        //receives the zip from the hoodfilterVC
         let filterZip = chosenZip
         print("filterZip: \(filterZip)")
         let filterHood = chosenHood
-        hoodFilterLbl.text = filterHood
+    
+        //receives the feature from the featureFilterVC
+        let filterFeature = chosenFeature
+        print("filterFeature: \(filterFeature)")
+        
         
         if filterZip != "" {
-            clearFilterBtn.isHidden = false
-            hoodFilterLbl.isHidden = false
-        } else {
-            clearFilterBtn.isHidden = true
-            hoodFilterLbl.isHidden = true
-
+            topFilterBtn.setImage(clearFilterImage, for: .normal)
+            bottomFilterBtn.setImage(filterHoodImage, for: .normal)
+            filterLbl.text = filterHood
+        } else if filterFeature != "" {
+            topFilterBtn.setImage(clearFilterImage, for: .normal)
+            bottomFilterBtn.setImage(filterFeatureImage, for: .normal)
+            filterLbl.text = filterFeature
+        } else if filterFeature == "" && filterZip == "" {
+            topFilterBtn.setImage(filterFeatureImage, for: .normal)
+            bottomFilterBtn.setImage(filterHoodImage, for: .normal)
+            filterLbl.isHidden = true
         }
         
         //Logout button
@@ -315,23 +333,46 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func userDidChooseHood(data: String) {
         //chosenZip = data
-        hoodFilterLbl.text = data
+        filterLbl.text = data
         //print("chosenZip in MapView: \(chosenZip)")
     }
     
-    @IBAction func hoodFilterBtn(_ sender: Any) {
-        print("hood filter button pressed!")
-        performSegue(withIdentifier: "hoodFilterVC", sender: self)
+//    @IBAction func hoodFilterBtn(_ sender: Any) {
+//        print("hood filter button pressed!")
+//        performSegue(withIdentifier: "hoodFilterVC", sender: self)
+//    }
+//
+//    @IBAction func clearFilterBtnPressed(_ sender: Any) {
+//        print("clear filter button pressed!")
+//        chosenZip = ""
+//        chosenHood = ""
+//        viewDidLoad()
+//    }
+    
+    @IBAction func pressedTopFilterBtn(_ sender: Any) {
+        if topFilterBtn.isEqual(UIImage(named: "clear_image")) {
+            print("clear filter button pressed!")
+            chosenZip = ""
+            chosenHood = ""
+            chosenFeature = ""
+            viewDidLoad()
+        } else if topFilterBtn.isEqual(UIImage(named: "filter4-parkfeature")) {
+            print("park feature filter button pressed!")
+            performSegue(withIdentifier: "hoodFilterVC", sender: self)
+        }
+        
     }
     
-    @IBAction func clearFilterBtnPressed(_ sender: Any) {
-        print("clear filter button pressed!")
-        chosenZip = ""
-        chosenHood = ""
-        viewDidLoad()
+   
+    @IBAction func pressedBottomFilterBtn(_ sender: Any) {
+        if bottomFilterBtn.isEqual(UIImage(named: "filter4-neighborhood")) {
+            print("neighborhood filter button pressed!")
+            performSegue(withIdentifier: "hoodFilterVC", sender: self)
+        } else if topFilterBtn.isEqual(UIImage(named: "filter4-parkfeature")) {
+            print("park feature filter button pressed!")
+            performSegue(withIdentifier: "hoodFilterVC", sender: self)
+        }
     }
-    
-    
     
     
 //PREPARE FOR SEGUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
