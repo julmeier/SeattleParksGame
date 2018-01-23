@@ -72,6 +72,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     let filterHoodImage = UIImage(named: "filter4-neighborhood") as UIImage?
     let filterFeatureImage = UIImage(named: "filter4-parkfeature") as UIImage?
     let clearFilterImage = UIImage(named: "clear_filter") as UIImage?
+    var filterHoodOn = false
+    var filterFeatureOn = false
     
     var chosenFeature = String()
     
@@ -97,14 +99,18 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             topFilterBtn.setImage(clearFilterImage, for: .normal)
             bottomFilterBtn.setImage(filterHoodImage, for: .normal)
             filterLbl.text = filterHood
+            filterHoodOn = true
         } else if filterFeature != "" {
             topFilterBtn.setImage(clearFilterImage, for: .normal)
             bottomFilterBtn.setImage(filterFeatureImage, for: .normal)
             filterLbl.text = filterFeature
+            filterFeatureOn = true
         } else if filterFeature == "" && filterZip == "" {
             topFilterBtn.setImage(filterFeatureImage, for: .normal)
             bottomFilterBtn.setImage(filterHoodImage, for: .normal)
             filterLbl.isHidden = true
+            filterHoodOn = false
+            filterFeatureOn = false
         }
         
         //Logout button
@@ -350,28 +356,50 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 //    }
     
     @IBAction func pressedTopFilterBtn(_ sender: Any) {
-        if topFilterBtn.isEqual(UIImage(named: "clear_image")) {
+        print("top button pressed")
+        
+        if !filterFeatureOn && !filterHoodOn {
+            print("park feature filter button pressed!")
+            performSegue(withIdentifier: "featureFilterVC", sender: self)
+        } else if filterFeatureOn || filterHoodOn {
             print("clear filter button pressed!")
             chosenZip = ""
             chosenHood = ""
             chosenFeature = ""
             viewDidLoad()
-        } else if topFilterBtn.isEqual(UIImage(named: "filter4-parkfeature")) {
-            print("park feature filter button pressed!")
-            performSegue(withIdentifier: "hoodFilterVC", sender: self)
+        } else {
+            print("ERROR- top button pressed but logic fails")
         }
         
+//        print(topFilterBtn.imageView?.image as Any) //Optional(<UIImage: 0x60c0000bf1a0>, {512, 512})
+//        print(topFilterBtn.imageView?.image?.accessibilityIdentifier as Any) //nil
+//        print(topFilterBtn.imageView?.image?.imageAsset as Any) //Optional(<UIImageAsset: 0x60c000282120>)
+//        print(topFilterBtn.imageView?.image?.description as Any) //Optional("<UIImage: 0x60c0000bf1a0>, {512, 512}")
+//        print(topFilterBtn.imageView?.image?.accessibilityAttributedLabel as Any) //nil
     }
     
    
     @IBAction func pressedBottomFilterBtn(_ sender: Any) {
-        if bottomFilterBtn.isEqual(UIImage(named: "filter4-neighborhood")) {
-            print("neighborhood filter button pressed!")
+        print("bottom button pressed")
+        
+        if !filterFeatureOn && !filterHoodOn {
+            print("hood filter button pressed!")
             performSegue(withIdentifier: "hoodFilterVC", sender: self)
-        } else if topFilterBtn.isEqual(UIImage(named: "filter4-parkfeature")) {
-            print("park feature filter button pressed!")
-            performSegue(withIdentifier: "hoodFilterVC", sender: self)
+        } else if filterFeatureOn {
+            print("feature filter button pressed!")
+            performSegue(withIdentifier: "featureFilterVC", sender: self)
+        } else {
+            print("ERROR- bottom button pressed but logic fails")
         }
+        
+        
+//        if bottomFilterBtn.isEqual(UIImage(named: "filter4-neighborhood")) {
+//            print("neighborhood filter button pressed!")
+//            performSegue(withIdentifier: "hoodFilterVC", sender: self)
+//        } else if bottomFilterBtn.isEqual(UIImage(named: "filter4-parkfeature")) {
+//            print("park feature filter button pressed!")
+//            performSegue(withIdentifier: "featureFilterVC", sender: self)
+//        }
     }
     
     
