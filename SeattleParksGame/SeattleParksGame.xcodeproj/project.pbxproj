@@ -112,9 +112,9 @@
 				A383E7CA1FFCBA1400DACC2E /* Info.plist */,
 				A37799B31FFF3B6900253E26 /* AnnotationPin.swift */,
 				A397527B2009E99800F80BAD /* UserProgressViewController.swift */,
-				A397527D200C45F200F80BAD /* BadgeCollectionViewCell.swift */,
 				A397527F200E818C00F80BAD /* SignInViewController.swift */,
 				A397528520114B9500F80BAD /* secrets.plist */,
+				A397527D200C45F200F80BAD /* BadgeCollectionViewCell.swift */,
 			);
 			path = SeattleParksGame;
 			sourceTree = "<group>";

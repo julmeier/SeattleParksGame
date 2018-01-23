@@ -27,7 +27,7 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var allHoodNames = [String]()
     var allZipcodes = [String]()
     var allAnnotationPins = [AnnotationPin]()
-    let allFeaturesSet = ["Adult Fitness Equipment", "Baseball/Softball", "Basketball (Full)", "Basketball (Half)", "Bike Polo", "Bike Trail", "Boat Launch (Hand Carry)", "Boat Launch (Motorized)", "Boat Moorage", "Community Building", "Community Center", "Creek", "Cricket", "Decorative Fountain", "Disc Golf", "Dog Off Leash Area", "Environmental Learning Center", "Fire Pit", "Fishing", "Flag Football", "Football", "Garden", "Golf", "Green Space", "Guarded Beach", "Hiking Trails", "Historic Landmark", "Horseshoe Pits", "Lacrosse", "Lawn Bowling", "Marination Ma Kai", "Model Boat Pond", "NO Beach Access", "P-Patch Community Garden", "Paths", "Paths (ADA Compliant)", "Pesticide Free", "Pickleball Court", "Picnic Sites", "Picnic Sites (ADA Compliant)", "Play Area", "Play Area (ADA Compliant)", "Pool (Indoor)", "Pool (Outdoor)", "Rental Facility", "Restrooms", "Restrooms (ADA Compliant)", "Rugby", "Scuba Diving", "Skatepark", "Skatespot", "Soccer", "T-Ball", "Tennis Backboard (Outdoor)", "Tennis Court (Outdoor)", "Tennis Lights", "Track", "Ultimate", "View", "Wading Pool or Water Feature", "Waterfront", "Weddings and Ceremonies", "Woods"]
+
     //badges dictionary
     let badges = ["98101": "Downtown",
                   "98102": "Capitol Hill",

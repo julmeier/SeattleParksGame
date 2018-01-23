@@ -63,19 +63,21 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     var allAnnotationPins: [AnnotationPin?] = []
     
     //Filter variables & outlets
+    //receive data from other views:
     var chosenZip = String()
     var chosenHood = String()
+    var chosenFeature = String()
+    //outlets:
     @IBOutlet weak var filterLbl: UILabel!
     @IBOutlet weak var topFilterBtn: UIButton!
     @IBOutlet weak var bottomFilterBtn: UIButton!
-    
+    //images:
     let filterHoodImage = UIImage(named: "filter4-neighborhood") as UIImage?
     let filterFeatureImage = UIImage(named: "filter4-parkfeature") as UIImage?
     let clearFilterImage = UIImage(named: "clear_filter") as UIImage?
+    //boolean- user choice
     var filterHoodOn = false
     var filterFeatureOn = false
-    
-    var chosenFeature = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,11 +101,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             topFilterBtn.setImage(clearFilterImage, for: .normal)
             bottomFilterBtn.setImage(filterHoodImage, for: .normal)
             filterLbl.text = filterHood
+            filterFeatureOn = false
             filterHoodOn = true
         } else if filterFeature != "" {
             topFilterBtn.setImage(clearFilterImage, for: .normal)
             bottomFilterBtn.setImage(filterFeatureImage, for: .normal)
             filterLbl.text = filterFeature
+            filterHoodOn = false
             filterFeatureOn = true
         } else if filterFeature == "" && filterZip == "" {
             topFilterBtn.setImage(filterFeatureImage, for: .normal)
@@ -339,7 +343,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func userDidChooseHood(data: String) {
         //chosenZip = data
-        filterLbl.text = data
+        //filterLbl.text = data
         //print("chosenZip in MapView: \(chosenZip)")
     }
     
@@ -388,8 +392,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         } else if filterFeatureOn {
             print("feature filter button pressed!")
             performSegue(withIdentifier: "featureFilterVC", sender: self)
+        } else if filterHoodOn {
+            print("feature filter button pressed!")
+            performSegue(withIdentifier: "featureHoodVC", sender: self)
         } else {
             print("ERROR- bottom button pressed but logic fails")
+            print("filterFeatureOn: \(filterFeatureOn)")
+            print("filterHoodOn: \(filterHoodOn)")
         }
         
         
@@ -431,6 +440,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
             hoodFilterVC.delegate = self
             //at this time, not sending any data to HoodFilterVC, just the delegate
+        }
+        
+        //segue to FiltersViewController
+        if segue.identifier == "hoodFilterVC" {
+            print("button pressed --> hoodFilterVC")
+            let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
         }
     }
     
