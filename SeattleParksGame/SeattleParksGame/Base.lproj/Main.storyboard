@@ -441,8 +441,11 @@
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kV-7e-gBU">
-                                                    <rect key="frame" x="11" y="0.0" width="80" height="80"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4kV-7e-gBU">
+                                                    <rect key="frame" x="9" y="0.0" width="82" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="lk6-ha-3sY"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-qs-hnE">
                                                     <rect key="frame" x="0.0" y="108" width="100" height="40"/>
@@ -458,22 +461,22 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Jpk-hS-Vdv" secondAttribute="trailing" id="3b5-MP-h83"/>
+                                            <constraint firstAttribute="trailing" secondItem="4kV-7e-gBU" secondAttribute="trailing" constant="9" id="3fa-sw-u6E"/>
                                             <constraint firstItem="Sjn-fP-hWc" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="4cv-1W-Z7h"/>
                                             <constraint firstItem="Jpk-hS-Vdv" firstAttribute="top" secondItem="Sjn-fP-hWc" secondAttribute="bottom" constant="5" id="6xH-jE-4FT"/>
-                                            <constraint firstItem="4kV-7e-gBU" firstAttribute="leading" secondItem="Sjn-fP-hWc" secondAttribute="leading" id="BrJ-YR-vkb"/>
                                             <constraint firstItem="Jpk-hS-Vdv" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="Ejt-uq-nDv"/>
                                             <constraint firstAttribute="trailing" secondItem="Aq7-qs-hnE" secondAttribute="trailing" id="JQl-U2-n84"/>
                                             <constraint firstItem="Sjn-fP-hWc" firstAttribute="top" secondItem="GyL-5a-bzh" secondAttribute="top" constant="1" id="NLp-a3-LfW"/>
                                             <constraint firstItem="Aq7-qs-hnE" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="NbZ-G6-i7K"/>
                                             <constraint firstItem="Jpk-hS-Vdv" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" id="bHi-2e-zv6"/>
-                                            <constraint firstItem="4kV-7e-gBU" firstAttribute="trailing" secondItem="Sjn-fP-hWc" secondAttribute="trailing" id="cVu-zw-nyZ"/>
+                                            <constraint firstItem="4kV-7e-gBU" firstAttribute="top" secondItem="GyL-5a-bzh" secondAttribute="top" id="bLe-2r-IUN"/>
                                             <constraint firstItem="Aq7-qs-hnE" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" id="e1Y-a7-Uvm"/>
                                             <constraint firstAttribute="trailing" secondItem="Jpk-hS-Vdv" secondAttribute="trailing" id="ghU-Hj-aYP"/>
                                             <constraint firstItem="4kV-7e-gBU" firstAttribute="top" secondItem="GyL-5a-bzh" secondAttribute="top" id="hjA-ai-kRb"/>
                                             <constraint firstItem="Jpk-hS-Vdv" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" id="pgc-gD-RUK"/>
-                                            <constraint firstItem="Jpk-hS-Vdv" firstAttribute="top" secondItem="4kV-7e-gBU" secondAttribute="bottom" constant="6" id="ryY-qK-scZ"/>
                                             <constraint firstItem="Aq7-qs-hnE" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="tIL-uR-hvZ"/>
                                             <constraint firstItem="Aq7-qs-hnE" firstAttribute="top" secondItem="Jpk-hS-Vdv" secondAttribute="bottom" constant="2" id="wjS-Ls-lWv"/>
+                                            <constraint firstItem="4kV-7e-gBU" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" constant="9" id="y0z-tr-rhf"/>
                                         </constraints>
                                         <size key="customSize" width="100" height="150"/>
                                         <connections>
@@ -826,7 +829,6 @@
         <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BGr-55-RC7"/>
         <segue reference="lQa-ow-ObB"/>
     </inferredMetricsTieBreakers>
 </document>
