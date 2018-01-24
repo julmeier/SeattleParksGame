@@ -17,7 +17,6 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var delegate: HoodFilterDelegate? = nil
     
     //Outlets:
-    
     @IBOutlet weak var hoodPickerView: UIPickerView!
     @IBOutlet weak var chosenHoodLbl: UILabel!
     @IBOutlet weak var selectHoodBtn: UIButton!
@@ -55,8 +54,8 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
                   "98177": "Richmond Beach",
                   "98178": "Bryn Mawr-Skyway",
                   "98199": "Magnolia"]
-    let zips = ["98115", "98117", "98105", "98178", "98199", "98112", "98144", "98107", "98103", "98177", "98119", "98118", "98125", "98106", "98109", "98116", "98146", "98133", "98122", "98121", "98104", "98108", "98126", "98136", "98101", "98102"]
-    let hoods = ["Northeast", "Sunset Hill-Whittier Heights", "University District-Laurelhurst", "Bryn Mawr-Skyway", "Magnolia", "Madison Valley", "Mount Baker", "Ballard", "Greenwood-Fremont-Greenlake", "Richmond Beach", "Queen Anne", "Columbia City", "Northgate", "Delridge", "South Lake Union", "West Seattle", "Mount View-Burien", "Bitterlake", "First Hill-Madrona", "Belltown", "International District-Pioneer Square", "Beacon Hill", "High Point", "Fauntleroy", "Downtown", "Capitol Hill"]
+    let zips = ["98107", "98108", "98121", "98133", "98178", "98102", "98118", "98106", "98101", "98136", "98122", "98103", "98126", "98104", "98112", "98199", "98144", "98146", "98115", "98125", "98119", "98177", "98109", "98117", "98105", "98116"]
+    let hoods = ["Ballard", "Beacon Hill", "Belltown", "Bitterlake", "Bryn Mawr-Skyway", "Capitol Hill", "Columbia City", "Delridge", "Downtown", "Fauntleroy", "First Hill-Madrona", "Greenwood-Fremont-Greenlake", "High Point", "International District-Pioneer Square", "Madison Valley", "Magnolia", "Mount Baker", "Mount View-Burien", "Northeast", "Northgate", "Queen Anne", "Richmond Beach", "South Lake Union", "Sunset Hill-Whittier Heights", "University District-Laurelhurst", "West Seattle"]
     
     
     override func viewDidLoad() {
@@ -64,12 +63,21 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         print("In HoodFilterVC viewDidLoad")
         
-//        for (zip,neighborhood) in badges {
+        //This outputs the arrays of zips and hood from the dictionary in alphabetical order of the neighborhood names.
+//        var hoodZips = [String: String]()
+//        for i in 0..<hoods.count {
+//            hoodZips[hoods[i]] = zips[i]
+//        }
+//        print("hoodZips: \(hoodZips)")
+//        let sortedHoodZips = Array(hoodZips).sorted(by: { $0.0 < $1.0 })
+//        print("sortedHoodZips: \(sortedHoodZips)")
+//        for (neighborhood, zip) in sortedHoodZips {
 //            allHoodNames.append(neighborhood)
 //            allZipcodes.append(zip)
 //        }
 //        print(allHoodNames)
 //        print(allZipcodes)
+        
         
         //set up UIPickerView
         hoodPickerView.delegate = self
@@ -96,7 +104,7 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "hoodFilterToMapSegue" {
-            print("in segue to map")
+            //print("in segue to map")
             let destination = segue.destination as! MapViewController
             let chosenHood = chosenHoodLbl.text
             let chosenZips = (badges as NSDictionary).allKeys(for: chosenHood!) as! [String]
@@ -108,29 +116,19 @@ class HoodFilterViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
     }
     
-//    override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-//        print("in unwind")
-//    }
-    
-    
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return badges.count
-        //return countries.count
-     
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return hoods[row]
-        //return countries[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //chosenHoodLbl.text = countries[row]
         chosenHoodLbl.text = hoods[row]
     }
 

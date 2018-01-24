@@ -81,29 +81,17 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
             allHoodNames.append(neighborhood)
             allZipcodes.append(zip)
         }
-        print(allHoodNames)
-        print(allZipcodes)
-
-        //print("Did it pass parkData correctly?")
-        //print(allAnnotationPins)
-        //print("allAnnotationPins.count BEFORE DELETE")
-        //print(allAnnotationPins.count)
-        //let allAnnotationPinsSet = self.removeDuplicates(array: self.allAnnotationPins)
-        //print("allAnnotationPinsSet")
-        //print(allAnnotationPinsSet.count)
-
+        //print(allHoodNames)
+        //print(allZipcodes)
 
         //updated UserProgressVC to read in from Firebase db
         for pin in allAnnotationPins {
-
             if !nonDuplicatedPmaids.contains(pin.pmaid!) {
                 nonDuplicatedPmaids.append(pin.pmaid!)
-
                 nonDuplicatedPins.append(pin)
             }
         }
-        print("nonDuplicatedPmaids.count: \(nonDuplicatedPmaids.count)")
-
+        //print("nonDuplicatedPmaids.count: \(nonDuplicatedPmaids.count)")
 //        var nonDuplicates = [Int]()
 //        var randomArray = [1,2,3,1]
 //        for num in randomArray {
@@ -118,9 +106,6 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
 //
 //            index += 1
 //        }
-
-        //print("allAnnotationPins.count AFTER DELETE")
-        //print(allAnnotationPins.count)
 
         for pin in nonDuplicatedPins {
             //print("\(pin.title!) - \(pin.zip_code!) - \(pin.visitStatus!)")
@@ -145,19 +130,14 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
             totalParks += 1
 
         }
-        //print("parksByZip:")
-        //print(parksByZip)
 
-        print("totalParks:")
-        print(totalParks)
         self.allParksDisplay.text = String(totalParks)
-
-        print("numberOfVisitsByZipDict:")
-        print(numberOfVisitsByZipDict)
+        //print("numberOfVisitsByZipDict:")
+        //print(numberOfVisitsByZipDict)
 
         for (zip, parks) in parksByZip {
             let count = parks.count
-            print("zip: \(zip), count: \(count)")
+            //print("zip: \(zip), count: \(count)")
             parkZipcodes.append(zip)
             numberOfParksByZipDict[zip] = count
         }
@@ -175,11 +155,6 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
             self.numberVisited.text = String(numberVisitedFromDB)
 
         })
-
-        //diplay the entire collction of possible badges user can earn
-        //icons distinguish whether user has earned them yet or not
-        //may show the number of parks needed to earn each badge (ex. achieved 6/7 parks - only 1 to go!)
-
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -216,25 +191,6 @@ class UserProgressViewController: UIViewController, MKMapViewDelegate, UICollect
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func removeDuplicates(array: [AnnotationPin]) -> [AnnotationPin] {
-        var encountered = Set<AnnotationPin>()
-        var result: [AnnotationPin] = []
-        for value in array {
-            if encountered.contains(value) {
-                // Do not add a duplicate element.
-            }
-            else {
-                // Add value to the set.
-                encountered.insert(value)
-                // ... Append the value.
-                result.append(value)
-            }
-        }
-        print("removeDuplicates result:")
-        print(result.count)
-        return result
     }
 
 }
