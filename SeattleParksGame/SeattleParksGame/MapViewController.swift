@@ -410,6 +410,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
     }
     
+    @IBAction func pressedBadgesBtn(_ sender: Any) {
+        print("user achievements button pressed!")
+        performSegue(withIdentifier: "badgesSegue", sender: self)
+    }
+    
+    
     
 //PREPARE FOR SEGUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
@@ -420,10 +426,10 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
         
         //segue to UserProgressVC
-        if segue.identifier == "ProgressVCSegue" {
-            let destination = segue.destination as! UserProgressViewController
-            destination.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
-        }
+//        if segue.identifier == "ProgressVCSegue" {
+//            let destination = segue.destination as! UserProgressViewController
+//            destination.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
+//        }
         
         //segue to FiltersViewController
         if segue.identifier == "hoodFilterVC" {
@@ -433,10 +439,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             //at this time, not sending any data to HoodFilterVC, just the delegate
         }
         
-        //segue to FiltersViewController
-        if segue.identifier == "hoodFilterVC" {
-            //print("button pressed --> hoodFilterVC")
-            //let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
+        //NEW segue to UserProgressVC
+        if segue.identifier == "badgesSegue" {
+            print("button pressed --> UserAchievementsVC")
+            let userProgressVC: UserProgressViewController = segue.destination as! UserProgressViewController
+            userProgressVC.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
         }
     }
     
