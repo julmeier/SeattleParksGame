@@ -67,21 +67,21 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             let data = try Data(contentsOf: url)
             //let dataString = String(data: data, encoding: .utf8)!
             //print(dataString)
-            //print("dataString is above (prints all park)")
         
             let decoder = JSONDecoder()
             let parkFeatures = try decoder.decode([ParkFeatures].self, from: data)
             for parkFeature in parkFeatures {
-                allParkFeaturesArray.append(parkFeature.feature_desc)
+                // CREATED SET TO USE IN THE FeatureFilterVC PICKERVIEW:
+                //allParkFeaturesArray.append(parkFeature.feature_desc)
 
                 if parkFeature.pmaid == parkData?.pmaid {
                     thisParkFeatures.append(parkFeature.feature_desc)
                 }
                 
             }
-            allParkFeaturesSet = removeDuplicates(array: allParkFeaturesArray).sorted()
-            print("allParkFeaturesSet:")
-            print(allParkFeaturesSet)
+            //allParkFeaturesSet = removeDuplicates(array: allParkFeaturesArray).sorted()
+            //print("allParkFeaturesSet:")
+            //print(allParkFeaturesSet)
             //print("THIS park's features:")
             //print(thisParkFeatures)
         
@@ -107,8 +107,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             pmaid = parkDataToDisplay.pmaid
             print(pmaid!)
         }
-        
-        
+
         //finds value of visit status in the database and displays:
         //read in data from database to see if the park has been visited
         
@@ -132,26 +131,6 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             }
         })
         
-        //TESTUSER1 DATA:
-//        dbReference?.child("users/testUser1/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
-//            print("snapshot data")
-//            print(snapshot)
-//            print(snapshot.childrenCount)
-//            if snapshot.hasChild(self.pmaid!) {
-//                print("pmaid in the db")
-//                self.visitStatus.text = "Visited!"
-//                self.visitStatusImage.image = UIImage(named: "park_visited-512")
-//                self.yesIVisitedButton.isHidden = true
-//
-//            } else
-//            {
-//                print("pmaid NOT in the db")
-//                self.visitStatus.text = "Not Yet Visited!"
-//                self.yesIVisitedButton.isHidden = false
-//                self.visitStatusImage.image = UIImage(named: "park_not_visited-512")
-//            }
-//        })
-        
         self.tableView.tableFooterView = UIView()
         
     } //end of viewDidLoad
@@ -162,6 +141,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         tableView.reloadData()
     }
 
+//I VISITED BUTTON ACTION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @IBAction func changeVisitStatusPressed(_ sender: Any) {
         print("changeVisitStatus button tapped")
         
@@ -172,11 +152,10 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         //remove value from database:
         //dbReference?.child("users").child("testUser1").child("parkVisits").child(pmaid!).setValue(nil)
         
-        
         viewDidLoad()
     }
     
-    
+//SHARE EVENT BUTTON ACTION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @IBAction func pressedShareBtn(_ sender: Any) {
         shareEvent()
     }
@@ -186,7 +165,7 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         present(activityController, animated: true, completion: nil)
     }
     
-    
+//REFACTOR- GET RID OF THIS REMOVEDUPLICATES METHOD. JUST USE A SET INSTEAD! <<<<<<<<<<<<<<<<<<<<<<<<<
     func removeDuplicates(array: [String]) -> [String] {
         var encountered = Set<String>()
         var result: [String] = []
@@ -203,6 +182,8 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         }
         return result
     }
+
+//PARK FEATURES TABLEVIEW<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

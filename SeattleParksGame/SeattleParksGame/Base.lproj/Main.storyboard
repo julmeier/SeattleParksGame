@@ -471,6 +471,17 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cm5-7B-JDi">
+                                <rect key="frame" x="276" y="407" width="91" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFu-ng-ElQ">
                                 <rect key="frame" x="284" y="495" width="75" height="75"/>
                                 <constraints>
@@ -495,7 +506,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrP-qU-RkY">
                                 <rect key="frame" x="26" y="599" width="250" height="29"/>
-                                <color key="backgroundColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="EL2-im-I3c"/>
                                     <constraint firstAttribute="height" constant="29" id="NbD-pq-l8M"/>
@@ -504,6 +515,14 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzU-ln-Ey4">
+                                <rect key="frame" x="284" y="412" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="award1"/>
+                                <connections>
+                                    <action selector="pressedBadgesBtn:" destination="HxR-SO-QjI" eventType="touchUpInside" id="sEs-y7-oWY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -522,11 +541,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="X9y-Sc-pch">
                         <barButtonItem key="backBarButtonItem" title="Seattle Parks Map" id="DgF-XJ-Dyv"/>
-                        <barButtonItem key="rightBarButtonItem" title="Your Achievements" id="EEq-xj-wS8">
-                            <connections>
-                                <segue destination="mx4-fq-lER" kind="show" identifier="ProgressVCSegue" id="2uG-eZ-rpG"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" id="EEq-xj-wS8"/>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomFilterBtn" destination="IWn-Dk-thw" id="bxd-Xo-wuO"/>
@@ -536,6 +551,7 @@
                         <segue destination="Bka-VQ-6qm" kind="show" identifier="parkDetails" id="gGh-UH-GUr"/>
                         <segue destination="gPu-8J-Dxv" kind="show" identifier="hoodFilterVC" id="BGr-55-RC7"/>
                         <segue destination="gX8-5u-yl2" kind="show" identifier="featureFilterVC" id="w6i-cW-cH0"/>
+                        <segue destination="mx4-fq-lER" kind="show" identifier="badgesSegue" id="yRV-CN-O31"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSB-kH-8n8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -722,10 +738,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="award1" width="512" height="512"/>
         <image name="filter4-parkfeature" width="512" height="512"/>
         <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="BGr-55-RC7"/>
         <segue reference="lQa-ow-ObB"/>
     </inferredMetricsTieBreakers>
 </document>

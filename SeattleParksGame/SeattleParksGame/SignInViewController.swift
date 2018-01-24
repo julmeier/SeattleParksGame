@@ -28,7 +28,6 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         print("In SignInVC viewWillAppear")
     }
 
-    //for refactoring later (call this function from viewDidLoad)
     fileprivate func setupGoogleButtons() {
         
 //        let googleBtn = GIDSignInButton()
