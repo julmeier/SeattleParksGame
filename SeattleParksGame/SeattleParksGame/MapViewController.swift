@@ -78,6 +78,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     //boolean- user choice
     var filterHoodOn = false
     var filterFeatureOn = false
+    //processing variables:
+    var parksWithChosenFeaturesSet = Set<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,6 +184,33 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 //            }
 //        }
         
+        var parksWithChosenFeature = [String]()
+        if filterFeatureOn {
+            let path = Bundle.main.path(forResource: "SeattleParksFeatures", ofType: "json")
+            let url = URL(fileURLWithPath: path!)
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let parkFeatures = try decoder.decode([ParkFeatures].self, from: data)
+                for parkFeature in parkFeatures {
+                    if parkFeature.feature_desc == filterFeature {
+                        parksWithChosenFeature.append(parkFeature.pmaid)
+                    }
+                    
+                }
+                parksWithChosenFeaturesSet = Set(parksWithChosenFeature.map { $0 })
+                print("parksWithChosenFeaturesSet: \(parksWithChosenFeaturesSet)")
+                
+                //USES SELECTION OF PMAID TO DIRECTLY CALL JUST THAT PARK'S FEATURES:
+                //let url_root = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid="
+            }
+            catch {
+                print("error try to convert park features data to JSON")
+                print(error)
+            }
+            
+        }
+        
       
         //retrieving JSON data from API directly (without a key)
         let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
@@ -248,12 +277,18 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                         //and put an if statement here.
                         //i.e. IF the filter array has a zip code, only add those pins with that zip code.
                         //To make things a bit clearer, you can remove the "purpleTree" and "greenTree" and just change both those variables to "tree".
-                        if filterZip == "" {
+                        if filterZip == "" && filterFeature == "" {
                             self.mapView?.addAnnotation(self.tree)
-                        } else {
+                        } else if filterZip != "" {
                             if self.tree.zip_code == filterZip {
                                 self.mapView?.addAnnotation(self.tree)
                             }
+                        } else if filterFeature != "" {
+                            if self.parksWithChosenFeaturesSet.contains(self.tree.pmaid!) {
+                                self.mapView?.addAnnotation(self.tree)
+                            }
+                        } else {
+                            print("Mapping error at line 280")
                         }
                     }) //end of dbReference?.child
                 } //end of for park in parks
@@ -393,8 +428,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             print("feature filter button pressed!")
             performSegue(withIdentifier: "featureFilterVC", sender: self)
         } else if filterHoodOn {
-            print("feature filter button pressed!")
-            performSegue(withIdentifier: "featureHoodVC", sender: self)
+            print("hood filter button pressed!")
+            performSegue(withIdentifier: "hoodFilterVC", sender: self)
         } else {
             print("ERROR- bottom button pressed but logic fails")
             print("filterFeatureOn: \(filterFeatureOn)")
