@@ -71,6 +71,88 @@
             </objects>
             <point key="canvasLocation" x="-1122" y="31"/>
         </scene>
+        <!--General Info View Controller-->
+        <scene sceneID="NfY-nG-C36">
+            <objects>
+                <viewController id="YgN-yc-T2s" customClass="GeneralInfoViewController" customModule="SeattleParksGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WRH-LN-Jfh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Emerald City Ranger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRN-Yr-7we">
+                                <rect key="frame" x="16" y="76" width="343" height="35"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attribution for Graphic Content:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EwJ-sG-VqG">
+                                <rect key="frame" x="16" y="182" width="343" height="24"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Park Data Sources:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFJ-ts-ikj">
+                                <rect key="frame" x="16" y="296" width="343" height="24"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All icons in this application are designed by Freepik from www.flaticon.com. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOJ-VI-X9X">
+                                <rect key="frame" x="16" y="214" width="343" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="sqN-JU-KG1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All park data is provided by the City of Seattle (www.seattle.data.gov)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjB-tj-Ug9">
+                                <rect key="frame" x="16" y="328" width="343" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="Bph-WP-mHd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kerrypark-highdef" translatesAutoresizingMaskIntoConstraints="NO" id="IDi-KS-ihG">
+                                <rect key="frame" x="0.0" y="449" width="375" height="198"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="198" id="hrc-rn-nFf"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XOJ-VI-X9X" firstAttribute="leading" secondItem="uFJ-ts-ikj" secondAttribute="leading" id="32n-he-CVc"/>
+                            <constraint firstItem="IDi-KS-ihG" firstAttribute="centerX" secondItem="WRH-LN-Jfh" secondAttribute="centerX" id="5n4-x6-isk"/>
+                            <constraint firstItem="XOJ-VI-X9X" firstAttribute="leading" secondItem="EwJ-sG-VqG" secondAttribute="leading" id="5vn-me-iP7"/>
+                            <constraint firstItem="ZWH-kB-d5b" firstAttribute="trailing" secondItem="yRN-Yr-7we" secondAttribute="trailing" constant="16" id="BTz-0b-Lfe"/>
+                            <constraint firstItem="EwJ-sG-VqG" firstAttribute="leading" secondItem="ZWH-kB-d5b" secondAttribute="leading" constant="16" id="Gfi-CP-poT"/>
+                            <constraint firstItem="XOJ-VI-X9X" firstAttribute="top" secondItem="EwJ-sG-VqG" secondAttribute="bottom" constant="8" symbolic="YES" id="JgC-7F-uvd"/>
+                            <constraint firstItem="XOJ-VI-X9X" firstAttribute="trailing" secondItem="uFJ-ts-ikj" secondAttribute="trailing" id="L5u-4V-Toe"/>
+                            <constraint firstItem="zjB-tj-Ug9" firstAttribute="top" secondItem="uFJ-ts-ikj" secondAttribute="bottom" constant="8" symbolic="YES" id="SEi-oi-Lhr"/>
+                            <constraint firstItem="uFJ-ts-ikj" firstAttribute="leading" secondItem="zjB-tj-Ug9" secondAttribute="leading" id="TJs-W3-75Z"/>
+                            <constraint firstAttribute="bottom" secondItem="IDi-KS-ihG" secondAttribute="bottom" constant="20" symbolic="YES" id="Va4-Ac-RUH"/>
+                            <constraint firstItem="yRN-Yr-7we" firstAttribute="leading" secondItem="ZWH-kB-d5b" secondAttribute="leading" constant="16" id="Xfu-h4-Am8"/>
+                            <constraint firstItem="yRN-Yr-7we" firstAttribute="top" secondItem="ZWH-kB-d5b" secondAttribute="top" constant="56" id="avb-s0-mLW"/>
+                            <constraint firstItem="uFJ-ts-ikj" firstAttribute="top" secondItem="XOJ-VI-X9X" secondAttribute="bottom" constant="33" id="cAL-8m-rU4"/>
+                            <constraint firstItem="IDi-KS-ihG" firstAttribute="trailing" secondItem="ZWH-kB-d5b" secondAttribute="trailing" id="efi-wJ-9hv"/>
+                            <constraint firstItem="yRN-Yr-7we" firstAttribute="centerX" secondItem="WRH-LN-Jfh" secondAttribute="centerX" id="eub-MN-3ZP"/>
+                            <constraint firstItem="ZWH-kB-d5b" firstAttribute="trailing" secondItem="EwJ-sG-VqG" secondAttribute="trailing" constant="16" id="fLr-L8-JvP"/>
+                            <constraint firstItem="XOJ-VI-X9X" firstAttribute="top" secondItem="WRH-LN-Jfh" secondAttribute="top" constant="214" id="m6u-VX-pIN"/>
+                            <constraint firstItem="XOJ-VI-X9X" firstAttribute="trailing" secondItem="EwJ-sG-VqG" secondAttribute="trailing" id="mYq-hR-fjR"/>
+                            <constraint firstItem="IDi-KS-ihG" firstAttribute="leading" secondItem="ZWH-kB-d5b" secondAttribute="leading" id="n16-hS-dkq"/>
+                            <constraint firstItem="IDi-KS-ihG" firstAttribute="leading" secondItem="WRH-LN-Jfh" secondAttribute="leading" id="oNU-M8-856"/>
+                            <constraint firstItem="zjB-tj-Ug9" firstAttribute="centerX" secondItem="WRH-LN-Jfh" secondAttribute="centerX" id="swA-ad-JDW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZWH-kB-d5b"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AOZ-t5-ydE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1037.5999999999999" y="818.14092953523243"/>
+        </scene>
         <!--Park Info View Controller-->
         <scene sceneID="8r7-F0-iGk">
             <objects>
@@ -359,8 +441,11 @@
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kV-7e-gBU">
-                                                    <rect key="frame" x="11" y="0.0" width="80" height="80"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4kV-7e-gBU">
+                                                    <rect key="frame" x="9" y="0.0" width="82" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="lk6-ha-3sY"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-qs-hnE">
                                                     <rect key="frame" x="0.0" y="108" width="100" height="40"/>
@@ -376,22 +461,22 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Jpk-hS-Vdv" secondAttribute="trailing" id="3b5-MP-h83"/>
+                                            <constraint firstAttribute="trailing" secondItem="4kV-7e-gBU" secondAttribute="trailing" constant="9" id="3fa-sw-u6E"/>
                                             <constraint firstItem="Sjn-fP-hWc" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="4cv-1W-Z7h"/>
                                             <constraint firstItem="Jpk-hS-Vdv" firstAttribute="top" secondItem="Sjn-fP-hWc" secondAttribute="bottom" constant="5" id="6xH-jE-4FT"/>
-                                            <constraint firstItem="4kV-7e-gBU" firstAttribute="leading" secondItem="Sjn-fP-hWc" secondAttribute="leading" id="BrJ-YR-vkb"/>
                                             <constraint firstItem="Jpk-hS-Vdv" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="Ejt-uq-nDv"/>
                                             <constraint firstAttribute="trailing" secondItem="Aq7-qs-hnE" secondAttribute="trailing" id="JQl-U2-n84"/>
                                             <constraint firstItem="Sjn-fP-hWc" firstAttribute="top" secondItem="GyL-5a-bzh" secondAttribute="top" constant="1" id="NLp-a3-LfW"/>
                                             <constraint firstItem="Aq7-qs-hnE" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="NbZ-G6-i7K"/>
                                             <constraint firstItem="Jpk-hS-Vdv" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" id="bHi-2e-zv6"/>
-                                            <constraint firstItem="4kV-7e-gBU" firstAttribute="trailing" secondItem="Sjn-fP-hWc" secondAttribute="trailing" id="cVu-zw-nyZ"/>
+                                            <constraint firstItem="4kV-7e-gBU" firstAttribute="top" secondItem="GyL-5a-bzh" secondAttribute="top" id="bLe-2r-IUN"/>
                                             <constraint firstItem="Aq7-qs-hnE" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" id="e1Y-a7-Uvm"/>
                                             <constraint firstAttribute="trailing" secondItem="Jpk-hS-Vdv" secondAttribute="trailing" id="ghU-Hj-aYP"/>
                                             <constraint firstItem="4kV-7e-gBU" firstAttribute="top" secondItem="GyL-5a-bzh" secondAttribute="top" id="hjA-ai-kRb"/>
                                             <constraint firstItem="Jpk-hS-Vdv" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" id="pgc-gD-RUK"/>
-                                            <constraint firstItem="Jpk-hS-Vdv" firstAttribute="top" secondItem="4kV-7e-gBU" secondAttribute="bottom" constant="6" id="ryY-qK-scZ"/>
                                             <constraint firstItem="Aq7-qs-hnE" firstAttribute="centerX" secondItem="GyL-5a-bzh" secondAttribute="centerX" id="tIL-uR-hvZ"/>
                                             <constraint firstItem="Aq7-qs-hnE" firstAttribute="top" secondItem="Jpk-hS-Vdv" secondAttribute="bottom" constant="2" id="wjS-Ls-lWv"/>
+                                            <constraint firstItem="4kV-7e-gBU" firstAttribute="leading" secondItem="GyL-5a-bzh" secondAttribute="leading" constant="9" id="y0z-tr-rhf"/>
                                         </constraints>
                                         <size key="customSize" width="100" height="150"/>
                                         <connections>
@@ -552,6 +637,7 @@
                         <segue destination="gPu-8J-Dxv" kind="show" identifier="hoodFilterVC" id="BGr-55-RC7"/>
                         <segue destination="gX8-5u-yl2" kind="show" identifier="featureFilterVC" id="w6i-cW-cH0"/>
                         <segue destination="mx4-fq-lER" kind="show" identifier="badgesSegue" id="yRV-CN-O31"/>
+                        <segue destination="YgN-yc-T2s" kind="show" identifier="infoVCSegue" id="rKs-cx-07s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSB-kH-8n8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -743,7 +829,6 @@
         <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BGr-55-RC7"/>
         <segue reference="lQa-ow-ObB"/>
     </inferredMetricsTieBreakers>
 </document>

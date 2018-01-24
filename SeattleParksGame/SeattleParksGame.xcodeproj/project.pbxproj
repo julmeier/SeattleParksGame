@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		124D7641BDA61A3AFE72C77D /* Pods_SeattleParksGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		A36BE3872017D9D2009B468F /* FeatureFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE3862017D9D2009B468F /* FeatureFilterViewController.swift */; };
+		A36BE389201929DF009B468F /* GeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE388201929DE009B468F /* GeneralInfoViewController.swift */; };
 		A37799B41FFF3B6900253E26 /* AnnotationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37799B31FFF3B6900253E26 /* AnnotationPin.swift */; };
 		A37799B62002E2AE00253E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37799B52002E2AE00253E26 /* MapKit.framework */; };
 		A383E7BF1FFCBA1400DACC2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383E7BE1FFCBA1400DACC2E /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 		2AA7398EF4C081246D2672B1 /* Pods-SeattleParksGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.release.xcconfig"; sourceTree = "<group>"; };
 		796A9965981998C42C96E857 /* Pods-SeattleParksGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeattleParksGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeattleParksGame/Pods-SeattleParksGame.debug.xcconfig"; sourceTree = "<group>"; };
 		A36BE3862017D9D2009B468F /* FeatureFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFilterViewController.swift; sourceTree = "<group>"; };
+		A36BE388201929DE009B468F /* GeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoViewController.swift; sourceTree = "<group>"; };
 		A37799B31FFF3B6900253E26 /* AnnotationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationPin.swift; sourceTree = "<group>"; };
 		A37799B52002E2AE00253E26 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A383E7BB1FFCBA1400DACC2E /* SeattleParksGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeattleParksGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 				A397527F200E818C00F80BAD /* SignInViewController.swift */,
 				A397527D200C45F200F80BAD /* BadgeCollectionViewCell.swift */,
 				A397528520114B9500F80BAD /* secrets.plist */,
+				A36BE388201929DE009B468F /* GeneralInfoViewController.swift */,
 			);
 			path = SeattleParksGame;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				A37799B41FFF3B6900253E26 /* AnnotationPin.swift in Sources */,
 				A397527C2009E99800F80BAD /* UserProgressViewController.swift in Sources */,
 				A3DF04FD20147F450084AC80 /* HoodFilterViewController.swift in Sources */,
+				A36BE389201929DF009B468F /* GeneralInfoViewController.swift in Sources */,
 				A3975280200E818C00F80BAD /* SignInViewController.swift in Sources */,
 				A383E7BF1FFCBA1400DACC2E /* AppDelegate.swift in Sources */,
 				A36BE3872017D9D2009B468F /* FeatureFilterViewController.swift in Sources */,
