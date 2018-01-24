@@ -471,20 +471,17 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vUj-gA-0U3">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="war-dK-cTb">
+                            <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cm5-7B-JDi">
                                 <rect key="frame" x="276" y="407" width="91" height="250"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="ecM-sy-c4o">
-                                    <rect key="frame" x="0.0" y="0.0" width="91" height="250"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <blurEffect style="light"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </visualEffectView>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFu-ng-ElQ">
                                 <rect key="frame" x="284" y="495" width="75" height="75"/>
                                 <constraints>
@@ -526,11 +523,6 @@
                                     <action selector="pressedBadgesBtn:" destination="HxR-SO-QjI" eventType="touchUpInside" id="sEs-y7-oWY"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cm5-7B-JDi">
-                                <rect key="frame" x="276" y="407" width="91" height="250"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -541,7 +533,6 @@
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="trailing" secondItem="tBU-Yy-aGz" secondAttribute="trailing" id="Z2O-1h-gQV"/>
                             <constraint firstItem="tBU-Yy-aGz" firstAttribute="trailing" secondItem="bFu-ng-ElQ" secondAttribute="trailing" constant="16" id="fwh-iL-9cH"/>
                             <constraint firstItem="IWn-Dk-thw" firstAttribute="leading" secondItem="KrP-qU-RkY" secondAttribute="trailing" constant="8" id="gA2-Dq-YCL"/>
-                            <constraint firstItem="tBU-Yy-aGz" firstAttribute="trailing" secondItem="war-dK-cTb" secondAttribute="trailing" constant="8" id="iNM-fF-q5y"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="bottom" secondItem="tBU-Yy-aGz" secondAttribute="bottom" id="kvJ-9j-tqu"/>
                             <constraint firstItem="vUj-gA-0U3" firstAttribute="leading" secondItem="tBU-Yy-aGz" secondAttribute="leading" id="mEU-j3-lbk"/>
                             <constraint firstItem="tBU-Yy-aGz" firstAttribute="bottom" secondItem="IWn-Dk-thw" secondAttribute="bottom" constant="16" id="yN4-Na-Fcn"/>
