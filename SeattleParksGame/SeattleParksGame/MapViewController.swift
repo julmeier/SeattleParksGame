@@ -231,17 +231,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
                 for park in parks {
                     
-                    //add zip code to array:
-                    //self.zipCodesAll.append(park.zip_code)
-                    
                     //print("Park name is: \(park.name)")
                     let long = (park.x_coord as NSString).doubleValue
                     let lat = (park.y_coord as NSString).doubleValue
                     
                     //read in data from database to see if the park has been visited
-                    
-                    
-                    //self.dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                     self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild(park.pmaid) {
                             //print("pmaid in the db:")
@@ -255,7 +249,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "true"
                             )
-                            //self.mapView?.addAnnotation(self.greenTree)
                             self.allAnnotationPins.append(self.tree)
                         } else {
                             //print("pmaid NOT in the db:")
@@ -269,14 +262,10 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "false"
                             )
-                            //self.mapView?.addAnnotation(self.purpleTree)
                             self.allAnnotationPins.append(self.tree)
                         } //end of else
-                    
-                        //WITH FILTER, keep the "allAnnotationPins.append" above but remove the "mapView?.addAnnotation" lines
-                        //and put an if statement here.
-                        //i.e. IF the filter array has a zip code, only add those pins with that zip code.
-                        //To make things a bit clearer, you can remove the "purpleTree" and "greenTree" and just change both those variables to "tree".
+
+                        //POPULATES MAP BASED ON FILTER VALUES:
                         if filterZip == "" && filterFeature == "" {
                             self.mapView?.addAnnotation(self.tree)
                         } else if filterZip != "" {
@@ -286,6 +275,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                         } else if filterFeature != "" {
                             if self.parksWithChosenFeaturesSet.contains(self.tree.pmaid!) {
                                 self.mapView?.addAnnotation(self.tree)
+                                print("MAPPED PMAID \(self.tree.pmaid!)")
                             }
                         } else {
                             print("Mapping error at line 280")
@@ -382,18 +372,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         //print("chosenZip in MapView: \(chosenZip)")
     }
     
-//    @IBAction func hoodFilterBtn(_ sender: Any) {
-//        print("hood filter button pressed!")
-//        performSegue(withIdentifier: "hoodFilterVC", sender: self)
-//    }
-//
-//    @IBAction func clearFilterBtnPressed(_ sender: Any) {
-//        print("clear filter button pressed!")
-//        chosenZip = ""
-//        chosenHood = ""
-//        viewDidLoad()
-//    }
-    
     @IBAction func pressedTopFilterBtn(_ sender: Any) {
         print("top button pressed")
         
@@ -409,12 +387,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         } else {
             print("ERROR- top button pressed but logic fails")
         }
-        
-//        print(topFilterBtn.imageView?.image as Any) //Optional(<UIImage: 0x60c0000bf1a0>, {512, 512})
-//        print(topFilterBtn.imageView?.image?.accessibilityIdentifier as Any) //nil
-//        print(topFilterBtn.imageView?.image?.imageAsset as Any) //Optional(<UIImageAsset: 0x60c000282120>)
-//        print(topFilterBtn.imageView?.image?.description as Any) //Optional("<UIImage: 0x60c0000bf1a0>, {512, 512}")
-//        print(topFilterBtn.imageView?.image?.accessibilityAttributedLabel as Any) //nil
     }
     
    
@@ -436,14 +408,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             print("filterHoodOn: \(filterHoodOn)")
         }
         
-        
-//        if bottomFilterBtn.isEqual(UIImage(named: "filter4-neighborhood")) {
-//            print("neighborhood filter button pressed!")
-//            performSegue(withIdentifier: "hoodFilterVC", sender: self)
-//        } else if bottomFilterBtn.isEqual(UIImage(named: "filter4-parkfeature")) {
-//            print("park feature filter button pressed!")
-//            performSegue(withIdentifier: "featureFilterVC", sender: self)
-//        }
     }
     
     
@@ -452,14 +416,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "parkDetails" {
             let destinationViewController = segue.destination as! ParkInfoViewController
-            
-            //Pass individual parameters to ParkInfoViewController:
-//            destinationViewController.name = passedAnnotation?.title!
-//            destinationViewController.address = passedAnnotation?.address!
-//            destinationViewController.pmaid = passedAnnotation?.pmaid!
-//            destinationViewController.visited = passedAnnotation?.subtitle
-            
-            //OR Pass whole object!
             destinationViewController.parkData = passedAnnotation
         }
         
@@ -479,8 +435,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         //segue to FiltersViewController
         if segue.identifier == "hoodFilterVC" {
-            print("button pressed --> hoodFilterVC")
-            let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
+            //print("button pressed --> hoodFilterVC")
+            //let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
         }
     }
     
