@@ -60,9 +60,9 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         
         //CALLS FOR ALL DATA AND THEN SORTS ON THE PMAID:
         let path = Bundle.main.path(forResource: "SeattleParksFeatures", ofType: "json")
-        print(path!)
+        //print(path!)
         let url = URL(fileURLWithPath: path!)
-        print(url)
+        //print(url)
         do {
             let data = try Data(contentsOf: url)
             //let dataString = String(data: data, encoding: .utf8)!
@@ -100,12 +100,12 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
         if let parkDataToDisplay = parkData {
             //print("Did it pass parkData correctly?")
             //print(parkDataToDisplay)
-            print(parkDataToDisplay.title!)
+            //print(parkDataToDisplay.title!)
             
             parkName.text = parkDataToDisplay.title
             parkAddress.text = parkDataToDisplay.address
             pmaid = parkDataToDisplay.pmaid
-            print(pmaid!)
+            //print(pmaid!)
         }
 
         //finds value of visit status in the database and displays:
@@ -117,14 +117,14 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
             //print(snapshot)
             //print(snapshot.childrenCount)
             if snapshot.hasChild(self.pmaid!) {
-                print("pmaid in the db")
+                //print("pmaid in the db")
                 self.visitStatus.text = "Visited!"
                 self.visitStatusImage.image = UIImage(named: "park_visited-512")
                 self.yesIVisitedButton.isHidden = true
                 
             } else
             {
-                print("pmaid NOT in the db")
+                //print("pmaid NOT in the db")
                 self.visitStatus.text = "Not Yet Visited!"
                 self.yesIVisitedButton.isHidden = false
                 self.visitStatusImage.image = UIImage(named: "park_not_visited-512")
@@ -190,9 +190,9 @@ class ParkInfoViewController: UIViewController, UITableViewDelegate, UIScrollVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("PRINTING FROM THE numberOfRowsInSection func")
-        print(thisParkFeatures)
-        print(self.thisParkFeatures.count)
+        //print("PRINTING FROM THE numberOfRowsInSection func")
+        //print(thisParkFeatures)
+        //print(self.thisParkFeatures.count)
         if self.thisParkFeatures.count == 0 {
             parkFeaturesHeader.isHidden = true
         }

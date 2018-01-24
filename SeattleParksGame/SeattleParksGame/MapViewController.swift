@@ -40,8 +40,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
     //Mapping variables:
     @IBOutlet weak var mapView: MKMapView!
-    var purpleTree: AnnotationPin!
-    var greenTree: AnnotationPin!
     var tree: AnnotationPin!
     var pin: AnnotationPin!
     
@@ -87,6 +85,8 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         print("In MapViewVC viewDidLoad")
         //print("chosenZip in viewDiDLoad: \(chosenZip)")
         //print("self.filterLbl.text: \(String(describing: self.filterLbl.text))")
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "About", style: .plain, target: self, action: #selector(pressedInfoBtn))
         
         
         //receives the zip from the hoodfilterVC
@@ -301,6 +301,14 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         print("FINISHED viewDidLoad")
     }
     
+    
+    @IBAction func pressedInfoBtn(_ sender: Any) {
+        print("info button pressed!")
+        performSegue(withIdentifier: "infoVCSegue", sender: self)
+    }
+    
+    
+//MAPVIEW SETUP <<<<<<<<<<<<<<<<<<<<<<<<<<
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
