@@ -47,45 +47,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, GIDSig
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let err = error {
             print("Failed to sign into Google: ", err.localizedDescription)
-        }
-        print("Successfully logged into Google: ", user)
+        } else {
+            print("Successfully logged into Google: ", user)
         
-        guard let idToken = user.authentication.idToken else {return}
-        guard let accessToken = user.authentication.accessToken else {return}
-        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
- 
-        Auth.auth().signIn(with: credentials) { (user, error) in
-            if let error = error {
-                print("Failed to create a Firebase User with Google account: ", error)
-                return
-            }
-            guard let uid = user?.uid else { return }
-            
-            print("Successfully logged into Firebase with Google. User.uid: ", uid)
-            
-            self.databaseRef = Database.database().reference()
-            
-            self.databaseRef.child("user_profiles").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                let snapshot = snapshot.value as? NSDictionary
-                
-                if(snapshot == nil)
-                {
-                    //self.databaseRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
-                    
-                    //BELOW GETS THIS ERROR:
-                    //" Listener at /user_profiles/izsiSrwd5mSj83Ijs40n12m4CsX2 failed: permission_denied"
-                    self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
+            guard let idToken = user.authentication.idToken else {return}
+            guard let accessToken = user.authentication.accessToken else {return}
+            let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+     
+            Auth.auth().signIn(with: credentials) { (user, error) in
+                if let error = error {
+                    print("Failed to create a Firebase User with Google account: ", error)
+                    return
                 }
+                guard let uid = user?.uid else { return }
                 
-                //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                print("Successfully logged into Firebase with Google. User.uid: ", uid)
                 
+                self.databaseRef = Database.database().reference()
                 
-                self.window?.rootViewController?.performSegue(withIdentifier: "signInToNavController", sender: nil)
-                
-                print("Finished didSignInFor in AppDelegate")
-                
-            })
+                self.databaseRef.child("user_profiles").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    let snapshot = snapshot.value as? NSDictionary
+                    
+                    if(snapshot == nil)
+                    {
+                        //self.databaseRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
+                        
+                        //BELOW GETS THIS ERROR:
+                        //" Listener at /user_profiles/izsiSrwd5mSj83Ijs40n12m4CsX2 failed: permission_denied"
+                        self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
+                    }
+                    
+                    //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                    
+                    
+                    self.window?.rootViewController?.performSegue(withIdentifier: "signInToNavController", sender: nil)
+                    
+                    print("Finished didSignInFor in AppDelegate")
+                    
+                })
+            }
         }
     }
     
