@@ -673,7 +673,7 @@
                                     <action selector="hoodSelectBtnPressed:" destination="gPu-8J-Dxv" eventType="touchUpInside" id="Veg-LU-HlC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Northeast" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-yz-QhF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ballard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-yz-QhF">
                                 <rect key="frame" x="57" y="381" width="260" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="Byl-qj-7dN"/>
@@ -726,6 +726,6 @@
         <image name="kerrypark-highdef" width="1024" height="595"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eHX-QE-edV"/>
+        <segue reference="lQa-ow-ObB"/>
     </inferredMetricsTieBreakers>
 </document>
