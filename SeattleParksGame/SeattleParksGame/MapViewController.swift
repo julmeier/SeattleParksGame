@@ -62,31 +62,61 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     //holds array of AnnotationPins
     var allAnnotationPins: [AnnotationPin?] = []
     
-    //Filter variables
+    //Filter variables & outlets
+    //receive data from other views:
     var chosenZip = String()
     var chosenHood = String()
-    @IBOutlet weak var hoodFilterLbl: UILabel!
-    @IBOutlet weak var clearFilterBtn: UIButton!
+    var chosenFeature = String()
+    //outlets:
+    @IBOutlet weak var filterLbl: UILabel!
+    @IBOutlet weak var topFilterBtn: UIButton!
+    @IBOutlet weak var bottomFilterBtn: UIButton!
+    //images:
+    let filterHoodImage = UIImage(named: "filter4-neighborhood") as UIImage?
+    let filterFeatureImage = UIImage(named: "filter4-parkfeature") as UIImage?
+    let clearFilterImage = UIImage(named: "clear_filter") as UIImage?
+    //boolean- user choice
+    var filterHoodOn = false
+    var filterFeatureOn = false
+    //processing variables:
+    var parksWithChosenFeaturesSet = Set<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("In MapViewVC viewDidLoad")
         //print("chosenZip in viewDiDLoad: \(chosenZip)")
-        print("self.hoodFilter.Lbl.text: \(String(describing: self.hoodFilterLbl.text))")
+        //print("self.filterLbl.text: \(String(describing: self.filterLbl.text))")
         
+        
+        //receives the zip from the hoodfilterVC
         let filterZip = chosenZip
         print("filterZip: \(filterZip)")
         let filterHood = chosenHood
-        hoodFilterLbl.text = filterHood
+    
+        //receives the feature from the featureFilterVC
+        let filterFeature = chosenFeature
+        print("filterFeature: \(filterFeature)")
+        
         
         if filterZip != "" {
-            clearFilterBtn.isHidden = false
-            hoodFilterLbl.isHidden = false
-        } else {
-            clearFilterBtn.isHidden = true
-            hoodFilterLbl.isHidden = true
-
+            topFilterBtn.setImage(clearFilterImage, for: .normal)
+            bottomFilterBtn.setImage(filterHoodImage, for: .normal)
+            filterLbl.text = filterHood
+            filterFeatureOn = false
+            filterHoodOn = true
+        } else if filterFeature != "" {
+            topFilterBtn.setImage(clearFilterImage, for: .normal)
+            bottomFilterBtn.setImage(filterFeatureImage, for: .normal)
+            filterLbl.text = filterFeature
+            filterHoodOn = false
+            filterFeatureOn = true
+        } else if filterFeature == "" && filterZip == "" {
+            topFilterBtn.setImage(filterFeatureImage, for: .normal)
+            bottomFilterBtn.setImage(filterHoodImage, for: .normal)
+            filterLbl.isHidden = true
+            filterHoodOn = false
+            filterFeatureOn = false
         }
         
         //Logout button
@@ -154,6 +184,33 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 //            }
 //        }
         
+        var parksWithChosenFeature = [String]()
+        if filterFeatureOn {
+            let path = Bundle.main.path(forResource: "SeattleParksFeatures", ofType: "json")
+            let url = URL(fileURLWithPath: path!)
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let parkFeatures = try decoder.decode([ParkFeatures].self, from: data)
+                for parkFeature in parkFeatures {
+                    if parkFeature.feature_desc == filterFeature {
+                        parksWithChosenFeature.append(parkFeature.pmaid)
+                    }
+                    
+                }
+                parksWithChosenFeaturesSet = Set(parksWithChosenFeature.map { $0 })
+                print("parksWithChosenFeaturesSet: \(parksWithChosenFeaturesSet)")
+                
+                //USES SELECTION OF PMAID TO DIRECTLY CALL JUST THAT PARK'S FEATURES:
+                //let url_root = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid="
+            }
+            catch {
+                print("error try to convert park features data to JSON")
+                print(error)
+            }
+            
+        }
+        
       
         //retrieving JSON data from API directly (without a key)
         let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
@@ -174,17 +231,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
                 for park in parks {
                     
-                    //add zip code to array:
-                    //self.zipCodesAll.append(park.zip_code)
-                    
                     //print("Park name is: \(park.name)")
                     let long = (park.x_coord as NSString).doubleValue
                     let lat = (park.y_coord as NSString).doubleValue
                     
                     //read in data from database to see if the park has been visited
-                    
-                    
-                    //self.dbReference?.child("users/\(String(describing: self.userKey))/parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                     self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild(park.pmaid) {
                             //print("pmaid in the db:")
@@ -198,7 +249,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "true"
                             )
-                            //self.mapView?.addAnnotation(self.greenTree)
                             self.allAnnotationPins.append(self.tree)
                         } else {
                             //print("pmaid NOT in the db:")
@@ -212,20 +262,23 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                 zip_code: park.zip_code,
                                 visitStatus: "false"
                             )
-                            //self.mapView?.addAnnotation(self.purpleTree)
                             self.allAnnotationPins.append(self.tree)
                         } //end of else
-                    
-                        //WITH FILTER, keep the "allAnnotationPins.append" above but remove the "mapView?.addAnnotation" lines
-                        //and put an if statement here.
-                        //i.e. IF the filter array has a zip code, only add those pins with that zip code.
-                        //To make things a bit clearer, you can remove the "purpleTree" and "greenTree" and just change both those variables to "tree".
-                        if filterZip == "" {
+
+                        //POPULATES MAP BASED ON FILTER VALUES:
+                        if filterZip == "" && filterFeature == "" {
                             self.mapView?.addAnnotation(self.tree)
-                        } else {
+                        } else if filterZip != "" {
                             if self.tree.zip_code == filterZip {
                                 self.mapView?.addAnnotation(self.tree)
                             }
+                        } else if filterFeature != "" {
+                            if self.parksWithChosenFeaturesSet.contains(self.tree.pmaid!) {
+                                self.mapView?.addAnnotation(self.tree)
+                                print("MAPPED PMAID \(self.tree.pmaid!)")
+                            }
+                        } else {
+                            print("Mapping error at line 280")
                         }
                     }) //end of dbReference?.child
                 } //end of for park in parks
@@ -315,23 +368,47 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func userDidChooseHood(data: String) {
         //chosenZip = data
-        hoodFilterLbl.text = data
+        //filterLbl.text = data
         //print("chosenZip in MapView: \(chosenZip)")
     }
     
-    @IBAction func hoodFilterBtn(_ sender: Any) {
-        print("hood filter button pressed!")
-        performSegue(withIdentifier: "hoodFilterVC", sender: self)
+    @IBAction func pressedTopFilterBtn(_ sender: Any) {
+        print("top button pressed")
+        
+        if !filterFeatureOn && !filterHoodOn {
+            print("park feature filter button pressed!")
+            performSegue(withIdentifier: "featureFilterVC", sender: self)
+        } else if filterFeatureOn || filterHoodOn {
+            print("clear filter button pressed!")
+            chosenZip = ""
+            chosenHood = ""
+            chosenFeature = ""
+            viewDidLoad()
+        } else {
+            print("ERROR- top button pressed but logic fails")
+        }
     }
     
-    @IBAction func clearFilterBtnPressed(_ sender: Any) {
-        print("clear filter button pressed!")
-        chosenZip = ""
-        chosenHood = ""
-        viewDidLoad()
+   
+    @IBAction func pressedBottomFilterBtn(_ sender: Any) {
+        print("bottom button pressed")
+        
+        if !filterFeatureOn && !filterHoodOn {
+            print("hood filter button pressed!")
+            performSegue(withIdentifier: "hoodFilterVC", sender: self)
+        } else if filterFeatureOn {
+            print("feature filter button pressed!")
+            performSegue(withIdentifier: "featureFilterVC", sender: self)
+        } else if filterHoodOn {
+            print("hood filter button pressed!")
+            performSegue(withIdentifier: "hoodFilterVC", sender: self)
+        } else {
+            print("ERROR- bottom button pressed but logic fails")
+            print("filterFeatureOn: \(filterFeatureOn)")
+            print("filterHoodOn: \(filterHoodOn)")
+        }
+        
     }
-    
-    
     
     
 //PREPARE FOR SEGUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -339,14 +416,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "parkDetails" {
             let destinationViewController = segue.destination as! ParkInfoViewController
-            
-            //Pass individual parameters to ParkInfoViewController:
-//            destinationViewController.name = passedAnnotation?.title!
-//            destinationViewController.address = passedAnnotation?.address!
-//            destinationViewController.pmaid = passedAnnotation?.pmaid!
-//            destinationViewController.visited = passedAnnotation?.subtitle
-            
-            //OR Pass whole object!
             destinationViewController.parkData = passedAnnotation
         }
         
@@ -362,6 +431,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
             hoodFilterVC.delegate = self
             //at this time, not sending any data to HoodFilterVC, just the delegate
+        }
+        
+        //segue to FiltersViewController
+        if segue.identifier == "hoodFilterVC" {
+            //print("button pressed --> hoodFilterVC")
+            //let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
         }
     }
     
