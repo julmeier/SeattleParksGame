@@ -82,7 +82,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "About", style: .plain, target: self, action: #selector(pressedInfoBtn))
+        createNavBarButtons()
+        
+        
         
         //receives the zip from the hoodfilterVC
         let filterZip = chosenZip
@@ -294,6 +296,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         print("info button pressed!")
         performSegue(withIdentifier: "infoVCSegue", sender: self)
     }
+    
+    func createNavBarButtons() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "About", style: .plain, target: self, action: #selector(pressedInfoBtn))
+    }
+    
     
     
 //MAPVIEW SETUP <<<<<<<<<<<<<<<<<<<<<<<<<<
