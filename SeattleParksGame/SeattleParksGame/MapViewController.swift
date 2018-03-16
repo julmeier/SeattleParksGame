@@ -18,7 +18,7 @@ import GoogleSignIn
 
 
 //=======IMPORTS SECRETS FILE=======
-let path = Bundle.main.path(forResource: "secrets", ofType: "plist" )
+let path = Bundle.main.path(forResource: "ApiKeys", ofType: "plist" )
 let dict = NSDictionary(contentsOfFile: path!)
 
 //======= loads the dictionary of the secrets file=========
@@ -83,8 +83,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         super.viewDidLoad()
         
         createNavBarButtons()
-        
-        
         
         //receives the zip from the hoodfilterVC
         let filterZip = chosenZip
