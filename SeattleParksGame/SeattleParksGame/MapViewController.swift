@@ -35,15 +35,13 @@ struct ParkAddress: Codable {
 
 class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GIDSignInUIDelegate, HoodFilterDelegate {
 
-    //get user data
-    let userKey = Auth.auth().currentUser?.uid
-
     //Mapping variables:
     @IBOutlet weak var mapView: MKMapView!
     var tree: AnnotationPin!
     var pin: AnnotationPin!
     
     //Firebase database references:
+    let userKey = Auth.auth().currentUser?.uid
     var dbReference: DatabaseReference?
     var databaseHandle:DatabaseHandle?
     
@@ -65,6 +63,12 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     var chosenZip = String()
     var chosenHood = String()
     var chosenFeature = String()
+    
+    //receives the feature from the FilterVCs
+    var filterFeature = String()
+    var filterZip = String()
+    var filterHood = String()
+    
     //outlets:
     @IBOutlet weak var filterLbl: UILabel!
     @IBOutlet weak var topFilterBtn: UIButton!
@@ -79,40 +83,17 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     //processing variables:
     var parksWithChosenFeaturesSet = Set<String>()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createNavBarButtons()
         
-        //receives the zip from the hoodfilterVC
-        let filterZip = chosenZip
-        let filterHood = chosenHood
-    
-        //receives the feature from the featureFilterVC
-        let filterFeature = chosenFeature
-        
-        if filterZip != "" {
-            topFilterBtn.setImage(clearFilterImage, for: .normal)
-            bottomFilterBtn.setImage(filterHoodImage, for: .normal)
-            filterLbl.text = filterHood
-            filterFeatureOn = false
-            filterHoodOn = true
-        } else if filterFeature != "" {
-            topFilterBtn.setImage(clearFilterImage, for: .normal)
-            bottomFilterBtn.setImage(filterFeatureImage, for: .normal)
-            filterLbl.text = filterFeature
-            filterHoodOn = false
-            filterFeatureOn = true
-        } else if filterFeature == "" && filterZip == "" {
-            topFilterBtn.setImage(filterFeatureImage, for: .normal)
-            bottomFilterBtn.setImage(filterHoodImage, for: .normal)
-            filterLbl.isHidden = true
-            filterHoodOn = false
-            filterFeatureOn = false
-        }
-        
-        //Logout button
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        //receives the feature from the FilterVCs
+        filterFeature = chosenFeature
+        filterZip = chosenZip
+        filterHood = chosenHood
+        appliesFilters()
         
         //Logout user that is not logged in
         //COMMENTED THIS OUT DURING FILTERING BECAUSE IT SIGNS USER OUT WHEN THEY RETURN FROM HOOD FILTER PAGE:
@@ -229,8 +210,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                     //read in data from database to see if the park has been visited
                     self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild(park.pmaid) {
-                            //print("pmaid in the db:")
-                            //print(park.pmaid)
                             self.tree = AnnotationPin(
                                 title: park.name,
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
@@ -242,8 +221,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                             )
                             self.allAnnotationPins.append(self.tree)
                         } else {
-                            //print("pmaid NOT in the db:")
-                           // print(park.pmaid)
                             self.tree = AnnotationPin(
                                 title: park.name,
                                 coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
@@ -257,13 +234,13 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                         } //end of else
 
                         //POPULATES MAP BASED ON FILTER VALUES:
-                        if filterZip == "" && filterFeature == "" {
+                        if self.filterZip == "" && self.filterFeature == "" {
                             self.mapView?.addAnnotation(self.tree)
-                        } else if filterZip != "" {
-                            if self.tree.zip_code == filterZip {
+                        } else if self.filterZip != "" {
+                            if self.tree.zip_code == self.filterZip {
                                 self.mapView?.addAnnotation(self.tree)
                             }
-                        } else if filterFeature != "" {
+                        } else if self.filterFeature != "" {
                             if self.parksWithChosenFeaturesSet.contains(self.tree.pmaid!) {
                                 self.mapView?.addAnnotation(self.tree)
                                 print("MAPPED PMAID \(self.tree.pmaid!)")
@@ -274,11 +251,11 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                     }) //end of dbReference?.child
                 } //end of for park in parks
             
-            } //end of do
+            }
             catch {
                 print("error try to convert park address data to JSON")
                 print(error)
-            } //end of catch
+            }
             
             //create set of zip codes for Achievements page:
             //self.zipCodesSet = self.removeDuplicates(array: self.zipCodesAll).sorted()
@@ -297,6 +274,30 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func createNavBarButtons() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "About", style: .plain, target: self, action: #selector(pressedInfoBtn))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+    }
+    
+    func appliesFilters() {
+        
+        if filterZip != "" {
+            topFilterBtn.setImage(clearFilterImage, for: .normal)
+            bottomFilterBtn.setImage(filterHoodImage, for: .normal)
+            filterLbl.text = filterHood
+            filterFeatureOn = false
+            filterHoodOn = true
+        } else if filterFeature != "" {
+            topFilterBtn.setImage(clearFilterImage, for: .normal)
+            bottomFilterBtn.setImage(filterFeatureImage, for: .normal)
+            filterLbl.text = filterFeature
+            filterHoodOn = false
+            filterFeatureOn = true
+        } else if filterFeature == "" && filterZip == "" {
+            topFilterBtn.setImage(filterFeatureImage, for: .normal)
+            bottomFilterBtn.setImage(filterHoodImage, for: .normal)
+            filterLbl.isHidden = true
+            filterHoodOn = false
+            filterFeatureOn = false
+        }
     }
     
     
