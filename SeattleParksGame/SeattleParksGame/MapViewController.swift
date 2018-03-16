@@ -82,22 +82,14 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("In MapViewVC viewDidLoad")
-        //print("chosenZip in viewDiDLoad: \(chosenZip)")
-        //print("self.filterLbl.text: \(String(describing: self.filterLbl.text))")
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "About", style: .plain, target: self, action: #selector(pressedInfoBtn))
-        
         
         //receives the zip from the hoodfilterVC
         let filterZip = chosenZip
-        print("filterZip: \(filterZip)")
         let filterHood = chosenHood
     
         //receives the feature from the featureFilterVC
         let filterFeature = chosenFeature
-        print("filterFeature: \(filterFeature)")
-        
         
         if filterZip != "" {
             topFilterBtn.setImage(clearFilterImage, for: .normal)
@@ -199,7 +191,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                     
                 }
                 parksWithChosenFeaturesSet = Set(parksWithChosenFeature.map { $0 })
-                print("parksWithChosenFeaturesSet: \(parksWithChosenFeaturesSet)")
                 
                 //USES SELECTION OF PMAID TO DIRECTLY CALL JUST THAT PARK'S FEATURES:
                 //let url_root = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid="
@@ -294,10 +285,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             //print(self.zipCodesSet)
         
         }.resume()
-        //print("ALL ANNOTATION PINS:")
-        //print(self.allAnnotationPins)
-//        print("ALL ANNOTATION PINS COUNT:")
-//        print(self.allAnnotationPins.count)
+
         print("FINISHED viewDidLoad")
     }
     
