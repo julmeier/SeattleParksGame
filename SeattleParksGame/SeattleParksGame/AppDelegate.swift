@@ -32,13 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, GIDSig
     }
     
     //Added by Julia for Google Sign-in (Firebase Guide Step 4)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-            print("passing through application(_ appication: UIApplication, open url: URL.... in AppDelegate")
-            //return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
-            return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-            
-            
-    }
+//    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+//            print("passing through application(_ appication: UIApplication, open url: URL.... in AppDelegate") //this never prints
+//            return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+//    }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Entered didDisconnectWith in the AppDelegate")
@@ -60,8 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, GIDSig
                     return
                 }
                 guard let uid = user?.uid else { return }
-                
+                guard let displayName = user?.displayName else {return}
                 print("Successfully logged into Firebase with Google. User.uid: ", uid)
+                print("User.email: \(String(describing: user?.email))")
+                print("User.displayName: \(displayName)")
                 
                 self.databaseRef = Database.database().reference()
                 
@@ -71,11 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, GIDSig
                     
                     if(snapshot == nil)
                     {
-                        //self.databaseRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
-                        
-                        //BELOW GETS THIS ERROR:
-                        //" Listener at /user_profiles/izsiSrwd5mSj83Ijs40n12m4CsX2 failed: permission_denied"
-                        self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
+                        self.databaseRef.child("user_profiles").child(uid).child("displayName").setValue(displayName)
+                        self.databaseRef.child("user_profiles").child(uid).child("email").setValue(user?.email)
                     }
                     
                     //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)

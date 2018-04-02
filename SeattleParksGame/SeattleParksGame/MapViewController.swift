@@ -95,12 +95,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         filterHood = chosenHood
         appliesFilters()
         
-        //Logout user that is not logged in
-        //COMMENTED THIS OUT DURING FILTERING BECAUSE IT SIGNS USER OUT WHEN THEY RETURN FROM HOOD FILTER PAGE:
-//        if userKey == nil {
-//            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-//        }
-        
         //delegate needed for custom pin
         self.mapView?.delegate = self
         
@@ -133,8 +127,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         //Retrieving data from SODAClient:
         //let client = SODAClient(domain: "data.seattle.gov", token: apiKey)
-        
-        //changed from: let fuelLocations = client.queryDataset("alternative-fuel-locations")
         //let parksFromAPI = client.query(dataset: "ajyh-m2d3")
     
 //        parksFromAPI.orderAscending("pmaid").get { res in
@@ -193,22 +185,16 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 let decoder = JSONDecoder()
                 let parks = try decoder.decode([ParkAddress].self, from: data)
                 
-                //clears pins?
                 self.allAnnotationPins = []
                 self.allAnnotationPins.removeAll()
-                //print("allAnnotationPins:")
-                //print(self.allAnnotationPins)
-                //print("chosenZip: \(self.chosenZip)")
                 
-
                 for park in parks {
-                    
-                    //print("Park name is: \(park.name)")
+
                     let long = (park.x_coord as NSString).doubleValue
                     let lat = (park.y_coord as NSString).doubleValue
                     
                     //read in data from database to see if the park has been visited
-                    self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
+                self.dbReference?.child("users").child(self.userKey!).child("parkVisits").observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild(park.pmaid) {
                             self.tree = AnnotationPin(
                                 title: park.name,
@@ -243,10 +229,9 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                         } else if self.filterFeature != "" {
                             if self.parksWithChosenFeaturesSet.contains(self.tree.pmaid!) {
                                 self.mapView?.addAnnotation(self.tree)
-                                print("MAPPED PMAID \(self.tree.pmaid!)")
                             }
                         } else {
-                            print("Mapping error at line 280")
+                            print("Filtering error")
                         }
                     }) //end of dbReference?.child
                 } //end of for park in parks
