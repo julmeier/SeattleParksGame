@@ -34,6 +34,10 @@ struct ParkAddress: Codable {
 }
 
 class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GIDSignInUIDelegate, HoodFilterDelegate {
+    func userDidChooseHood(data: String) {
+        return
+    }
+    
 
     @IBOutlet weak var mapView: MKMapView!
     var tree: AnnotationPin!
@@ -108,43 +112,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         self.mapView?.removeAnnotations(mapView.annotations)
         
-        //retrieving JSON data from local file SeattleParksAddresses.json:
-        //        let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
-        //        let url = URL(fileURLWithPath: path!)
-        //        do {
-        //            let data = try Data(contentsOf: url)
-        //print(String(data: data, encoding: .utf8)!)
-        //            let dataString = String(data: data, encoding: .utf8)!
-        //            print(dataString)
-        //            print("dataString is above (prints all park)")
-        //
-        //            let decoder = JSONDecoder()
-        //            let parks = try decoder.decode([ParkAddress].self, from: data)
-        
-        //Retrieving data from SODAClient:
-        //let client = SODAClient(domain: "data.seattle.gov", token: apiKey)
-        //let parksFromAPI = client.query(dataset: "ajyh-m2d3")
-    
-//        parksFromAPI.orderAscending("pmaid").get { res in
-//            switch res {
-//            case .dataset (let apiData):
-//                //print(apiData)
-//                // Update our data
-//                //self.datum = datum
-//                for datum in apiData {
-//                    //print(datum)
-//                    print("DATUM:")
-//                    print(datum["name"]!)
-//                    print(datum["pmaid"]!)
-//                }
-//
-//            case .error (let err):
-//                let errorMessage = (err as NSError).userInfo.debugDescription
-//                let alertController = UIAlertController(title: "Error Refreshing", message: errorMessage, preferredStyle:.alert)
-//                self.present(alertController, animated: true, completion: nil)
-//            }
-//        }
-        
         var parksWithChosenFeature = [String]()
         if filterFeatureOn {
             let path = Bundle.main.path(forResource: "SeattleParksFeatures", ofType: "json")
@@ -171,6 +138,14 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             
         }
         
+        //retrieving JSON data from local file SeattleParksAddresses.json:
+        //        let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
+        //        let url = URL(fileURLWithPath: path!)
+        //        do {
+        //            let data = try Data(contentsOf: url)
+        //print(String(data: data, encoding: .utf8)!)
+        //            let dataString = String(data: data, encoding: .utf8)!
+
       
         //retrieving JSON data from API directly (without a key)
         let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
@@ -240,7 +215,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         }.resume()
 
-        print("FINISHED viewDidLoad")
     }
     
     
@@ -429,7 +403,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance().signOut()
             GIDSignIn.sharedInstance().disconnect()
-            print("Disconnecting...handleLogout")
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as! SignInViewController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
