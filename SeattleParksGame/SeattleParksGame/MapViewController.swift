@@ -35,12 +35,10 @@ struct ParkAddress: Codable {
 
 class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GIDSignInUIDelegate, HoodFilterDelegate {
 
-    //Mapping variables:
     @IBOutlet weak var mapView: MKMapView!
     var tree: AnnotationPin!
     var pin: AnnotationPin!
     
-    //Firebase database references:
     let userKey = Auth.auth().currentUser?.uid
     var dbReference: DatabaseReference?
     var databaseHandle:DatabaseHandle?
@@ -51,9 +49,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     var passedAnnotation: AnnotationPin?
     
     //variable to hold collection of zip codes
-    var zipCodesAll: [String] = []
-    var zipCodesSet: [String] = []
-    //var zipCodeDictionary: [Dictionary<String, String>] = []
+    //var zipCodesAll: [String] = []
     
     //holds array of AnnotationPins
     var allAnnotationPins: [AnnotationPin?] = []
@@ -241,10 +237,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 print("error try to convert park address data to JSON")
                 print(error)
             }
-            
-            //create set of zip codes for Achievements page:
-            //self.zipCodesSet = self.removeDuplicates(array: self.zipCodesAll).sorted()
-            //print(self.zipCodesSet)
         
         }.resume()
 
@@ -349,24 +341,19 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         mapView?.setRegion(coordinateRegion, animated:true)
     }
     
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        mapView?.showsUserLocation = true
+    }
+    
 
 //NEIGHBORHOOD FILTER DELEGATE FUNCTIONS:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
-    
-    func userDidChooseHood(data: String) {
-        //chosenZip = data
-        //filterLbl.text = data
-        //print("chosenZip in MapView: \(chosenZip)")
-    }
-    
     @IBAction func pressedTopFilterBtn(_ sender: Any) {
-        print("top button pressed")
         
         if !filterFeatureOn && !filterHoodOn {
-            print("park feature filter button pressed!")
             performSegue(withIdentifier: "featureFilterVC", sender: self)
         } else if filterFeatureOn || filterHoodOn {
-            print("clear filter button pressed!")
             chosenZip = ""
             chosenHood = ""
             chosenFeature = ""
@@ -378,16 +365,15 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
    
     @IBAction func pressedBottomFilterBtn(_ sender: Any) {
-        print("bottom button pressed")
-        
+
         if !filterFeatureOn && !filterHoodOn {
-            print("hood filter button pressed!")
+            //hood filter button pressed
             performSegue(withIdentifier: "hoodFilterVC", sender: self)
         } else if filterFeatureOn {
-            print("feature filter button pressed!")
+            //feature filter button pressed
             performSegue(withIdentifier: "featureFilterVC", sender: self)
         } else if filterHoodOn {
-            print("hood filter button pressed!")
+            //hood filter button pressed
             performSegue(withIdentifier: "hoodFilterVC", sender: self)
         } else {
             print("ERROR- bottom button pressed but logic fails")
@@ -398,7 +384,6 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     @IBAction func pressedBadgesBtn(_ sender: Any) {
-        print("user achievements button pressed!")
         performSegue(withIdentifier: "badgesSegue", sender: self)
     }
     
@@ -412,30 +397,19 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             destinationViewController.parkData = passedAnnotation
         }
         
-        //segue to UserProgressVC
-//        if segue.identifier == "ProgressVCSegue" {
-//            let destination = segue.destination as! UserProgressViewController
-//            destination.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
-//        }
         
-        //segue to FiltersViewController
         if segue.identifier == "hoodFilterVC" {
             print("button pressed --> hoodFilterVC")
             let hoodFilterVC: HoodFilterViewController = segue.destination as! HoodFilterViewController
             hoodFilterVC.delegate = self
             //at this time, not sending any data to HoodFilterVC, just the delegate
         }
-        
-        //NEW segue to UserProgressVC
+    
         if segue.identifier == "badgesSegue" {
             print("button pressed --> UserAchievementsVC")
             let userProgressVC: UserProgressViewController = segue.destination as! UserProgressViewController
             userProgressVC.allAnnotationPins = allAnnotationPins as! [AnnotationPin]
         }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        mapView?.showsUserLocation = true
     }
     
     //BAD SIDE EFFECT OF THIS METHOD: viewDidLoad loads 2x on initial load, so if user goes straight to badges page, there are twice as many parks objects passed.
@@ -467,28 +441,5 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         //let loginController = SignInViewController()
         //present(loginController, animated: true, completion: nil)
     }
-    
-    //HELPER FUNCTIONS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    
-    func removeDuplicates(array: [String]) -> [String] {
-        var encountered = Set<String>()
-        var result: [String] = []
-        for value in array {
-            if encountered.contains(value) {
-                // Do not add a duplicate element.
-            }
-            else {
-                // Add value to the set.
-                encountered.insert(value)
-                // ... Append the value.
-                result.append(value)
-            }
-        }
-        return result
-    }
-    
-    func BoolToString(b: Bool?)->String {
-        return b?.description ?? "<None>"
-    }
-    
+     
 }

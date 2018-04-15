@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, GIDSig
                     
                     //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
                     
-                    
+                
                     self.window?.rootViewController?.performSegue(withIdentifier: "signInToNavController", sender: nil)
                     
                     print("Finished didSignInFor in AppDelegate")
