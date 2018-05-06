@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeattleParksGame/MapViewController.swift"
-            timestampString = "542859703.2666"
+            timestampString = "547024908.418329"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
@@ -26,7 +26,7 @@
                   moduleName = "SeattleParksGame"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Julia/ada/SeattleParksGame/SeattleParksGame/SeattleParksGame/MapViewController.swift"
-                  timestampString = "542859706.658187"
+                  timestampString = "547017768.844677"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -41,7 +41,7 @@
                   moduleName = "SeattleParksGame"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Julia/ada/SeattleParksGame/SeattleParksGame/SeattleParksGame/MapViewController.swift"
-                  timestampString = "542859706.662717"
+                  timestampString = "547017768.8476239"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeattleParksGame/MapViewController.swift"
-            timestampString = "542859703.267486"
+            timestampString = "547024908.4186389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
@@ -74,7 +74,7 @@
                   moduleName = "SeattleParksGame"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Julia/ada/SeattleParksGame/SeattleParksGame/SeattleParksGame/MapViewController.swift"
-                  timestampString = "542859706.6671571"
+                  timestampString = "547017768.857305"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "22"
@@ -89,7 +89,7 @@
                   moduleName = "SeattleParksGame"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Julia/ada/SeattleParksGame/SeattleParksGame/SeattleParksGame/MapViewController.swift"
-                  timestampString = "542859706.669027"
+                  timestampString = "547017768.861691"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "22"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeattleParksGame/MapViewController.swift"
-            timestampString = "542859703.268024"
+            timestampString = "547024908.418844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -122,7 +122,7 @@
                   moduleName = "SeattleParksGame"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Julia/ada/SeattleParksGame/SeattleParksGame/SeattleParksGame/MapViewController.swift"
-                  timestampString = "542859706.673398"
+                  timestampString = "547017768.87033"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -137,7 +137,7 @@
                   moduleName = "SeattleParksGame"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Julia/ada/SeattleParksGame/SeattleParksGame/SeattleParksGame/MapViewController.swift"
-                  timestampString = "542859706.675285"
+                  timestampString = "547017768.87334"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -145,6 +145,52 @@
                   offsetFromSymbolStart = "4">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeattleParksGame/GeneralInfoViewController.swift"
+            timestampString = "547024908.419048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "GeneralInfoViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeattleParksGame/GeneralInfoViewController.swift"
+            timestampString = "547024908.419109"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeattleParksGame/GeneralInfoViewController.swift"
+            timestampString = "547024908.419175"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "GeneralInfoViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

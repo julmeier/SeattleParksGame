@@ -28,7 +28,9 @@ ApiKeys.plist
 ## Other
 *.moved-aside
 *.xccheckout
+*.xcuserstate
 *.xcscmblueprint
+*Breakpoints.xcbkptlist 
 
 ## Obj-C/Swift specific
 *.hmap
