@@ -139,22 +139,21 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
         
         //retrieving JSON data from local file SeattleParksAddresses.json:
-        //        let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
-        //        let url = URL(fileURLWithPath: path!)
-        //        do {
-        //            let data = try Data(contentsOf: url)
-        //print(String(data: data, encoding: .utf8)!)
-        //            let dataString = String(data: data, encoding: .utf8)!
-
-      
-        //retrieving JSON data from API directly (without a key)
-        let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
-        guard let url = URL(string: seattleParksAddressesUrl) else {return}
-        URLSession.shared.dataTask(with: url) {(data, response, err) in
-            guard let data = data else {return}
+            let path = Bundle.main.path(forResource: "SeattleParksAddresses", ofType: "json")
+            let url = URL(fileURLWithPath: path!)
             do {
+                let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let parks = try decoder.decode([ParkAddress].self, from: data)
+      
+        //retrieving JSON data from API directly (without a key)
+//        let seattleParksAddressesUrl = "https://data.seattle.gov/resource/ajyh-m2d3.json"
+//        guard let url = URL(string: seattleParksAddressesUrl) else {return}
+//        URLSession.shared.dataTask(with: url) {(data, response, err) in
+//            guard let data = data else {return}
+//            do {
+//                let decoder = JSONDecoder()
+//                let parks = try decoder.decode([ParkAddress].self, from: data)
                 
                 self.allAnnotationPins = []
                 self.allAnnotationPins.removeAll()
@@ -213,7 +212,7 @@ class  MapViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 print(error)
             }
         
-        }.resume()
+//        }.resume()
 
     }
     
