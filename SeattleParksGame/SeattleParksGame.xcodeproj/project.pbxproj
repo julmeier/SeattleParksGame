@@ -25,7 +25,6 @@
 		A3BB784E20056D3A00BAF7FD /* SeattleParksAddresses.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */; };
 		A3BB785020056DB300BAF7FD /* SeattleParksFeatures.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */; };
 		A3BB78522009473600BAF7FD /* zipcode-neighborhoods.json in Resources */ = {isa = PBXBuildFile; fileRef = A3BB78512009473600BAF7FD /* zipcode-neighborhoods.json */; };
-		A3BDF2BC205B5DB400F43F15 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3BDF2BB205B5DB400F43F15 /* ApiKeys.plist */; };
 		A3DF04FD20147F450084AC80 /* HoodFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF04FC20147F450084AC80 /* HoodFilterViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,6 @@
 		A3BB784D20056D3A00BAF7FD /* SeattleParksAddresses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SeattleParksAddresses.json; sourceTree = "<group>"; };
 		A3BB784F20056DB300BAF7FD /* SeattleParksFeatures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SeattleParksFeatures.json; path = ../../SeattleParksFeatures.json; sourceTree = "<group>"; };
 		A3BB78512009473600BAF7FD /* zipcode-neighborhoods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "zipcode-neighborhoods.json"; path = "../../zipcode-neighborhoods.json"; sourceTree = "<group>"; };
-		A3BDF2BB205B5DB400F43F15 /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		A3DF04FC20147F450084AC80 /* HoodFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoodFilterViewController.swift; sourceTree = "<group>"; };
 		DA7C669535767014740E55CE /* Pods_SeattleParksGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeattleParksGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -117,7 +115,6 @@
 				A397527F200E818C00F80BAD /* SignInViewController.swift */,
 				A397527D200C45F200F80BAD /* BadgeCollectionViewCell.swift */,
 				A36BE388201929DE009B468F /* GeneralInfoViewController.swift */,
-				A3BDF2BB205B5DB400F43F15 /* ApiKeys.plist */,
 			);
 			path = SeattleParksGame;
 			sourceTree = "<group>";
@@ -195,7 +192,6 @@
 			files = (
 				A3BB78522009473600BAF7FD /* zipcode-neighborhoods.json in Resources */,
 				A383E7C91FFCBA1400DACC2E /* LaunchScreen.storyboard in Resources */,
-				A3BDF2BC205B5DB400F43F15 /* ApiKeys.plist in Resources */,
 				A383E7D71FFD8ED200DACC2E /* GoogleService-Info.plist in Resources */,
 				A383E7C61FFCBA1400DACC2E /* Assets.xcassets in Resources */,
 				A383E7C41FFCBA1400DACC2E /* Main.storyboard in Resources */,
